@@ -22,7 +22,7 @@ public final class Lists {
      * @return Map of R as the keys and T as the values
      */
     public static <@Nullable T, @Nullable R> @NonNull Map<R, @NonNull List<T>> group(
-            final @NonNull List<T> input,
+            final @NonNull Iterable<T> input,
             final @NonNull Function<T, R> function
     ) {
         final Map<R, List<T>> output = new HashMap<>();
@@ -50,7 +50,7 @@ public final class Lists {
      * @return a list with the mapped elements
      */
     public static <@Nullable R, @Nullable T> @NonNull List<R> map(
-            final @NonNull List<T> input,
+            final @NonNull Iterable<T> input,
             final @NonNull Function<T, R> function
     ) {
         final List<R> output = new ArrayList<>();
