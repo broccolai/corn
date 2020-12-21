@@ -45,6 +45,24 @@ subprojects {
         }
     }
 
+    publishing {
+        repositories {
+            maven {
+                name = "repo_broccolai"
+                url = uri("https://repo.broccol.ai/releases")
+                credentials {
+                    username = System.getenv("REPO_USERNAME")
+                    password = System.getenv("REPO_PASSWORD")
+                }
+            }
+        }
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["java"])
+            }
+        }
+    }
+
     configure<JavaPluginConvention> {
         targetCompatibility = JavaVersion.VERSION_1_8
         sourceCompatibility = JavaVersion.VERSION_1_8
