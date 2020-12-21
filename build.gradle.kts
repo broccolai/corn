@@ -11,7 +11,7 @@ subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "checkstyle")
 
-    group = "broccolai"
+    group = "broccolai.corn"
     version = "1.0.0-SNAPSHOT"
 
     repositories {
