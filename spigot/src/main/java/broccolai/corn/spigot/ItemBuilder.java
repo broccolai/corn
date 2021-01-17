@@ -61,7 +61,7 @@ public class ItemBuilder {
     /**
      * Set the name of the ItemStack.
      *
-     * @param name the ItemStacks display name
+     * @param name the ItemStack's display name
      * @return the builder
      */
     public @NonNull ItemBuilder name(final @Nullable String name) {
