@@ -58,7 +58,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @param loreComponents the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T loreComponents(final @NonNull List<BaseComponent[]> loreComponents) {
+    public @NonNull T loreBaseComponents(final @NonNull List<BaseComponent[]> loreComponents) {
         this.itemMeta.setLoreComponents(loreComponents);
         return (T) this;
     }
@@ -69,7 +69,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @param consumer the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T loreComponents(final @NonNull Consumer<List<BaseComponent[]>> consumer) {
+    public @NonNull T loreBaseComponents(final @NonNull Consumer<List<BaseComponent[]>> consumer) {
         List<BaseComponent[]> lore = this.itemMeta.hasLore()
                 ? this.itemMeta.getLoreComponents()
                 : new ArrayList<>();
