@@ -2,10 +2,12 @@ package broccolai.corn.spigot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
@@ -93,6 +95,38 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
         consumer.accept(lore);
 
         this.itemMeta.setLore(lore);
+        return (T) this;
+    }
+
+    /**
+     * Add data to the items PersistentDataContainer
+     *
+     * @param key the NamespacedKey to use
+     * @param type the data type to use
+     * @param object data to set
+     * @param <T0> the primary object type of data
+     * @param <Z> the retrieve object type of data
+     * @return the builder
+     */
+    public <T0, Z> @NonNull T data(
+            final @NonNull NamespacedKey key,
+            final @NonNull PersistentDataType<T0, Z> type,
+            final @NonNull Z object
+    ) {
+        this.itemMeta.getPersistentDataContainer().set(key, type, object);
+        return (T) this;
+    }
+
+    /**
+     * Remove a persistent data container key from the item
+     *
+     * @param key the NamespacedKey to use
+     * @return the builder
+     */
+    public @NonNull T removeData(
+            final @NonNull NamespacedKey key
+    ) {
+        this.itemMeta.getPersistentDataContainer().remove(key);
         return (T) this;
     }
 
