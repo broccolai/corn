@@ -1,8 +1,6 @@
 package broccolai.corn.spigot;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -11,51 +9,44 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-public class ItemBuilder {
-    private final @NonNull ItemStack item;
-    private final @Nullable ItemMeta meta;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.function.Consumer;
 
-    /**
-     * Construct ItemBuilder with an ItemStack.
-     *
-     * @param item ItemStack to base the the new item from
-     */
-    public ItemBuilder(final @NonNull ItemStack item) {
-        this.item = item.clone();
-        this.meta = this.item.getItemMeta();
+@SuppressWarnings({"unchecked", "unused"})
+public class ItemBuilder<T extends ItemBuilder<T>> {
+
+    protected final @NonNull ItemStack itemStack;
+    protected final @NonNull ItemMeta itemMeta;
+
+    protected ItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+        this.itemStack = itemStack.clone();
+        this.itemMeta = itemMeta != null
+                ? itemMeta
+                : Objects.requireNonNull(
+                        Bukkit.getItemFactory().getItemMeta(itemStack.getType())
+                );
     }
 
     /**
-     * Construct ItemBuilder with a Material.
+     * Create a ItemBuilder.
      *
-     * @param material creates an ItemStack and the builder from a material
+     * @param itemStack the ItemStack to base builder off of
+     * @return instance of ItemBuilder
      */
-    public ItemBuilder(final @NonNull Material material) {
-        this(new ItemStack(material));
+    public static ItemBuilder<?> spigot(final @NonNull ItemStack itemStack) {
+        return new ItemBuilder<>(itemStack, itemStack.getItemMeta());
     }
 
     /**
-     * Build ItemStack from set properties.
+     * Create an ItemBuilder.
      *
-     * @return the built ItemStack
+     * @param material the material to base builder off of
+     * @return instance of ItemBuilder
      */
-    public @NonNull ItemStack build() {
-        if (this.meta != null) {
-            this.item.setItemMeta(this.meta);
-        }
-
-        return this.item;
-    }
-
-    /**
-     * Set the quantity of the ItemStack.
-     *
-     * @param amount the ItemStacks quantity
-     * @return the builder
-     */
-    public @NonNull ItemBuilder amount(final @NonNull Integer amount) {
-        this.item.setAmount(amount);
-        return this;
+    public static ItemBuilder<?> spigot(final @NonNull Material material) {
+        return ItemBuilder.spigot(new ItemStack(material));
     }
 
     /**
@@ -64,93 +55,67 @@ public class ItemBuilder {
      * @param name the ItemStack's display name
      * @return the builder
      */
-    public @NonNull ItemBuilder name(final @Nullable String name) {
-        if (this.meta != null) {
-            this.meta.setDisplayName(name);
-        }
-
-        return this;
+    public @NonNull T name(final @Nullable String name) {
+        this.itemMeta.setDisplayName(name);
+        return (T) this;
     }
 
     /**
-     * Set the Lore of the ItemStack.
+     * Set the quantity of the ItemStack.
+     *
+     * @param amount the ItemStacks quantity
+     * @return the builder
+     */
+    public @NonNull T amount(final int amount) {
+        this.itemStack.setAmount(amount);
+        return (T) this;
+    }
+
+    /**
+     * Set the lore of the ItemStack.
      *
      * @param lines the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull ItemBuilder lore(final @NonNull List<String> lines) {
-        if (this.meta != null) {
-            this.meta.setLore(lines);
-        }
-
-        return this;
+    public @NonNull T lore(final @Nullable List<String> lines) {
+        this.itemMeta.setLore(lines);
+        return (T) this;
     }
 
     /**
-     * Add a line of lore to the ItemStack.
+     * Set the lore of the ItemStack.
      *
-     * @param lines the lines to add to the ItemStacks lore
+     * @param consumer the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull ItemBuilder loreAdd(final @NonNull String... lines) {
-        if (this.meta != null) {
-            List<String> lore = this.meta.getLore();
+    public @NonNull T lore(final @NonNull Consumer<List<String>> consumer) {
+        List<String> lore = this.itemMeta.hasLore() ? this.itemMeta.getLore() : new ArrayList<>();
+        consumer.accept(lore);
 
-            if (lore == null) {
-                lore = new ArrayList<>();
-            }
-
-            lore.addAll(Arrays.asList(lines));
-            this.meta.setLore(lore);
-        }
-
-        return this;
+        this.itemMeta.setLore(lore);
+        return (T) this;
     }
 
     /**
-     * Remove all lines of an ItemStacks lore.
+     * Add flags to an ItemStack.
      *
+     * @param flags the ItemFlag to add the the ItemStack
      * @return the builder
      */
-    public @NonNull ItemBuilder loreClear() {
-        if (this.meta != null) {
-            this.meta.setLore(new ArrayList<>());
-        }
-
-        return this;
+    public @NonNull T flags(final @NonNull ItemFlag... flags) {
+        this.itemMeta.addItemFlags(flags);
+        return (T) this;
     }
 
     /**
-     * Remove last line of lore from an ItemStack.
+     * Delete flags from an ItemStack.
      *
+     * @param flags the ItemFlag to add the the ItemStack
      * @return the builder
      */
-    public @NonNull ItemBuilder loreRemoveLast() {
-        if (this.meta != null) {
-            final List<String> lore = this.meta.getLore();
-
-            if (lore != null && !lore.isEmpty()) {
-                lore.remove(lore.size() - 1);
-            }
-
-            this.meta.setLore(lore);
-        }
-
-        return this;
-    }
-
-    /**
-     * Add a flag to an ItemStack.
-     *
-     * @param flag the ItemFlag to add the the ItemStack
-     * @return the builder
-     */
-    public @NonNull ItemBuilder flag(final @NonNull ItemFlag flag) {
-        if (this.meta != null) {
-            this.meta.addItemFlags(flag);
-        }
-
-        return this;
+    public @NonNull T deleteFlags(final @NonNull ItemFlag... flags) {
+        this.itemMeta.removeItemFlags(flags);
+        return (T) this;
     }
 
     /**
@@ -160,11 +125,20 @@ public class ItemBuilder {
      * @param level       the Level of the Enchantment
      * @return the builder
      */
-    public @NonNull ItemBuilder enchant(final @NonNull Enchantment enchantment, final int level) {
-        if (this.meta != null) {
-            this.meta.addEnchant(enchantment, level, true);
-        }
-
-        return this;
+    public @NonNull T enchant(final @NonNull Enchantment enchantment, final int level) {
+        this.itemMeta.addEnchant(enchantment, level, true);
+        return (T) this;
     }
+
+    /**
+     * Build ItemStack from set properties.
+     *
+     * @return the built ItemStack
+     */
+    public @NonNull ItemStack build() {
+        this.itemStack.setItemMeta(this.itemMeta);
+
+        return this.itemStack.clone();
+    }
+
 }
