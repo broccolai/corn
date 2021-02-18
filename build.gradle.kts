@@ -1,70 +1,67 @@
+import net.kyori.indra.IndraPlugin
+import net.kyori.indra.IndraPublishingPlugin
+import net.kyori.indra.IndraCheckstylePlugin
+import net.kyori.indra.sonatypeSnapshots
+
 plugins {
-    java
-    `java-library`
-    `maven-publish`
-    checkstyle
+    val indra = "1.3.1"
+    id("java")
+    id("java-library")
+    id("net.kyori.indra") version indra
+    id("net.kyori.indra.publishing") version indra
+    id("net.kyori.indra.checkstyle") version indra
 }
 
-subprojects {
-    apply(plugin = "java")
-    apply(plugin = "java-library")
-    apply(plugin = "maven-publish")
-    apply(plugin = "checkstyle")
+group = "broccolai.corn"
+version = "2.0.0"
+description = "extremely opinionated mostly personal java utilities"
 
-    group = "broccolai.corn"
-    version = "2.0.0-SNAPSHOT"
+subprojects {
+    apply<JavaPlugin>()
+    apply<JavaLibraryPlugin>()
+    apply<IndraPlugin>()
+    apply<IndraPublishingPlugin>()
+    apply<IndraCheckstylePlugin>()
 
     repositories {
         mavenCentral()
-        maven("https://oss.sonatype.org/content/repositories/public/")
-        maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        sonatypeSnapshots()
     }
 
     dependencies {
-        checkstyle("ca.stellardrift:stylecheck:0.1")
-        compileOnly("org.checkerframework:checker-qual:3.8.0")
+        compileOnly("org.checkerframework", "checker-qual", Versions.CHECKER_QUAL)
 
-        testImplementation("com.google.truth:truth:1.1")
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.3")
-        testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.3")
+        testImplementation("com.google.truth", "truth", Versions.GOOGLE_TRUTH)
+
+        testImplementation("org.junit.jupiter", "junit-jupiter-api", Versions.JUNIT)
+        testImplementation("org.junit.jupiter", "junit-jupiter-engine", Versions.JUNIT)
     }
 
-    tasks {
-        test {
-            useJUnitPlatform()
-            testLogging {
-                events("passed", "skipped", "failed")
-            }
+    indra {
+        mitLicense()
+
+        javaVersions {
+            target.set(8)
+            testWith(8, 11, 15)
         }
 
-        checkstyle {
-            val configRoot = File(rootProject.projectDir, ".checkstyle")
-            toolVersion = "8.34"
-            configDirectory.set(configRoot)
-            configProperties["basedir"] = configRoot.absolutePath
+        github("broccolai", "corn") {
+            ci = true
+            publishing = true
         }
-    }
 
-    publishing {
-        repositories {
-            maven {
-                name = "repo_broccolai"
-                url = uri("https://repo.broccol.ai/releases")
-                credentials {
-                    username = System.getenv("REPO_USERNAME")
-                    password = System.getenv("REPO_PASSWORD")
+        publishReleasesTo("broccolai", "https://repo.broccol.ai/releases")
+        publishSnapshotsTo("broccolai", "https://repo.broccol.ai/snapshots")
+
+        configurePublications {
+            pom {
+                developers {
+                    developer {
+                        id.set("broccolai")
+                        email.set("me@broccol.ai")
+                    }
                 }
             }
         }
-        publications {
-            create<MavenPublication>("maven") {
-                from(components["java"])
-            }
-        }
-    }
-
-    configure<JavaPluginConvention> {
-        targetCompatibility = JavaVersion.VERSION_1_8
-        sourceCompatibility = JavaVersion.VERSION_1_8
     }
 }
