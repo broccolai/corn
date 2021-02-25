@@ -23,7 +23,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew build publish -x signMavenPublication
+        run: ./gradlew build publish -x requireClean signMavenPublication
         env:
           ORG_GRADLE_PROJECT_broccolaiUsername: ${{ secrets.BROCCOLAI_USERNAME }}
           ORG_GRADLE_PROJECT_broccolaiPassword: ${{ secrets.BROCCOLAI_PASSWORD }}
