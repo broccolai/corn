@@ -12,6 +12,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
                 : Objects.requireNonNull(
                         Bukkit.getItemFactory().getItemMeta(itemStack.getType())
                 );
-        this.enchantmentMap = this.itemMeta.getEnchants();
+        this.enchantmentMap = new HashMap<>(this.itemMeta.getEnchants());
     }
 
     /**
