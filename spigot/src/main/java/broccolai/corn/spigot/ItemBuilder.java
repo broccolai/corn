@@ -13,6 +13,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -22,6 +23,8 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
     protected final @NonNull ItemStack itemStack;
     protected final @NonNull ItemMeta itemMeta;
 
+    protected final @NonNull Map<Enchantment, Integer> enchantmentMap;
+
     protected ItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         this.itemStack = itemStack.clone();
         this.itemMeta = itemMeta != null
@@ -29,6 +32,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
                 : Objects.requireNonNull(
                         Bukkit.getItemFactory().getItemMeta(itemStack.getType())
                 );
+        this.enchantmentMap = this.itemMeta.getEnchants();
     }
 
     /**
@@ -160,7 +164,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      * @return the builder
      */
     public @NonNull T enchant(final @NonNull Enchantment enchantment, final int level) {
-        this.itemMeta.addEnchant(enchantment, level, true);
+        this.enchantmentMap.put(enchantment, level);
         return (T) this;
     }
 
@@ -171,6 +175,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      */
     public @NonNull ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
+        this.itemStack.addUnsafeEnchantments(this.enchantmentMap);
 
         return this.itemStack.clone();
     }
