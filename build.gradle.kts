@@ -1,15 +1,13 @@
 import net.kyori.indra.IndraPlugin
 import net.kyori.indra.IndraPublishingPlugin
 import net.kyori.indra.IndraCheckstylePlugin
-import net.kyori.indra.sonatypeSnapshots
+import net.kyori.indra.repository.sonatypeSnapshots
 
 plugins {
-    val indra = "1.3.1"
-    id("java")
-    id("java-library")
+    val indra = "2.0.3"
     id("net.kyori.indra") version indra
-    id("net.kyori.indra.publishing") version indra
-    id("net.kyori.indra.checkstyle") version indra
+    id("net.kyori.indra.publishing") version indra apply false
+    id("net.kyori.indra.checkstyle") version indra apply false
 }
 
 group = "broccolai.corn"
@@ -17,8 +15,6 @@ version = "2.1.0"
 description = "extremely opinionated mostly personal java utilities"
 
 subprojects {
-    apply<JavaPlugin>()
-    apply<JavaLibraryPlugin>()
     apply<IndraPlugin>()
     apply<IndraPublishingPlugin>()
     apply<IndraCheckstylePlugin>()
@@ -41,13 +37,13 @@ subprojects {
         mitLicense()
 
         javaVersions {
-            target.set(8)
+            target(8)
             testWith(8, 11, 15)
         }
 
         github("broccolai", "corn") {
-            ci = true
-            publishing = true
+            ci(true)
+            publishing(true)
         }
 
         publishReleasesTo("broccolai", "https://repo.broccol.ai/releases")
