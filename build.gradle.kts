@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "broccolai.corn"
-version = "2.1.0"
+version = "2.2.0"
 description = "extremely opinionated mostly personal java utilities"
 
 subprojects {
