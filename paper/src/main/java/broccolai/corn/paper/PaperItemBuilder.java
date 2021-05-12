@@ -7,6 +7,7 @@ import java.util.List;
 
 import java.util.function.Consumer;
 
+import net.kyori.adventure.text.Component;
 import net.md_5.bungee.api.chat.BaseComponent;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -44,8 +45,20 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
     /**
      * Set the name of the ItemStack.
      *
+     * @param component the ItemStack's display name
+     * @return the builder
+     */
+    public @NonNull T name(final @NonNull Component component) {
+        this.itemMeta.displayName(component);
+        return (T) this;
+    }
+
+    /**
+     * Set the name of the ItemStack.
+     *
      * @param baseComponent the ItemStack's display name
      * @return the builder
+     * @deprecated use {@link PaperItemBuilder#name(Component)}
      */
     public @NonNull T name(final @NonNull BaseComponent[] baseComponent) {
         this.itemMeta.setDisplayNameComponent(baseComponent);
@@ -57,6 +70,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      *
      * @param loreComponents the lines to set the ItemStacks lore to
      * @return the builder
+     * @deprecated use {@link PaperItemBuilder#loreComponents(List)}
      */
     public @NonNull T loreBaseComponents(final @NonNull List<BaseComponent[]> loreComponents) {
         this.itemMeta.setLoreComponents(loreComponents);
@@ -66,8 +80,20 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
     /**
      * Set the lore of the ItemStack.
      *
+     * @param loreComponents the lines to set the ItemStacks lore to
+     * @return the builder
+     */
+    public @NonNull T loreComponents(final @NonNull List<Component> loreComponents) {
+        this.itemMeta.lore(loreComponents);
+        return (T) this;
+    }
+
+    /**
+     * Set the lore of the ItemStack.
+     *
      * @param consumer the lines to set the ItemStacks lore to
      * @return the builder
+     * @deprecated use {@link PaperItemBuilder#loreComponents(Consumer)}
      */
     public @NonNull T loreBaseComponents(final @NonNull Consumer<List<BaseComponent[]>> consumer) {
         List<BaseComponent[]> lore = this.itemMeta.hasLore()
@@ -76,6 +102,22 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
         consumer.accept(lore);
 
         this.itemMeta.setLoreComponents(lore);
+        return (T) this;
+    }
+
+    /**
+     * Set the lore of the ItemStack.
+     *
+     * @param consumer the lines to set the ItemStacks lore to
+     * @return the builder
+     */
+    public @NonNull T loreComponents(final @NonNull Consumer<List<Component>> consumer) {
+        List<Component> lore = this.itemMeta.hasLore()
+                ? this.itemMeta.lore()
+                : new ArrayList<>();
+        consumer.accept(lore);
+
+        this.itemMeta.lore(lore);
         return (T) this;
     }
 
