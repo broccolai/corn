@@ -6,16 +6,16 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-public final class DelegatingContextKeyRegistry implements ContextKeyRegistry {
+public class DelegatingContextKeyRegistry implements ContextKeyRegistry {
 
     private final Set<ContextKey<?>> keys = new HashSet<>();
 
-    protected void register(final @NonNull ContextKey<?> key) {
+    protected final void register(final @NonNull ContextKey<?> key) {
         this.keys.add(key);
     }
 
     @Override
-    public Iterator<ContextKey<?>> iterator() {
+    public final @NonNull Iterator<ContextKey<?>> iterator() {
         return this.keys.iterator();
     }
 
