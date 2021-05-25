@@ -5,6 +5,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 public final class MappedContext implements Context {
 
@@ -20,6 +21,11 @@ public final class MappedContext implements Context {
     @Override
     public <T> void put(final @NonNull ContextKey<T> key, @NonNull final T value) {
         this.entries.put(key, value);
+    }
+
+    @Override
+    public void forEach(final @NonNull BiConsumer<ContextKey<?>, Object> consumer) {
+        this.entries.forEach(consumer);
     }
 
 }

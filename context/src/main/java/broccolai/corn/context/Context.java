@@ -3,6 +3,7 @@ package broccolai.corn.context;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.Optional;
+import java.util.function.BiConsumer;
 
 public interface Context {
 
@@ -23,5 +24,12 @@ public interface Context {
      * @param <T> Type associated with the key and value
      */
     <T> void put(@NonNull ContextKey<T> key, @NonNull T value);
+
+    /**
+     * Performs given consumer on all entries stored.
+     *
+     * @param consumer Consumer to be applied
+     */
+    void forEach(@NonNull BiConsumer<ContextKey<?>, Object> consumer);
 
 }
