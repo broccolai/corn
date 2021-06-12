@@ -4,7 +4,7 @@ plugins {
 
 rootProject.name = "corn-parent"
 
-cornProjects("core", "spigot", "paper", "adventure", "context")
+cornProjects("core", "spigot", "paper", "adventure", "context", "examination")
 
 fun cornProjects(vararg names: String) {
     include(*names)
