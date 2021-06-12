@@ -3,9 +3,7 @@ repositories {
 }
 
 dependencies {
-    api(project(":corn-core"))
-
-    compileOnly("org.spigotmc","spigot-api", Versions.SPIGOT_VERSION) {
+    compileOnly(libs.spigot.api) {
         exclude(module = "guava")
         exclude(module = "gson")
         exclude(module = "bungeecord-chat")

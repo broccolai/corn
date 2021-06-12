@@ -4,10 +4,9 @@ import net.kyori.indra.IndraCheckstylePlugin
 import net.kyori.indra.repository.sonatypeSnapshots
 
 plugins {
-    val indra = "2.0.3"
-    id("net.kyori.indra") version indra
-    id("net.kyori.indra.publishing") version indra apply false
-    id("net.kyori.indra.checkstyle") version indra apply false
+    id("net.kyori.indra")
+    id("net.kyori.indra.publishing") apply false
+    id("net.kyori.indra.checkstyle") apply false
 }
 
 group = "broccolai.corn"
@@ -25,20 +24,20 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.checkerframework", "checker-qual", Versions.CHECKER_QUAL)
+        compileOnly(rootProject.libs.checker.qual)
 
-        testImplementation("com.google.truth", "truth", Versions.GOOGLE_TRUTH)
+        testImplementation(rootProject.libs.truth)
 
-        testImplementation("org.junit.jupiter", "junit-jupiter-api", Versions.JUNIT)
-        testImplementation("org.junit.jupiter", "junit-jupiter-engine", Versions.JUNIT)
+        testImplementation(rootProject.libs.junit.api)
+        testImplementation(rootProject.libs.junit.engine)
     }
 
     indra {
         mitLicense()
 
         javaVersions {
-            target(8)
-            testWith(8, 11, 15)
+            target(11)
+            testWith(11, 16)
         }
 
         github("broccolai", "corn") {

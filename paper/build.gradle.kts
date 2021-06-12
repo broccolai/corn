@@ -5,7 +5,7 @@ repositories {
 dependencies {
     api(project(":corn-spigot"))
 
-    compileOnlyApi("com.destroystokyo.paper", "paper-api", Versions.PAPER_VERSION) {
+    compileOnlyApi(libs.paper.api) {
         exclude(module = "guava")
         exclude(module = "gson")
         exclude(module = "snakeyaml")

@@ -1,9 +1,17 @@
-include("core", "spigot", "paper", "adventure", "context")
+plugins {
+    id("ca.stellardrift.polyglot-version-catalogs") version "5.0.0"
+}
 
 rootProject.name = "corn-parent"
 
-findProject(":core")?.name = "corn-core"
-findProject(":spigot")?.name = "corn-spigot"
-findProject(":paper")?.name = "corn-paper"
-findProject(":adventure")?.name = "corn-adventure"
-findProject(":context")?.name = "corn-context"
+cornProjects("core", "spigot", "paper", "adventure", "context")
+
+fun cornProjects(vararg names: String) {
+    include(*names)
+
+    names.forEach {
+        project(":$it").name = "corn-$it"
+    }
+}
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
