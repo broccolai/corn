@@ -1,6 +1,7 @@
 package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +15,7 @@ final class PropertySnapshotImpl implements PropertySnapshot {
     private final Map<String, Property> flattenedProperties;
 
     PropertySnapshotImpl(final @NonNull Collection<@NonNull Property> properties) {
-        this.flattenedProperties = this.flatten(properties);
+        this.flattenedProperties = this.flatten(null, properties);
     }
 
     @Override
@@ -22,12 +23,17 @@ final class PropertySnapshotImpl implements PropertySnapshot {
         return this.flattenedProperties.values().iterator();
     }
 
-    private Map<String, Property> flatten(final @NonNull Iterable<@NonNull Property> properties) {
+    private Map<String, Property> flatten(
+            final @Nullable String prefix,
+            final @NonNull Iterable<@NonNull Property> properties
+    ) {
         Map<String, Property> intermediaryProperties = new HashMap<>();
 
         for (final Property property : properties) {
+            String name = prefix == null ? property.name() : prefix + "_" + property.name();
+
             if (property instanceof ObjectProperty) {
-                intermediaryProperties.put(property.name(), property);
+                intermediaryProperties.put(name, property);
                 continue;
             }
 
@@ -35,7 +41,7 @@ final class PropertySnapshotImpl implements PropertySnapshot {
                 PropertyHolder propertyHolder = nestedProperty.propertyHolder();
 
                 if (propertyHolder != null) {
-                    intermediaryProperties.putAll(this.flatten(propertyHolder.properties()));
+                    intermediaryProperties.putAll(this.flatten(name, propertyHolder.properties()));
                 }
 
                 continue;
