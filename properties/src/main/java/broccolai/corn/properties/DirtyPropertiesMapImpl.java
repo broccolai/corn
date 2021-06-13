@@ -1,4 +1,4 @@
-package broccolai.corn.examination;
+package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -9,13 +9,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-final class DirtyExaminableMapImpl<K, V extends PropertyHolder> implements DirtyExaminableMap<K, V> {
+final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements DirtyPropertiesMap<K, V> {
 
     private final Map<K, V> base;
     private final Map<K, PropertySnapshot> previousProperties = new HashMap<>();
     private final Set<K> knownDirty = new HashSet<>();
 
-    DirtyExaminableMapImpl(final @NonNull Map<K, V> base) {
+    DirtyPropertiesMapImpl(final @NonNull Map<K, V> base) {
         this.base = base;
         this.fillPreviousProperties();
     }
