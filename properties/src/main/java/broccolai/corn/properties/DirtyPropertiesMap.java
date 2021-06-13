@@ -1,4 +1,4 @@
-package broccolai.corn.examination;
+package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -6,29 +6,29 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public interface DirtyExaminableMap<K, V extends PropertyHolder> extends Map<K, V> {
+public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, V> {
 
     /**
-     * Create a DirtyExaminableMap from an existing Map instance
+     * Create a DirtyPropertiesMap from an existing Map instance
      *
      * @param base Map instance to generate with
      * @param <K> the type of keys maintained by this map
      * @param <V> the type of mapped values
      * @return Map created with base
      */
-    static <K, V extends PropertyHolder> DirtyExaminableMap<K, V> from(final @NonNull Map<K, V> base) {
-        return new DirtyExaminableMapImpl<>(base);
+    static <K, V extends PropertyHolder> DirtyPropertiesMap<K, V> from(final @NonNull Map<K, V> base) {
+        return new DirtyPropertiesMapImpl<>(base);
     }
 
     /**
-     * Create a DirtyExaminableMap with a HashMap
+     * Create a DirtyPropertiesMap with a HashMap
      *
      * @param <K> the type of keys maintained by this map
      * @param <V> the type of mapped values
      * @return Map created with a HashMap
      */
-    static <K, V extends PropertyHolder> DirtyExaminableMap<K, V> hashmap() {
-        return new DirtyExaminableMapImpl<>(new HashMap<>());
+    static <K, V extends PropertyHolder> DirtyPropertiesMap<K, V> hashmap() {
+        return new DirtyPropertiesMapImpl<>(new HashMap<>());
     }
 
     /**

@@ -1,4 +1,4 @@
-package broccolai.corn.examination;
+package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
