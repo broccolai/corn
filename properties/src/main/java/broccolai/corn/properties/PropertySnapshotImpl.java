@@ -46,6 +46,15 @@ final class PropertySnapshotImpl implements PropertySnapshot {
 
                 continue;
             }
+
+            //todo: Should be a better way to handle this recursively
+            if (property instanceof CollectionProperty collectionProperty) {
+                String collectionName = name + "_" + property.name();
+
+                for (final PropertyHolder propertyHolder : collectionProperty) {
+                    intermediaryProperties.putAll(this.flatten(collectionName, propertyHolder.properties()));
+                }
+            }
         }
 
         return Collections.unmodifiableMap(intermediaryProperties);
