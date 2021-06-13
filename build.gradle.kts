@@ -36,8 +36,8 @@ subprojects {
         mitLicense()
 
         javaVersions {
-            target(11)
-            testWith(11, 16)
+            target(16)
+            testWith(16)
         }
 
         github("broccolai", "corn") {

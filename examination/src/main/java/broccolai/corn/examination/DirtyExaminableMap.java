@@ -1,13 +1,12 @@
 package broccolai.corn.examination;
 
-import net.kyori.examination.Examinable;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public interface DirtyExaminableMap<K, V extends Examinable> extends Map<K, V> {
+public interface DirtyExaminableMap<K, V extends PropertyHolder> extends Map<K, V> {
 
     /**
      * Create a DirtyExaminableMap from an existing Map instance
@@ -17,7 +16,7 @@ public interface DirtyExaminableMap<K, V extends Examinable> extends Map<K, V> {
      * @param <V> the type of mapped values
      * @return Map created with base
      */
-    static <K, V extends Examinable> DirtyExaminableMap<K, V> from(final @NonNull Map<K, V> base) {
+    static <K, V extends PropertyHolder> DirtyExaminableMap<K, V> from(final @NonNull Map<K, V> base) {
         return new DirtyExaminableMapImpl<>(base);
     }
 
@@ -28,7 +27,7 @@ public interface DirtyExaminableMap<K, V extends Examinable> extends Map<K, V> {
      * @param <V> the type of mapped values
      * @return Map created with a HashMap
      */
-    static <K, V extends Examinable> DirtyExaminableMap<K, V> hashmap() {
+    static <K, V extends PropertyHolder> DirtyExaminableMap<K, V> hashmap() {
         return new DirtyExaminableMapImpl<>(new HashMap<>());
     }
 

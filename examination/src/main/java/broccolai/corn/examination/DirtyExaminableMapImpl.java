@@ -1,22 +1,18 @@
 package broccolai.corn.examination;
 
-import net.kyori.examination.Examinable;
-import net.kyori.examination.ExaminableProperty;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExaminableMap<K, V> {
+final class DirtyExaminableMapImpl<K, V extends PropertyHolder> implements DirtyExaminableMap<K, V> {
 
     private final Map<K, V> base;
-    private final Map<K, List<ExaminableProperty>> previousProperties = new HashMap<>();
+    private final Map<K, PropertySnapshot> previousProperties = new HashMap<>();
     private final Set<K> knownDirty = new HashSet<>();
 
     DirtyExaminableMapImpl(final @NonNull Map<K, V> base) {
@@ -45,15 +41,14 @@ final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExam
 
     @Override
     public boolean isDirty(@NonNull final K key) {
-        V value = this.base.get(key);
-
         if (this.knownDirty.contains(key)) {
             return true;
         }
 
-        List<ExaminableProperty> currentProperties = value.examinableProperties().collect(Collectors.toList());
+        V propertyHolder = this.base.get(key);
+        PropertySnapshot previousSnapshot = previousProperties.get(key);
 
-        if (previousProperties.get(key).containsAll(currentProperties)) {
+        if (!previousSnapshot.equals(propertyHolder.properties())) {
             this.knownDirty.add(key);
             return true;
         }
@@ -66,11 +61,8 @@ final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExam
         this.knownDirty.add(key);
     }
 
-
     private void fillPreviousProperties() {
-        this.base.forEach((key, value) -> {
-            this.previousProperties.put(key, value.examinableProperties().collect(Collectors.toUnmodifiableList()));
-        });
+        this.base.forEach((key, value) -> this.previousProperties.put(key, value.properties()));
     }
 
     @Override
@@ -100,7 +92,7 @@ final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExam
 
     @Override
     public V put(final K key, final V value) {
-        this.previousProperties.put(key, value.examinableProperties().collect(Collectors.toUnmodifiableList()));
+        this.previousProperties.put(key, value.properties());
         return this.base.put(key, value);
     }
 
@@ -110,7 +102,7 @@ final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExam
     }
 
     @Override
-    public void putAll(final Map<? extends K, ? extends V> m) {
+    public void putAll(final @NonNull Map<? extends K, ? extends V> m) {
         this.base.putAll(m);
     }
 
@@ -122,17 +114,17 @@ final class DirtyExaminableMapImpl<K, V extends Examinable> implements DirtyExam
     }
 
     @Override
-    public Set<K> keySet() {
+    public @NonNull Set<K> keySet() {
         return this.base.keySet();
     }
 
     @Override
-    public Collection<V> values() {
+    public @NonNull Collection<V> values() {
         return this.base.values();
     }
 
     @Override
-    public Set<Entry<K, V>> entrySet() {
+    public @NonNull Set<Entry<K, V>> entrySet() {
         return this.base.entrySet();
     }
 
