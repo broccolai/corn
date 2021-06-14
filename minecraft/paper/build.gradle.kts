@@ -3,7 +3,7 @@ repositories {
 }
 
 dependencies {
-    api(project(":corn-minecraft-spigot"))
+    api(projects.cornMinecraftSpigot)
 
     compileOnlyApi(libs.paper.api) {
         exclude(module = "guava")
