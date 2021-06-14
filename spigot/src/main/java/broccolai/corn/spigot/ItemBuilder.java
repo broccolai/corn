@@ -110,9 +110,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      * @return the builder
      */
     public @NonNull T lore(final @NonNull String... lines) {
-        List<String> lore = List.of(lines);
-
-        this.itemMeta.setLore(lore);
+        this.itemMeta.setLore(List.of(lines));
         return (T) this;
     }
 
