@@ -5,9 +5,7 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ 'dev/**' ]
 
 jobs:
   build:
@@ -23,4 +21,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build publish -x requireClean -x signMavenPublication
+        env:
+          ORG_GRADLE_PROJECT_broccolaiUsername: ${{ secrets.BROCCOLAI_USERNAME }}
+          ORG_GRADLE_PROJECT_broccolaiPassword: ${{ secrets.BROCCOLAI_PASSWORD }}
