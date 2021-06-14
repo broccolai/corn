@@ -4,13 +4,25 @@ plugins {
 
 rootProject.name = "corn-parent"
 
-cornProjects("core", "spigot", "paper", "adventure", "context", "properties")
+basicProjects("misc", "context", "properties")
+minecraftProjects("spigot", "paper")
 
-fun cornProjects(vararg names: String) {
+fun basicProjects(vararg names: String) {
     include(*names)
 
     names.forEach {
         project(":$it").name = "corn-$it"
+    }
+}
+
+fun minecraftProjects(vararg names: String) {
+    include(*names)
+
+    names.forEach {
+        project(":$it").apply {
+            projectDir = file("minecraft/$it")
+            name = "corn-minecraft-$it"
+        }
     }
 }
 
