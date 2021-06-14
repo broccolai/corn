@@ -60,6 +60,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @return the builder
      * @deprecated use {@link PaperItemBuilder#name(Component)}
      */
+    @Deprecated
     public @NonNull T name(final @NonNull BaseComponent[] baseComponent) {
         this.itemMeta.setDisplayNameComponent(baseComponent);
         return (T) this;
@@ -72,6 +73,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @return the builder
      * @deprecated use {@link PaperItemBuilder#loreComponents(List)}
      */
+    @Deprecated
     public @NonNull T loreBaseComponents(final @NonNull List<BaseComponent[]> loreComponents) {
         this.itemMeta.setLoreComponents(loreComponents);
         return (T) this;
@@ -95,6 +97,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @return the builder
      * @deprecated use {@link PaperItemBuilder#loreComponents(Consumer)}
      */
+    @Deprecated
     public @NonNull T loreBaseComponents(final @NonNull Consumer<List<BaseComponent[]>> consumer) {
         List<BaseComponent[]> lore = this.itemMeta.hasLore()
                 ? this.itemMeta.getLoreComponents()
@@ -126,7 +129,9 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      *
      * @param loreComponents the lines to set the ItemStacks lore to
      * @return the builder
+     * @deprecated use {@link PaperItemBuilder#loreComponents(Component...)}
      */
+    @Deprecated
     public @NonNull T loreBaseComponents(final @NonNull BaseComponent[]... loreComponents) {
         this.itemMeta.setLoreComponents(List.of(loreComponents));
         return (T) this;

@@ -86,4 +86,15 @@ public class AdventureItemBuilder<T extends AdventureItemBuilder<T>> extends Pap
         loreBaseComponents = Lists.map(lore, BUNGEE::serialize);
         return this.loreBaseComponents(loreBaseComponents);
     }
+
+    /**
+     * Set the lore of the ItemStack.
+     *
+     * @param loreComponents the lines to set the ItemStacks lore to
+     * @return the builder
+     */
+    public @NonNull T loreComponents(final @NonNull Component... loreComponents) {
+        this.loreComponents(List.of(loreComponents));
+        return (T) this;
+    }
 }
