@@ -8,76 +8,32 @@ import static com.google.common.truth.Truth.assertThat;
 public final class DirtyPropertiesMapTest {
 
     @Test
-    void testEmptyDirty() {
+    void testHashmap() {
         DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        dirtyMap.put(1, new SomePropertyHolder(20, "word"));
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
 
-        assertThat(dirtyMap.dirty()).isEmpty();
-    }
-
-    @Test
-    void testChangedDirty() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        SomePropertyHolder toChange = new SomePropertyHolder(20, "word");
-        dirtyMap.put(1, toChange);
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
-
-        toChange.number(25);
-        assertThat(dirtyMap.dirty()).containsExactly(toChange);
-    }
-
-    @Test
-    void testChangedAndResetDirty() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        SomePropertyHolder toChange = new SomePropertyHolder(20, "word");
-        dirtyMap.put(1, toChange);
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
-
-        toChange.number(20);
-        assertThat(dirtyMap.dirty()).isEmpty();
-    }
-
-    @Test
-    void testComplexEmptyDirty() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        dirtyMap.put(1, new SomeComplexPropertyHolder(
-                20,
-                new SomePropertyHolder(10, "test")
-        ));
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
-
-        assertThat(dirtyMap.dirty()).isEmpty();
-    }
-
-    @Test
-    void testComplexChangedDirty() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        SomeComplexPropertyHolder toChange = new SomeComplexPropertyHolder(
+        SomePropertyHolder entryOne = new SomePropertyHolder(20, "word");
+        SomeComplexPropertyHolder entryTwo = new SomeComplexPropertyHolder(
                 20,
                 new SomePropertyHolder(10, "test")
         );
-        dirtyMap.put(1, toChange);
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
 
-        toChange.number(25);
-        assertThat(dirtyMap.dirty()).containsExactly(toChange);
-    }
+        dirtyMap.put(1, entryOne);
+        dirtyMap.put(5, entryTwo);
 
-    @Test
-    void testComplexChangedAndResetDirty() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-        SomeComplexPropertyHolder toChange = new SomeComplexPropertyHolder(
-                20,
-                new SomePropertyHolder(10, "test")
-        );
-        dirtyMap.put(1, toChange);
-        dirtyMap.put(5, new SomePropertyHolder(15, "wording"));
-
-        toChange.number(20);
         assertThat(dirtyMap.dirty()).isEmpty();
-    }
 
+        entryOne.number(25);
+        assertThat(dirtyMap.dirty()).containsExactly(entryOne);
+
+        dirtyMap.clean();
+        assertThat(dirtyMap.dirty()).isEmpty();
+
+        entryTwo.number(20);
+        assertThat(dirtyMap.dirty()).isEmpty();
+
+        entryTwo.someHolder.number(14);
+        assertThat(dirtyMap.dirty()).containsExactly(entryTwo);
+    }
 
     static final class SomePropertyHolder implements PropertyHolder {
 
