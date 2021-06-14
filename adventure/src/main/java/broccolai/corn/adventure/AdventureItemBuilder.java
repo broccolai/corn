@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
+@Deprecated
 public class AdventureItemBuilder<T extends AdventureItemBuilder<T>> extends PaperItemBuilder<T> {
 
     private static final BungeeComponentSerializer BUNGEE = BungeeComponentSerializer.get();
