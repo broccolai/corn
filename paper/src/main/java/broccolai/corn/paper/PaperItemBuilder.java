@@ -121,4 +121,25 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
         return (T) this;
     }
 
+    /**
+     * Set the lore of the ItemStack.
+     *
+     * @param loreComponents the lines to set the ItemStacks lore to
+     * @return the builder
+     */
+    public @NonNull T loreBaseComponents(final @NonNull BaseComponent[]... loreComponents) {
+        this.itemMeta.setLoreComponents(List.of(loreComponents));
+        return (T) this;
+    }
+
+    /**
+     * Set the lore of the ItemStack.
+     *
+     * @param loreComponents the lines to set the ItemStacks lore to
+     * @return the builder
+     */
+    public @NonNull T loreComponents(final @NonNull Component... loreComponents) {
+        this.itemMeta.lore(List.of(loreComponents));
+        return (T) this;
+    }
 }
