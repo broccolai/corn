@@ -1,11 +1,12 @@
 package broccolai.corn.context;
 
+import broccolai.corn.properties.PropertyHolder;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
-public interface Context {
+public interface Context extends PropertyHolder {
 
     /**
      * Get a value out of the context through a key.

@@ -1,7 +1,11 @@
 package broccolai.corn.context;
 
+import broccolai.corn.properties.Property;
+import broccolai.corn.properties.PropertySnapshot;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +30,18 @@ public final class MappedContext implements Context {
     @Override
     public void forEach(final @NonNull BiConsumer<ContextKey<?>, Object> consumer) {
         this.entries.forEach(consumer);
+    }
+
+    @Override
+    public @NonNull PropertySnapshot properties() {
+        Collection<Property> properties = new ArrayList<>();
+        this.entries.forEach((key, value) -> {
+            properties.add(Property.of(key.namespace() + ":" + key.name(), value));
+        });
+
+        return PropertySnapshot.of(
+                properties.toArray(new Property[0])
+        );
     }
 
 }
