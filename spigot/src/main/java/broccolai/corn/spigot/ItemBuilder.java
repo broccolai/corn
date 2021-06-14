@@ -104,6 +104,19 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
     }
 
     /**
+     * Set the lore of the ItemStack.
+     *
+     * @param lines the lines to set the ItemStack's lore to
+     * @return the builder
+     */
+    public @NonNull T lore(final @NonNull String... lines) {
+        List<String> lore = List.of(lines);
+
+        this.itemMeta.setLore(lore);
+        return (T) this;
+    }
+
+    /**
      * Add data to the items PersistentDataContainer
      *
      * @param key the NamespacedKey to use
