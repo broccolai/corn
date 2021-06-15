@@ -60,3 +60,7 @@ subprojects {
         }
     }
 }
+
+tasks.withType<Jar> {
+    onlyIf { false }
+}
