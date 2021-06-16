@@ -37,7 +37,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
     }
 
     /**
-     * Create a ItemBuilder.
+     * Create an ItemBuilder.
      *
      * @param itemStack the ItemStack to base builder off of
      * @return instance of ItemBuilder
