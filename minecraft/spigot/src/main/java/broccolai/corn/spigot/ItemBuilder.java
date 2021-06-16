@@ -117,11 +117,11 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
     /**
      * Add data to the items PersistentDataContainer
      *
-     * @param key the NamespacedKey to use
-     * @param type the data type to use
+     * @param key    the NamespacedKey to use
+     * @param type   the data type to use
      * @param object data to set
-     * @param <T0> the primary object type of data
-     * @param <Z> the retrieve object type of data
+     * @param <T0>   the primary object type of data
+     * @param <Z>    the retrieve object type of data
      * @return the builder
      */
     public <T0, Z> @NonNull T data(

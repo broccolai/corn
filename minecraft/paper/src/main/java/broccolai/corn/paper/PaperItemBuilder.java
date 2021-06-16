@@ -1,18 +1,16 @@
 package broccolai.corn.paper;
 
 import broccolai.corn.spigot.ItemBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.function.Consumer;
-
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
 public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder<T> {
@@ -89,4 +87,5 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
         this.itemMeta.lore(List.of(loreComponents));
         return (T) this;
     }
+
 }
