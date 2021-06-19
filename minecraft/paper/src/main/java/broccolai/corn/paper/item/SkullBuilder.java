@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
+ */
 @SuppressWarnings("unused")
 public class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
 

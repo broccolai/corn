@@ -9,6 +9,9 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Objects;
 
+/**
+ * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ItemMeta}.
+ */
 @SuppressWarnings({"unused"})
 public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuilder, ItemMeta> {
 

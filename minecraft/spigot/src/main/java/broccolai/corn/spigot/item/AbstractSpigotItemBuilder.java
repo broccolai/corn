@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Modifies {@link ItemStack}s using Spigot-specific methods.
+ *
+ * @param <B> the builder type
+ * @param <M> the {@link ItemMeta} type
+ */
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuilder<B, M>, M extends ItemMeta>
         extends AbstractItemBuilder<B, M> {
