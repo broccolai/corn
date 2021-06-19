@@ -5,6 +5,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,31 +20,60 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
-     * Set the name of the ItemStack.
+     * Gets the display name of the {@code ItemStack}.
      *
-     * @param component the ItemStack's display name
+     * @return the display name
+     */
+    public @Nullable Component name() {
+        return this.itemMeta.displayName();
+    }
+
+    /**
+     * Sets the display name of the {@code ItemStack}.
+     *
+     * @param name the display name
      * @return the builder
      */
-    public @NonNull B name(final @NonNull Component component) {
-        this.itemMeta.displayName(component);
+    public @NonNull B name(final @Nullable Component name) {
+        this.itemMeta.displayName(name);
         return (B) this;
     }
 
     /**
-     * Set the lore of the ItemStack.
+     * Gets the lore of the {@code ItemStack}.
      *
-     * @param loreComponents the lines to set the ItemStacks lore to
+     * @return the lore
+     */
+    public @Nullable List<Component> lore() {
+        return this.itemMeta.lore();
+    }
+
+    /**
+     * Sets the lore of the {@code ItemStack}.
+     *
+     * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B lore(final @NonNull List<Component> loreComponents) {
-        this.itemMeta.lore(loreComponents);
+    public @NonNull B lore(final @Nullable List<Component> lines) {
+        this.itemMeta.lore(lines);
         return (B) this;
     }
 
     /**
-     * Set the lore of the ItemStack.
+     * Sets the lore of the {@code ItemStack}.
      *
-     * @param consumer the lines to set the ItemStacks lore to
+     * @param lines the lines of the lore
+     * @return the builder
+     */
+    public @NonNull B lore(final @NonNull Component... lines) {
+        this.itemMeta.lore(List.of(lines));
+        return (B) this;
+    }
+
+    /**
+     * Sets the lore of the {@code ItemStack}.
+     *
+     * @param consumer the lines of the lore
      * @return the builder
      */
     public @NonNull B lore(final @NonNull Consumer<List<Component>> consumer) {
@@ -53,17 +83,6 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
         consumer.accept(lore);
 
         this.itemMeta.lore(lore);
-        return (B) this;
-    }
-
-    /**
-     * Set the lore of the ItemStack.
-     *
-     * @param loreComponents the lines to set the ItemStacks lore to
-     * @return the builder
-     */
-    public @NonNull B lore(final @NonNull Component... loreComponents) {
-        this.itemMeta.lore(List.of(loreComponents));
         return (B) this;
     }
 
