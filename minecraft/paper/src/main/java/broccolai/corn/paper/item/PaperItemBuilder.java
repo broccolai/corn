@@ -26,7 +26,7 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
      * @param itemStack the ItemStack to base builder off of
      * @return instance of PaperItemBuilder
      */
-    public static PaperItemBuilder paper(final @NonNull ItemStack itemStack) {
+    public static PaperItemBuilder of(final @NonNull ItemStack itemStack) {
         return new PaperItemBuilder(itemStack, itemStack.getItemMeta());
     }
 
@@ -36,8 +36,8 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
      * @param material the material to base builder off of
      * @return instance of PaperItemBuilder
      */
-    public static PaperItemBuilder paper(final @NonNull Material material) {
-        return PaperItemBuilder.paper(new ItemStack(material));
+    public static PaperItemBuilder ofType(final @NonNull Material material) {
+        return PaperItemBuilder.of(new ItemStack(material));
     }
 
 }
