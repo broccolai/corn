@@ -1,4 +1,4 @@
-package broccolai.corn.paper;
+package broccolai.corn.paper.item;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

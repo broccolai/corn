@@ -1,4 +1,4 @@
-package broccolai.corn.spigot;
+package broccolai.corn.spigot.item;
 
 import org.bukkit.Bukkit;
 import org.bukkit.NamespacedKey;
