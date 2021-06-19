@@ -13,7 +13,7 @@ import java.util.Objects;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ItemMeta}.
  */
 @SuppressWarnings({"unused"})
-public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder, ItemMeta> {
+public final class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder, ItemMeta> {
 
     private PaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
