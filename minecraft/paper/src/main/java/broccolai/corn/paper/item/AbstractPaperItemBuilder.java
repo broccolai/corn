@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Modifies {@link ItemStack}s using Paper-specific methods.
+ *
+ * @param <B> the builder type
+ * @param <M> the {@link ItemMeta} type
+ */
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilder<B, M>, M extends ItemMeta>
         extends AbstractItemBuilder<B, M> {
