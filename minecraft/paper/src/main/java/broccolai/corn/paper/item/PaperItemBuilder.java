@@ -35,7 +35,7 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code PaperItemBuilder}
-     * @throws IllegalArgumentException if the {@code Material} is not an obtainable item
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
     public static @NonNull PaperItemBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
