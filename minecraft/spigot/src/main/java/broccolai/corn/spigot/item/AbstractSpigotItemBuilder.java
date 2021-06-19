@@ -18,9 +18,18 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Set the name of the ItemStack.
+     * Gets the display name of the {@code ItemStack}.
      *
-     * @param name the ItemStack's display name
+     * @return the display name
+     */
+    public @Nullable String name() {
+        return this.itemMeta.getDisplayName();
+    }
+
+    /**
+     * Sets the display name of the {@code ItemStack}.
+     *
+     * @param name the display name
      * @return the builder
      */
     public @NonNull B name(final @Nullable String name) {
@@ -29,9 +38,18 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Set the lore of the ItemStack.
+     * Gets the lore of the {@code ItemStack}.
      *
-     * @param lines the lines to set the ItemStacks lore to
+     * @return the lore
+     */
+    public @Nullable List<String> lore() {
+        return this.itemMeta.getLore();
+    }
+
+    /**
+     * Sets the lore of the {@code ItemStack}.
+     *
+     * @param lines the lines of the lore
      * @return the builder
      */
     public @NonNull B lore(final @Nullable List<String> lines) {
@@ -40,27 +58,29 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Set the lore of the ItemStack.
+     * Sets the lore of the {@code ItemStack}.
      *
-     * @param consumer the lines to set the ItemStacks lore to
-     * @return the builder
-     */
-    public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
-        List<String> lore = this.itemMeta.hasLore() ? this.itemMeta.getLore() : new ArrayList<>();
-        consumer.accept(lore);
-
-        this.itemMeta.setLore(lore);
-        return (B) this;
-    }
-
-    /**
-     * Set the lore of the ItemStack.
-     *
-     * @param lines the lines to set the ItemStack's lore to
+     * @param lines the lines of the lore
      * @return the builder
      */
     public @NonNull B lore(final @NonNull String... lines) {
         this.itemMeta.setLore(List.of(lines));
+        return (B) this;
+    }
+
+    /**
+     * Sets the lore of the {@code ItemStack}.
+     *
+     * @param consumer the lines of the lore
+     * @return the builder
+     */
+    public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
+        List<String> lore = this.itemMeta.hasLore()
+                ? this.itemMeta.getLore()
+                : new ArrayList<>();
+        consumer.accept(lore);
+
+        this.itemMeta.setLore(lore);
         return (B) this;
     }
 
