@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,13 +49,13 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param key    the {@code NamespacedKey} to use
      * @param type   the {@code PersistentDataType} to use
      * @param object the data to set
-     * @param <T0>   the primary object type of the data
+     * @param <T>   the primary object type of the data
      * @param <Z>    the retrieve object type of the data
      * @return the builder
      */
-    public <T0, Z> @NonNull B data(
+    public <T, Z> @NonNull B data(
             final @NonNull NamespacedKey key,
-            final @NonNull PersistentDataType<T0, Z> type,
+            final @NonNull PersistentDataType<T, Z> type,
             final @NonNull Z object
     ) {
         this.itemMeta.getPersistentDataContainer().set(key, type, object);
@@ -66,13 +67,13 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @param key  the {@code NamespacedKey} to use
      * @param type the {@code PersistentDatType to use}
-     * @param <T0> the primary object type of the data
+     * @param <T> the primary object type of the data
      * @param <Z>  the retrieve object type of the data
      * @return the data
      */
-    public <T0, Z> @NonNull Z getData(
+    public <T, Z> @Nullable Z getData(
             final @NonNull NamespacedKey key,
-            final @NonNull PersistentDataType<T0, Z> type
+            final @NonNull PersistentDataType<T, Z> type
     ) {
         return this.itemMeta.getPersistentDataContainer().get(key, type);
     }
