@@ -1,6 +1,6 @@
 package broccolai.corn.paper.item;
 
-import broccolai.corn.spigot.item.AbstractItemBuilder;
+import broccolai.corn.spigot.item.AbstractSpigotItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilder<T, M>, M extends ItemMeta>
-        extends AbstractItemBuilder<T, M> {
+        extends AbstractSpigotItemBuilder<T, M> {
 
     protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta);

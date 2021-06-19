@@ -18,14 +18,14 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M extends ItemMeta> {
+public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuilder<T, M>, M extends ItemMeta> {
 
     protected final @NonNull ItemStack itemStack;
     protected final @NonNull M itemMeta;
 
     protected final @NonNull Map<Enchantment, Integer> enchantmentMap;
 
-    protected AbstractItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    protected AbstractSpigotItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         this.itemStack = itemStack.clone();
         this.itemMeta = itemMeta != null
                 ? itemMeta
