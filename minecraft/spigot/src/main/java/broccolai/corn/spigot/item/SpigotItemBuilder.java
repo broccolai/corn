@@ -7,9 +7,9 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 @SuppressWarnings({"unchecked", "unused"})
-public class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta> {
+public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuilder, ItemMeta> {
 
-    private ItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    private SpigotItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -19,8 +19,8 @@ public class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta> {
      * @param itemStack the ItemStack to base builder off of
      * @return instance of ItemBuilder
      */
-    public static ItemBuilder spigot(final @NonNull ItemStack itemStack) {
-        return new ItemBuilder(itemStack, itemStack.getItemMeta());
+    public static SpigotItemBuilder spigot(final @NonNull ItemStack itemStack) {
+        return new SpigotItemBuilder(itemStack, itemStack.getItemMeta());
     }
 
     /**
@@ -29,8 +29,8 @@ public class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta> {
      * @param material the material to base builder off of
      * @return instance of ItemBuilder
      */
-    public static ItemBuilder spigot(final @NonNull Material material) {
-        return ItemBuilder.spigot(new ItemStack(material));
+    public static SpigotItemBuilder spigot(final @NonNull Material material) {
+        return SpigotItemBuilder.spigot(new ItemStack(material));
     }
 
 }
