@@ -21,7 +21,7 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
     }
 
     /**
-     * Create a {@code PaperItemBuilder}.
+     * Creates a {@code PaperItemBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code PaperItemBuilder}
@@ -31,7 +31,7 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
     }
 
     /**
-     * Create a {@code PaperItemBuilder}.
+     * Creates a {@code PaperItemBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code PaperItemBuilder}

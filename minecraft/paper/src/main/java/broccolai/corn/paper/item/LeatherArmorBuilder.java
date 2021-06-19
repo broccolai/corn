@@ -16,7 +16,7 @@ public class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBu
     }
 
     /**
-     * Create a {@code LeatherArmorBuilder}.
+     * Creates a {@code LeatherArmorBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code LeatherArmorBuilder}
@@ -36,7 +36,7 @@ public class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBu
     }
 
     /**
-     * Create a {@code LeatherArmorBuilder}.
+     * Creates a {@code LeatherArmorBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code LeatherArmorBuilder}
@@ -51,7 +51,7 @@ public class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBu
     }
 
     /**
-     * Get the color.
+     * Gets the color.
      *
      * @return the color
      */
@@ -60,7 +60,7 @@ public class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBu
     }
 
     /**
-     * Set the color.
+     * Sets the color.
      *
      * @param color the color
      * @return the builder
