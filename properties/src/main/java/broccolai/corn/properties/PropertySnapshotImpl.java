@@ -1,10 +1,8 @@
 package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,52 +10,24 @@ import java.util.Objects;
 
 final class PropertySnapshotImpl implements PropertySnapshot {
 
-    private final Map<String, Property> flattenedProperties;
+    private final Map<String, Property> flattenedProperties = new HashMap<>();
 
     PropertySnapshotImpl(final @NonNull Collection<@NonNull Property> properties) {
-        this.flattenedProperties = this.flatten(null, properties);
+        for (final Property property : properties) {
+            if (property instanceof FlattenableProperty flattenableProperty) {
+                flattenableProperty.flatten().forEach((key, value) -> {
+                    this.flattenedProperties.put(property.name() + ":" + key, value);
+                });
+                continue;
+            }
+
+            this.flattenedProperties.put(property.name(), property);
+        }
     }
 
     @Override
     public @NonNull Iterator<Property> iterator() {
         return this.flattenedProperties.values().iterator();
-    }
-
-    private Map<String, Property> flatten(
-            final @Nullable String prefix,
-            final @NonNull Iterable<@NonNull Property> properties
-    ) {
-        Map<String, Property> intermediaryProperties = new HashMap<>();
-
-        for (final Property property : properties) {
-            String name = prefix == null ? property.name() : prefix + "_" + property.name();
-
-            if (property instanceof ObjectProperty) {
-                intermediaryProperties.put(name, property);
-                continue;
-            }
-
-            if (property instanceof NestedProperty nestedProperty) {
-                PropertyHolder propertyHolder = nestedProperty.propertyHolder();
-
-                if (propertyHolder != null) {
-                    intermediaryProperties.putAll(this.flatten(name, propertyHolder.properties()));
-                }
-
-                continue;
-            }
-
-            //todo: Should be a better way to handle this recursively
-            if (property instanceof CollectionProperty collectionProperty) {
-                String collectionName = name + "_" + property.name();
-
-                for (final PropertyHolder propertyHolder : collectionProperty) {
-                    intermediaryProperties.putAll(this.flatten(collectionName, propertyHolder.properties()));
-                }
-            }
-        }
-
-        return Collections.unmodifiableMap(intermediaryProperties);
     }
 
     @Override
