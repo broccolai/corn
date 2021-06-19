@@ -12,7 +12,7 @@ import java.util.Objects;
 @SuppressWarnings({"unused"})
 public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder, ItemMeta> {
 
-    protected PaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    private PaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
                 ? itemMeta
                 : Objects.requireNonNull(
@@ -21,22 +21,22 @@ public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder,
     }
 
     /**
-     * Create a PaperItemBuilder.
+     * Create a {@code PaperItemBuilder}.
      *
-     * @param itemStack the ItemStack to base builder off of
-     * @return instance of PaperItemBuilder
+     * @param itemStack the {@code ItemStack} to base the builder off of
+     * @return instance of {@code PaperItemBuilder}
      */
-    public static PaperItemBuilder of(final @NonNull ItemStack itemStack) {
+    public static @NonNull PaperItemBuilder of(final @NonNull ItemStack itemStack) {
         return new PaperItemBuilder(itemStack, itemStack.getItemMeta());
     }
 
     /**
-     * Create a PaperItemBuilder.
+     * Create a {@code PaperItemBuilder}.
      *
-     * @param material the material to base builder off of
-     * @return instance of PaperItemBuilder
+     * @param material the {@code Material} to base the builder off of
+     * @return instance of {@code PaperItemBuilder}
      */
-    public static PaperItemBuilder ofType(final @NonNull Material material) {
+    public static @NonNull PaperItemBuilder ofType(final @NonNull Material material) {
         return PaperItemBuilder.of(new ItemStack(material));
     }
 

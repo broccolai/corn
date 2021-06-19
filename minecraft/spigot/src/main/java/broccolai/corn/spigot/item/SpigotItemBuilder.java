@@ -21,22 +21,22 @@ public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuild
     }
 
     /**
-     * Create an ItemBuilder.
+     * Create a {@code SpigotItemBuilder}.
      *
-     * @param itemStack the ItemStack to base builder off of
-     * @return instance of ItemBuilder
+     * @param itemStack the ItemStack to base the builder off of
+     * @return instance of {@code SpigotItemBuilder}
      */
-    public static SpigotItemBuilder of(final @NonNull ItemStack itemStack) {
+    public static @NonNull SpigotItemBuilder of(final @NonNull ItemStack itemStack) {
         return new SpigotItemBuilder(itemStack, itemStack.getItemMeta());
     }
 
     /**
-     * Create an ItemBuilder.
+     * Create a {@code SpigotItemBuilder}.
      *
-     * @param material the material to base builder off of
-     * @return instance of ItemBuilder
+     * @param material the material to base the builder off of
+     * @return instance of {@code SpigotItemBuilder}
      */
-    public static SpigotItemBuilder ofType(final @NonNull Material material) {
+    public static @NonNull SpigotItemBuilder ofType(final @NonNull Material material) {
         return SpigotItemBuilder.of(new ItemStack(material));
     }
 
