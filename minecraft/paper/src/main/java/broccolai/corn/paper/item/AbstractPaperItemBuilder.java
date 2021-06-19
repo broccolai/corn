@@ -5,7 +5,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ import java.util.function.Consumer;
 public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilder<T, M>, M extends ItemMeta>
         extends AbstractItemBuilder<T, M> {
 
-    protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         super(itemStack, itemMeta);
     }
 
