@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuilder<T, M>, M extends ItemMeta>
         extends AbstractItemBuilder<T, M> {
 
-    protected AbstractSpigotItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    protected AbstractSpigotItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         super(itemStack, itemMeta);
     }
 

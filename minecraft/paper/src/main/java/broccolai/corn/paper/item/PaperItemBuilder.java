@@ -1,16 +1,23 @@
 package broccolai.corn.paper.item;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
-@SuppressWarnings({"unchecked", "unused"})
+import java.util.Objects;
+
+@SuppressWarnings({"unused"})
 public class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder, ItemMeta> {
 
     protected PaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
-        super(itemStack, itemMeta);
+        super(itemStack, itemMeta != null
+                ? itemMeta
+                : Objects.requireNonNull(
+                        Bukkit.getItemFactory().getItemMeta(itemStack.getType())
+                ));
     }
 
     /**
