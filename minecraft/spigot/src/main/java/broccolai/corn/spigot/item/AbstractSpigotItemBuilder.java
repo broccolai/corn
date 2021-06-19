@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuilder<T, M>, M extends ItemMeta>
-        extends AbstractItemBuilder<T, M> {
+public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuilder<B, M>, M extends ItemMeta>
+        extends AbstractItemBuilder<B, M> {
 
     protected AbstractSpigotItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         super(itemStack, itemMeta);
@@ -23,9 +23,9 @@ public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuil
      * @param name the ItemStack's display name
      * @return the builder
      */
-    public @NonNull T name(final @Nullable String name) {
+    public @NonNull B name(final @Nullable String name) {
         this.itemMeta.setDisplayName(name);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -34,9 +34,9 @@ public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuil
      * @param lines the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T lore(final @Nullable List<String> lines) {
+    public @NonNull B lore(final @Nullable List<String> lines) {
         this.itemMeta.setLore(lines);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -45,12 +45,12 @@ public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuil
      * @param consumer the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T lore(final @NonNull Consumer<List<String>> consumer) {
+    public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
         List<String> lore = this.itemMeta.hasLore() ? this.itemMeta.getLore() : new ArrayList<>();
         consumer.accept(lore);
 
         this.itemMeta.setLore(lore);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -59,9 +59,9 @@ public abstract class AbstractSpigotItemBuilder<T extends AbstractSpigotItemBuil
      * @param lines the lines to set the ItemStack's lore to
      * @return the builder
      */
-    public @NonNull T lore(final @NonNull String... lines) {
+    public @NonNull B lore(final @NonNull String... lines) {
         this.itemMeta.setLore(List.of(lines));
-        return (T) this;
+        return (B) this;
     }
 
 }

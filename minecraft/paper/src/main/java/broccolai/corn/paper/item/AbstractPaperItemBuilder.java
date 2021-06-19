@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilder<T, M>, M extends ItemMeta>
-        extends AbstractItemBuilder<T, M> {
+public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilder<B, M>, M extends ItemMeta>
+        extends AbstractItemBuilder<B, M> {
 
     protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         super(itemStack, itemMeta);
@@ -24,9 +24,9 @@ public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilde
      * @param component the ItemStack's display name
      * @return the builder
      */
-    public @NonNull T name(final @NonNull Component component) {
+    public @NonNull B name(final @NonNull Component component) {
         this.itemMeta.displayName(component);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -35,9 +35,9 @@ public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilde
      * @param loreComponents the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T lore(final @NonNull List<Component> loreComponents) {
+    public @NonNull B lore(final @NonNull List<Component> loreComponents) {
         this.itemMeta.lore(loreComponents);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -46,14 +46,14 @@ public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilde
      * @param consumer the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T lore(final @NonNull Consumer<List<Component>> consumer) {
+    public @NonNull B lore(final @NonNull Consumer<List<Component>> consumer) {
         List<Component> lore = this.itemMeta.hasLore()
                 ? this.itemMeta.lore()
                 : new ArrayList<>();
         consumer.accept(lore);
 
         this.itemMeta.lore(lore);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -62,9 +62,9 @@ public abstract class AbstractPaperItemBuilder<T extends AbstractPaperItemBuilde
      * @param loreComponents the lines to set the ItemStacks lore to
      * @return the builder
      */
-    public @NonNull T lore(final @NonNull Component... loreComponents) {
+    public @NonNull B lore(final @NonNull Component... loreComponents) {
         this.itemMeta.lore(List.of(loreComponents));
-        return (T) this;
+        return (B) this;
     }
 
 }
