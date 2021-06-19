@@ -26,9 +26,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Set the quantity of the ItemStack.
+     * Set the quantity of the {@code ItemStack}
      *
-     * @param amount the ItemStacks quantity
+     * @param amount the {@code ItemStack}'s quantity
      * @return the builder
      */
     public @NonNull T amount(final int amount) {
@@ -37,13 +37,13 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Add data to the items PersistentDataContainer
+     * Add data to the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
-     * @param key    the NamespacedKey to use
-     * @param type   the data type to use
-     * @param object data to set
-     * @param <T0>   the primary object type of data
-     * @param <Z>    the retrieve object type of data
+     * @param key    the {@code NamespacedKey} to use
+     * @param type   the {@code PersistentDataType} to use
+     * @param object the data to set
+     * @param <T0>   the primary object type of the data
+     * @param <Z>    the retrieve object type of the data
      * @return the builder
      */
     public <T0, Z> @NonNull T data(
@@ -56,9 +56,25 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Remove a persistent data container key from the item
+     * Get data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
-     * @param key the NamespacedKey to use
+     * @param key  the {@code NamespacedKey} to use
+     * @param type the {@code PersistentDatType to use}
+     * @param <T0> the primary object type of the data
+     * @param <Z>  the retrieve object type of the data
+     * @return the data
+     */
+    public <T0, Z> @NonNull Z getData(
+            final @NonNull NamespacedKey key,
+            final @NonNull PersistentDataType<T0, Z> type
+    ) {
+        return this.itemMeta.getPersistentDataContainer().get(key, type);
+    }
+
+    /**
+     * Remove data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     *
+     * @param key the {@code NamespacedKey} to use
      * @return the builder
      */
     public @NonNull T removeData(
@@ -69,9 +85,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Add flags to an ItemStack.
+     * Add flags to the {@code ItemStack}.
      *
-     * @param flags the ItemFlag to add the the ItemStack
+     * @param flags the {@code ItemFlag} to add
      * @return the builder
      */
     public @NonNull T flags(final @NonNull ItemFlag... flags) {
@@ -80,21 +96,21 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Delete flags from an ItemStack.
+     * Remove flags from the {@code ItemStack}.
      *
-     * @param flags the ItemFlag to add the the ItemStack
+     * @param flags the {@code ItemFlag} to add
      * @return the builder
      */
-    public @NonNull T deleteFlags(final @NonNull ItemFlag... flags) {
+    public @NonNull T removeFlags(final @NonNull ItemFlag... flags) {
         this.itemMeta.removeItemFlags(flags);
         return (T) this;
     }
 
     /**
-     * Adds an Enchantment to an ItemStack.
+     * Add an {@code Enchantment} to the {@code ItemStack}.
      *
-     * @param enchantment the Enchantment to add to the ItemStack
-     * @param level       the Level of the Enchantment
+     * @param enchantment the {@code Enchantment} to add
+     * @param level       the level of the {@code Enchantment}
      * @return the builder
      */
     public @NonNull T enchant(final @NonNull Enchantment enchantment, final int level) {
@@ -103,9 +119,20 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
     }
 
     /**
-     * Build ItemStack from set properties.
+     * Remove an {@code Enchantment} from the {@code ItemStack}.
      *
-     * @return the built ItemStack
+     * @param enchantment the {@code Enchantment} to remove
+     * @return the builder
+     */
+    public @NonNull T removeEnchant(final @NonNull Enchantment enchantment) {
+        this.enchantmentMap.remove(enchantment);
+        return (T) this;
+    }
+
+    /**
+     * Build the {@code ItemStack} from the set properties.
+     *
+     * @return the built {@code ItemStack}
      */
     public @NonNull ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
