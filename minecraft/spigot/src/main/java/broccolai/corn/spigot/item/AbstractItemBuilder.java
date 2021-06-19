@@ -11,8 +11,14 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Modifies {@link ItemStack}s using methods that both Paper and Spigot share.
+ *
+ * @param <B> the builder type
+ * @param <M> the {@link ItemMeta} type
+ */
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M extends ItemMeta> {
+public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
     protected final @NonNull ItemStack itemStack;
     protected final @NonNull M itemMeta;
@@ -31,9 +37,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param amount the {@code ItemStack}'s quantity
      * @return the builder
      */
-    public @NonNull T amount(final int amount) {
+    public @NonNull B amount(final int amount) {
         this.itemStack.setAmount(amount);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -46,13 +52,13 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param <Z>    the retrieve object type of the data
      * @return the builder
      */
-    public <T0, Z> @NonNull T data(
+    public <T0, Z> @NonNull B data(
             final @NonNull NamespacedKey key,
             final @NonNull PersistentDataType<T0, Z> type,
             final @NonNull Z object
     ) {
         this.itemMeta.getPersistentDataContainer().set(key, type, object);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -77,11 +83,11 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param key the {@code NamespacedKey} to use
      * @return the builder
      */
-    public @NonNull T removeData(
+    public @NonNull B removeData(
             final @NonNull NamespacedKey key
     ) {
         this.itemMeta.getPersistentDataContainer().remove(key);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -90,9 +96,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param flags the {@code ItemFlag} to add
      * @return the builder
      */
-    public @NonNull T flags(final @NonNull ItemFlag... flags) {
+    public @NonNull B flags(final @NonNull ItemFlag... flags) {
         this.itemMeta.addItemFlags(flags);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -101,9 +107,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param flags the {@code ItemFlag} to add
      * @return the builder
      */
-    public @NonNull T removeFlags(final @NonNull ItemFlag... flags) {
+    public @NonNull B removeFlags(final @NonNull ItemFlag... flags) {
         this.itemMeta.removeItemFlags(flags);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -113,9 +119,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param level       the level of the {@code Enchantment}
      * @return the builder
      */
-    public @NonNull T enchant(final @NonNull Enchantment enchantment, final int level) {
+    public @NonNull B enchant(final @NonNull Enchantment enchantment, final int level) {
         this.enchantmentMap.put(enchantment, level);
-        return (T) this;
+        return (B) this;
     }
 
     /**
@@ -124,9 +130,9 @@ public abstract class AbstractItemBuilder<T extends AbstractItemBuilder<T, M>, M
      * @param enchantment the {@code Enchantment} to remove
      * @return the builder
      */
-    public @NonNull T removeEnchant(final @NonNull Enchantment enchantment) {
+    public @NonNull B removeEnchant(final @NonNull Enchantment enchantment) {
         this.enchantmentMap.remove(enchantment);
-        return (T) this;
+        return (B) this;
     }
 
     /**
