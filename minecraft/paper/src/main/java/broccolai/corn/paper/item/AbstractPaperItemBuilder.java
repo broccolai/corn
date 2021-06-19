@@ -1,6 +1,6 @@
-package broccolai.corn.paper;
+package broccolai.corn.paper.item;
 
-import broccolai.corn.spigot.AbstractItemBuilder;
+import broccolai.corn.spigot.item.AbstractItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
