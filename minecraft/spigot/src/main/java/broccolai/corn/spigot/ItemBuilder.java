@@ -19,10 +19,10 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public class ItemBuilder<T extends ItemBuilder<T>> {
+public class ItemBuilder<T extends ItemBuilder<T, M>, M extends ItemMeta> {
 
     protected final @NonNull ItemStack itemStack;
-    protected final @NonNull ItemMeta itemMeta;
+    protected final @NonNull M itemMeta;
 
     protected final @NonNull Map<Enchantment, Integer> enchantmentMap;
 
@@ -42,7 +42,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      * @param itemStack the ItemStack to base builder off of
      * @return instance of ItemBuilder
      */
-    public static ItemBuilder<?> spigot(final @NonNull ItemStack itemStack) {
+    public static ItemBuilder<?, ?> spigot(final @NonNull ItemStack itemStack) {
         return new ItemBuilder<>(itemStack, itemStack.getItemMeta());
     }
 
@@ -52,7 +52,7 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      * @param material the material to base builder off of
      * @return instance of ItemBuilder
      */
-    public static ItemBuilder<?> spigot(final @NonNull Material material) {
+    public static ItemBuilder<?, ?> spigot(final @NonNull Material material) {
         return ItemBuilder.spigot(new ItemStack(material));
     }
 
