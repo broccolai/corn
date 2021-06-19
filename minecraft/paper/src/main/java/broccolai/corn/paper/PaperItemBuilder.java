@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings({"unchecked", "unused"})
-public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder<T> {
+public class PaperItemBuilder<T extends PaperItemBuilder<T, M>, M extends ItemMeta> extends ItemBuilder<T, M> {
 
     protected PaperItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta);
@@ -25,7 +25,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @param itemStack the ItemStack to base builder off of
      * @return instance of PaperItemBuilder
      */
-    public static PaperItemBuilder<?> paper(final @NonNull ItemStack itemStack) {
+    public static PaperItemBuilder<?, ?> paper(final @NonNull ItemStack itemStack) {
         return new PaperItemBuilder<>(itemStack, itemStack.getItemMeta());
     }
 
@@ -35,7 +35,7 @@ public class PaperItemBuilder<T extends PaperItemBuilder<T>> extends ItemBuilder
      * @param material the material to base builder off of
      * @return instance of PaperItemBuilder
      */
-    public static PaperItemBuilder<?> paper(final @NonNull Material material) {
+    public static PaperItemBuilder<?, ?> paper(final @NonNull Material material) {
         return PaperItemBuilder.paper(new ItemStack(material));
     }
 
