@@ -35,7 +35,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Get the {@link Material} of the {@code ItemStack}.
+     * Gets the {@link Material} of the {@code ItemStack}.
      *
      * @return the {@code Material}
      */
@@ -44,7 +44,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Set the {@link Material} of the {@code ItemStack}.
+     * Sets the {@link Material} of the {@code ItemStack}.
      *
      * @param material the {@code Material}
      * @return the builder
@@ -55,7 +55,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Get the quantity of the {@code ItemStack}.
+     * Gets the quantity of the {@code ItemStack}.
      *
      * @return the quantity
      */
@@ -64,7 +64,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Set the quantity of the {@code ItemStack}.
+     * Sets the quantity of the {@code ItemStack}.
      *
      * @param amount the quantity
      * @return the builder
@@ -75,7 +75,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Get data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Gets data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key  the {@code NamespacedKey} to use
      * @param type the {@code PersistentDatType to use}
@@ -91,7 +91,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Add data to the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Adds data to the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key    the {@code NamespacedKey} to use
      * @param type   the {@code PersistentDataType} to use
@@ -110,7 +110,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Remove data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Removes data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key the {@code NamespacedKey} to use
      * @return the builder
@@ -123,16 +123,16 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Get the flags of the {@code ItemStack}.
+     * Gets the {@code ItemFlag}s of the {@code ItemStack}.
      *
-     * @return the flags
+     * @return the {@code ItemFlag}s
      */
     public @NonNull Set<ItemFlag> getFlags() {
         return this.itemMeta.getItemFlags();
     }
 
     /**
-     * Add flags to the {@code ItemStack}.
+     * Adds {@code ItemFlag}s to the {@code ItemStack}.
      *
      * @param flags the {@code ItemFlag}s to add
      * @return the builder
@@ -143,9 +143,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Remove flags from the {@code ItemStack}.
+     * Removes {@code ItemFlag}s from the {@code ItemStack}.
      *
-     * @param flags the {@code ItemFlag}s to add
+     * @param flags the {@code ItemFlag}s to remove
      * @return the builder
      */
     public @NonNull B removeFlags(final @NonNull ItemFlag... flags) {
@@ -163,7 +163,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Add an {@code Enchantment} to the {@code ItemStack}.
+     * Adds an {@code Enchantment} to the {@code ItemStack}.
      *
      * @param enchantment the {@code Enchantment} to add
      * @param level       the level of the {@code Enchantment}
@@ -175,7 +175,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Remove an {@code Enchantment} from the {@code ItemStack}.
+     * Removes an {@code Enchantment} from the {@code ItemStack}.
      *
      * @param enchantment the {@code Enchantment} to remove
      * @return the builder
@@ -186,7 +186,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Build the {@code ItemStack} from the set properties.
+     * Builds the {@code ItemStack} from the set properties.
      *
      * @return the built {@code ItemStack}
      */
