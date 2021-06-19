@@ -35,7 +35,7 @@ public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuild
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code SpigotItemBuilder}
-     * @throws IllegalArgumentException if the {@code Material} is not an obtainable item
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
     public static @NonNull SpigotItemBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
