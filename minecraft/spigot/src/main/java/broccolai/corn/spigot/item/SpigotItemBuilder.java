@@ -12,7 +12,7 @@ import java.util.Objects;
 @SuppressWarnings({"unused"})
 public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuilder, ItemMeta> {
 
-    private SpigotItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) throws IllegalArgumentException {
+    private SpigotItemBuilder(final @NonNull ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
                 ? itemMeta
                 : Objects.requireNonNull(
@@ -21,7 +21,7 @@ public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuild
     }
 
     /**
-     * Create a {@code SpigotItemBuilder}.
+     * Creates a {@code SpigotItemBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code SpigotItemBuilder}
@@ -31,7 +31,7 @@ public class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotItemBuild
     }
 
     /**
-     * Create a {@code SpigotItemBuilder}.
+     * Creates a {@code SpigotItemBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code SpigotItemBuilder}
