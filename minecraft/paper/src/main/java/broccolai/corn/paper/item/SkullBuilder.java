@@ -16,7 +16,7 @@ import java.util.Objects;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
  */
 @SuppressWarnings("unused")
-public class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
+public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
 
     private SkullBuilder(final @NonNull ItemStack item, final @NonNull SkullMeta meta) {
         super(item, meta);

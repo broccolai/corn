@@ -12,7 +12,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link LeatherArmorMeta}.
  */
 @SuppressWarnings("unused")
-public class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
+public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
 
     private LeatherArmorBuilder(final @NonNull ItemStack item, final @NonNull LeatherArmorMeta meta) {
         super(item, meta);
