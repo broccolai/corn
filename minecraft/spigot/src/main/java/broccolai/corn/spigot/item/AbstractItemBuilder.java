@@ -186,6 +186,17 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Sets whether the {@code ItemStack} is unbreakable or not.
+     *
+     * @param unbreakable whether the {@code ItemStack} should be unbreakable
+     * @return the builder
+     */
+    public @NonNull B unbreakable(final boolean unbreakable) {
+        itemMeta.setUnbreakable(unbreakable);
+        return (B) this;
+    }
+
+    /**
      * Builds the {@code ItemStack} from the set properties.
      *
      * @return the built {@code ItemStack}
