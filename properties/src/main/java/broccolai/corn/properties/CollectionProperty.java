@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public record CollectionProperty(
+record CollectionProperty(
         @NonNull String name,
         @NonNull Collection<PropertyHolder> collection
 ) implements FlattenableProperty {
