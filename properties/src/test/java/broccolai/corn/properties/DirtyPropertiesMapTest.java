@@ -1,36 +1,65 @@
 package broccolai.corn.properties;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import static com.google.common.truth.Truth.assertThat;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public final class DirtyPropertiesMapTest {
 
+    private final DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
+
+    private final SomePropertyHolder entryOne = new SomePropertyHolder(20, "word");
+    private final SomeComplexPropertyHolder entryTwo = new SomeComplexPropertyHolder(
+            20,
+            new SomePropertyHolder(10, "test")
+    );
+
+    @BeforeAll
+    void create() {
+        this.dirtyMap.put(1, entryOne);
+        this.dirtyMap.put(5, entryTwo);
+    }
+
+    @BeforeEach
+    void cleanup() {
+        this.dirtyMap.clean();
+    }
+
     @Test
-    void testHashmap() {
-        DirtyPropertiesMap<Integer, PropertyHolder> dirtyMap = DirtyPropertiesMap.hashmap();
-
-        SomePropertyHolder entryOne = new SomePropertyHolder(20, "word");
-        SomeComplexPropertyHolder entryTwo = new SomeComplexPropertyHolder(
-                20,
-                new SomePropertyHolder(10, "test")
-        );
-
-        dirtyMap.put(1, entryOne);
-        dirtyMap.put(5, entryTwo);
-
+    void isEmpty() {
         assertThat(dirtyMap.dirty()).isEmpty();
+    }
 
+    @Test
+    void simpleChange() {
         entryOne.number(25);
         assertThat(dirtyMap.dirty()).containsExactly(entryOne);
+    }
 
+    @Test
+    void simpleChangeAndClean() {
+        entryOne.number(25);
         dirtyMap.clean();
         assertThat(dirtyMap.dirty()).isEmpty();
+    }
+
+    @Test
+    void changeBackToNormal() {
+        entryTwo.number(25);
+        dirtyMap.clean();
 
         entryTwo.number(20);
+        entryTwo.number(25);
         assertThat(dirtyMap.dirty()).isEmpty();
+    }
 
+    @Test
+    void changeNestedField() {
         entryTwo.someHolder.number(14);
         assertThat(dirtyMap.dirty()).containsExactly(entryTwo);
     }
@@ -57,7 +86,7 @@ public final class DirtyPropertiesMapTest {
         public @NonNull PropertySnapshot properties() {
             return PropertySnapshot.of(
                     Property.of("number", this.number),
-                    Property.of("word", this.word)
+                    SafeProperty.of("word", this.word)
             );
         }
 
