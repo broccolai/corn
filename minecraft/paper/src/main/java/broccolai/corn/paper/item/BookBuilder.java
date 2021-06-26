@@ -13,8 +13,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 @SuppressWarnings("unused")
 public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, BookMeta> {
 
-    private BookBuilder(final @NonNull ItemStack item, final @NonNull BookMeta meta) {
-        super(item, meta);
+    private BookBuilder(final @NonNull ItemStack itemStack, final @NonNull BookMeta itemMeta) {
+        super(itemStack, itemMeta);
     }
 
     /**

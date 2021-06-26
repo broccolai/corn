@@ -14,8 +14,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 @SuppressWarnings("unused")
 public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
 
-    private LeatherArmorBuilder(final @NonNull ItemStack item, final @NonNull LeatherArmorMeta meta) {
-        super(item, meta);
+    private LeatherArmorBuilder(final @NonNull ItemStack itemStack, final @NonNull LeatherArmorMeta itemMeta) {
+        super(itemStack, itemMeta);
     }
 
     /**
