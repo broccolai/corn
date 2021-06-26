@@ -23,15 +23,24 @@ import java.util.Set;
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
+    /**
+     * The {@code ItemStack} to modify during building. This will be cloned and
+     * returned upon {@link #build()}.
+     */
     protected final @NonNull ItemStack itemStack;
+    /**
+     * The {@code ItemMeta} to modify during building. This will be applied to
+     * the {@link #itemStack} upon {@link #build()}.
+     */
     protected final @NonNull M itemMeta;
 
-    protected final @NonNull Map<Enchantment, Integer> enchantmentMap;
-
+    /**
+     * @param itemStack the {@code ItemStack}
+     * @param itemMeta  the {@code ItemMeta}
+     */
     protected AbstractItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         this.itemStack = itemStack.clone();
         this.itemMeta = itemMeta;
-        this.enchantmentMap = new HashMap<>(this.itemMeta.getEnchants());
     }
 
     /**
@@ -159,7 +168,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the {@code Enchantment}s
      */
     public @NonNull Map<Enchantment, Integer> getEnchants() {
-        return new HashMap<>(this.enchantmentMap);
+        return new HashMap<>(this.itemStack.getEnchantments());
     }
 
     /**
@@ -170,7 +179,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public @NonNull B addEnchant(final @NonNull Enchantment enchantment, final int level) {
-        this.enchantmentMap.put(enchantment, level);
+        this.itemStack.addUnsafeEnchantment(enchantment, level);
         return (B) this;
     }
 
@@ -181,7 +190,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public @NonNull B removeEnchant(final @NonNull Enchantment enchantment) {
-        this.enchantmentMap.remove(enchantment);
+        this.itemStack.removeEnchantment(enchantment);
         return (B) this;
     }
 
@@ -203,8 +212,6 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public @NonNull ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
-        this.itemStack.addUnsafeEnchantments(this.enchantmentMap);
-
         return this.itemStack.clone();
     }
 
