@@ -18,8 +18,8 @@ import java.util.Objects;
 @SuppressWarnings("unused")
 public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
 
-    private SkullBuilder(final @NonNull ItemStack item, final @NonNull SkullMeta meta) {
-        super(item, meta);
+    private SkullBuilder(final @NonNull ItemStack itemStack, final @NonNull SkullMeta itemMeta) {
+        super(itemStack, itemMeta);
     }
 
     /**

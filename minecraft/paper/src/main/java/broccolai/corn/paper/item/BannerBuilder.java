@@ -15,8 +15,8 @@ import java.util.List;
 @SuppressWarnings("unused")
 public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder, BannerMeta> {
 
-    private BannerBuilder(final @NonNull ItemStack item, final @NonNull BannerMeta meta) {
-        super(item, meta);
+    private BannerBuilder(final @NonNull ItemStack itemStack, final @NonNull BannerMeta itemMeta) {
+        super(itemStack, itemMeta);
     }
 
     /**
