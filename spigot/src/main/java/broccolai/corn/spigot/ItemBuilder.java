@@ -172,11 +172,15 @@ public class ItemBuilder<T extends ItemBuilder<T>> {
      * Adds an Enchantment to an ItemStack.
      *
      * @param enchantment the Enchantment to add to the ItemStack
-     * @param level       the Level of the Enchantment
+     * @param level       the Level of the Enchantment (if set to -1, the enchantment will be removed from the item)
      * @return the builder
      */
     public @NonNull T enchant(final @NonNull Enchantment enchantment, final int level) {
-        this.enchantmentMap.put(enchantment, level);
+        if (level == -1) {
+            this.enchantmentMap.remove(enchantment);
+        } else {
+            this.enchantmentMap.put(enchantment, level);
+        }
         return (T) this;
     }
 
