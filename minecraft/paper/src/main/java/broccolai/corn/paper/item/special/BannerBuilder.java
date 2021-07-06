@@ -1,5 +1,6 @@
-package broccolai.corn.paper.item;
+package broccolai.corn.paper.item.special;
 
+import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
