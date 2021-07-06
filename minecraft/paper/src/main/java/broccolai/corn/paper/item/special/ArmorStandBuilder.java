@@ -1,9 +1,9 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -42,7 +42,8 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code ArmorStandBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull ArmorStandBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
