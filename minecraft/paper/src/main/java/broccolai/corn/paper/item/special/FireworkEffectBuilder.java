@@ -42,7 +42,8 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code FireworkEffectBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull FireworkEffectBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         if (!material.isItem()) {

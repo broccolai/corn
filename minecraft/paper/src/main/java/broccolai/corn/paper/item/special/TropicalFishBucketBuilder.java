@@ -3,8 +3,8 @@ package broccolai.corn.paper.item.special;
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.TropicalFishBucketMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.TropicalFishBucketMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
@@ -42,7 +42,8 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code TropicalFishBucketBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull TropicalFishBucketBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
