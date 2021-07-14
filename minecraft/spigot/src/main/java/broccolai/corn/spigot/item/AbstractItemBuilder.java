@@ -179,7 +179,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public @NonNull B addEnchant(final @NonNull Enchantment enchantment, final int level) {
-        this.itemStack.addUnsafeEnchantment(enchantment, level);
+        this.itemMeta.addEnchant(enchantment, level, true);
         return (B) this;
     }
 
@@ -190,7 +190,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public @NonNull B removeEnchant(final @NonNull Enchantment enchantment) {
-        this.itemStack.removeEnchantment(enchantment);
+        this.itemMeta.removeEnchant(enchantment);
         return (B) this;
     }
 
