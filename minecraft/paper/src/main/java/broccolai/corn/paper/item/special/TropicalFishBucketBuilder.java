@@ -1,9 +1,9 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.TropicalFishBucketMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -25,16 +25,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull TropicalFishBucketBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        final ItemMeta meta = itemStack.getItemMeta();
-
-        if (meta instanceof final TropicalFishBucketMeta newMeta) {
-            return new TropicalFishBucketBuilder(itemStack, newMeta);
-        } else {
-            throw new IllegalArgumentException("The ItemStack's ItemMeta must be of type "
-                    + TropicalFishBucketMeta.class.getSimpleName()
-                    + " but received ItemMeta of type "
-                    + meta.getClass().getSimpleName());
-        }
+        return new TropicalFishBucketBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), TropicalFishBucketMeta.class));
     }
 
     /**
@@ -46,11 +37,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull TropicalFishBucketBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return TropicalFishBucketBuilder.of(new ItemStack(material));
+        return TropicalFishBucketBuilder.of(AridUtil.getItem(material));
     }
 
 }

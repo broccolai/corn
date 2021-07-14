@@ -1,9 +1,9 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.KnowledgeBookMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -25,16 +25,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull KnowledgeBookBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        final ItemMeta meta = itemStack.getItemMeta();
-
-        if (meta instanceof final KnowledgeBookMeta newMeta) {
-            return new KnowledgeBookBuilder(itemStack, newMeta);
-        } else {
-            throw new IllegalArgumentException("The ItemStack's ItemMeta must be of type "
-                    + KnowledgeBookMeta.class.getSimpleName()
-                    + " but received ItemMeta of type "
-                    + meta.getClass().getSimpleName());
-        }
+        return new KnowledgeBookBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), KnowledgeBookMeta.class));
     }
 
     /**
@@ -46,11 +37,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull KnowledgeBookBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return KnowledgeBookBuilder.of(new ItemStack(material));
+        return KnowledgeBookBuilder.of(AridUtil.getItem(material));
     }
 
 }
