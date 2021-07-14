@@ -1,10 +1,10 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkEffectMeta;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
 /**
@@ -25,16 +25,7 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull FireworkEffectBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        final ItemMeta meta = itemStack.getItemMeta();
-
-        if (meta instanceof final FireworkEffectMeta newMeta) {
-            return new FireworkEffectBuilder(itemStack, newMeta);
-        } else {
-            throw new IllegalArgumentException("The ItemStack's ItemMeta must be of type "
-                    + FireworkEffectMeta.class.getSimpleName()
-                    + " but received ItemMeta of type "
-                    + meta.getClass().getSimpleName());
-        }
+        return new FireworkEffectBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), FireworkEffectMeta.class));
     }
 
     /**
@@ -46,11 +37,7 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull FireworkEffectBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return FireworkEffectBuilder.of(new ItemStack(material));
+        return FireworkEffectBuilder.of(AridUtil.getItem(material));
     }
 
 }

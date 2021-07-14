@@ -1,9 +1,9 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -25,16 +25,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull PotionBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        final ItemMeta meta = itemStack.getItemMeta();
-
-        if (meta instanceof final PotionMeta newMeta) {
-            return new PotionBuilder(itemStack, newMeta);
-        } else {
-            throw new IllegalArgumentException("The ItemStack's ItemMeta must be of type "
-                    + PotionMeta.class.getSimpleName()
-                    + " but received ItemMeta of type "
-                    + meta.getClass().getSimpleName());
-        }
+        return new PotionBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), PotionMeta.class));
     }
 
     /**
@@ -46,11 +37,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull PotionBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return PotionBuilder.of(new ItemStack(material));
+        return PotionBuilder.of(AridUtil.getItem(material));
     }
 
 }

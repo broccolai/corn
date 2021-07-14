@@ -1,5 +1,6 @@
 package broccolai.corn.paper.item;
 
+import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -41,11 +42,7 @@ public final class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBu
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
     public static @NonNull PaperItemBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return PaperItemBuilder.of(new ItemStack(material));
+        return PaperItemBuilder.of(AridUtil.getItem(material));
     }
 
 }

@@ -41,11 +41,7 @@ public final class SpigotItemBuilder extends AbstractSpigotItemBuilder<SpigotIte
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
     public static @NonNull SpigotItemBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        if (!material.isItem()) {
-            throw new IllegalArgumentException("The Material must be an obtainable item.");
-        }
-
-        return SpigotItemBuilder.of(new ItemStack(material));
+        return SpigotItemBuilder.of(AridUtil.getItem(material));
     }
 
 }
