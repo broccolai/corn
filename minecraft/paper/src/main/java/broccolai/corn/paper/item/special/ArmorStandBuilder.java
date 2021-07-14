@@ -18,7 +18,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
     }
 
     /**
-     * Creates a {@code ArmorStandBuilder}.
+     * Creates an {@code ArmorStandBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code ArmorStandBuilder}
@@ -38,7 +38,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
     }
 
     /**
-     * Creates a {@code ArmorStandBuilder}.
+     * Creates an {@code ArmorStandBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code ArmorStandBuilder}
