@@ -83,7 +83,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @return the builder
      */
     public @NonNull B lore(final @NonNull Consumer<List<Component>> consumer) {
-        List<Component> lore = this.itemMeta.hasLore()
+        final List<Component> lore = this.itemMeta.hasLore()
                 ? this.itemMeta.lore()
                 : new ArrayList<>();
         consumer.accept(lore);

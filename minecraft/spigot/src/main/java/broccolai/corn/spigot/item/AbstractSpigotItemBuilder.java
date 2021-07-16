@@ -81,7 +81,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @return the builder
      */
     public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
-        List<String> lore = this.itemMeta.hasLore()
+        final List<String> lore = this.itemMeta.hasLore()
                 ? this.itemMeta.getLore()
                 : new ArrayList<>();
         consumer.accept(lore);

@@ -52,10 +52,10 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return the textures
      */
     public @NonNull List<ProfileProperty> textures() {
-        PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
+        final PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
 
-        List<ProfileProperty> textures = new ArrayList<>();
-        for (ProfileProperty property : playerProfile.getProperties()) {
+        final List<ProfileProperty> textures = new ArrayList<>();
+        for (final ProfileProperty property : playerProfile.getProperties()) {
             if (property.getName().equals("textures")) {
                 textures.add(property);
             }
@@ -71,7 +71,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return the builder
      */
     public @NonNull SkullBuilder textures(final @NonNull String data) {
-        PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
+        final PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
         playerProfile.setProperty(new ProfileProperty("textures", data));
         return this;
     }
