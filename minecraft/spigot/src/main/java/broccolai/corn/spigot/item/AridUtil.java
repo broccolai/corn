@@ -8,7 +8,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 /**
  * A small utility class to help DRY-ify the many, many builders.
  */
-public class AridUtil {
+public final class AridUtil {
 
     private AridUtil() {
     }
