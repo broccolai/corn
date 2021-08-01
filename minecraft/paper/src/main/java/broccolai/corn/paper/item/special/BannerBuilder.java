@@ -69,9 +69,8 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param index the index
      * @return the pattern
      */
-    public @NonNull BannerBuilder getPattern(final int index) {
-        this.itemMeta.getPattern(index);
-        return this;
+    public @NonNull Pattern getPattern(final int index) {
+        return this.itemMeta.getPattern(index);
     }
 
     /**
