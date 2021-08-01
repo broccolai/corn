@@ -206,6 +206,15 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Get the max stack size.
+     *
+     * @return the max stack size
+     */
+    public int maxStackSize() {
+        return this.itemStack.getMaxStackSize();
+    }
+
+    /**
      * Builds the {@code ItemStack} from the set properties.
      *
      * @return the built {@code ItemStack}
