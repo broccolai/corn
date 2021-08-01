@@ -44,27 +44,27 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@code Material} of the {@code ItemStack}.
+     * Gets the {@code Material}.
      *
      * @return the {@code Material}
      */
-    public Material material() {
+    public @NonNull Material material() {
         return this.itemStack.getType();
     }
 
     /**
-     * Sets the {@code Material} of the {@code ItemStack}.
+     * Sets the {@code Material}.
      *
      * @param material the {@code Material}
      * @return the builder
      */
-    public @NonNull B material(final Material material) {
+    public @NonNull B material(final @NonNull Material material) {
         this.itemStack.setType(material);
         return (B) this;
     }
 
     /**
-     * Gets the quantity of the {@code ItemStack}.
+     * Gets the quantity.
      *
      * @return the quantity
      */
@@ -73,7 +73,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets the quantity of the {@code ItemStack}.
+     * Sets the quantity.
      *
      * @param amount the quantity
      * @return the builder
@@ -132,7 +132,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@code ItemFlag}s of the {@code ItemStack}.
+     * Gets the {@code ItemFlag}s.
      *
      * @return the {@code ItemFlag}s
      */
@@ -141,7 +141,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds {@code ItemFlag}s to the {@code ItemStack}.
+     * Adds {@code ItemFlag}s.
      *
      * @param flags the {@code ItemFlag}s to add
      * @return the builder
@@ -152,7 +152,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes {@code ItemFlag}s from the {@code ItemStack}.
+     * Removes {@code ItemFlag}s.
      *
      * @param flags the {@code ItemFlag}s to remove
      * @return the builder
@@ -163,7 +163,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@code Enchantment}s of the {@code ItemStack}.
+     * Gets the {@code Enchantment}s.
      *
      * @return the {@code Enchantment}s
      */
@@ -172,7 +172,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds an {@code Enchantment} to the {@code ItemStack}.
+     * Adds an {@code Enchantment}.
      *
      * @param enchantment the {@code Enchantment} to add
      * @param level       the level of the {@code Enchantment}
@@ -184,7 +184,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes an {@code Enchantment} from the {@code ItemStack}.
+     * Removes an {@code Enchantment}.
      *
      * @param enchantment the {@code Enchantment} to remove
      * @return the builder

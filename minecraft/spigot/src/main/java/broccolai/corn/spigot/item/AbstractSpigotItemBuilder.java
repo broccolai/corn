@@ -24,7 +24,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Gets the display name of the {@code ItemStack}.
+     * Gets the display name.
      *
      * @return the display name
      */
@@ -33,7 +33,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the display name of the {@code ItemStack}.
+     * Sets the display name.
      *
      * @param name the display name
      * @return the builder
@@ -44,7 +44,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Gets the lore of the {@code ItemStack}.
+     * Gets the lore.
      *
      * @return the lore
      */
@@ -53,7 +53,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the lore of the {@code ItemStack}.
+     * Sets the lore.
      *
      * @param lines the lines of the lore
      * @return the builder
@@ -64,7 +64,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the lore of the {@code ItemStack}.
+     * Sets the lore.
      *
      * @param lines the lines of the lore
      * @return the builder
@@ -75,7 +75,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the lore of the {@code ItemStack}.
+     * Sets the lore.
      *
      * @param consumer the lines of the lore
      * @return the builder
