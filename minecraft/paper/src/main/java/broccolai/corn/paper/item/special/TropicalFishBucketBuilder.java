@@ -103,7 +103,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
     }
 
     /**
-     * Checks whether a variant tag exists.
+     * Gets whether a variant tag exists.
      * If true, a specific fish will be spawned.
      *
      * @return whether a variant tag exists

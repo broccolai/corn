@@ -141,24 +141,24 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds {@code ItemFlag}s.
+     * Add an {@code ItemFlag}.
      *
-     * @param flags the {@code ItemFlag}s to add
+     * @param flag the {@code ItemFlag} to add
      * @return the builder
      */
-    public @NonNull B addFlags(final @NonNull ItemFlag... flags) {
-        this.itemMeta.addItemFlags(flags);
+    public @NonNull B addFlag(final @NonNull ItemFlag... flag) {
+        this.itemMeta.addItemFlags(flag);
         return (B) this;
     }
 
     /**
-     * Removes {@code ItemFlag}s.
+     * Remove an {@code ItemFlag}.
      *
-     * @param flags the {@code ItemFlag}s to remove
+     * @param flag the {@code ItemFlag} to remove
      * @return the builder
      */
-    public @NonNull B removeFlags(final @NonNull ItemFlag... flags) {
-        this.itemMeta.removeItemFlags(flags);
+    public @NonNull B removeFlags(final @NonNull ItemFlag... flag) {
+        this.itemMeta.removeItemFlags(flag);
         return (B) this;
     }
 
@@ -189,13 +189,15 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param enchantment the {@code Enchantment} to remove
      * @return the builder
      */
-    public @NonNull B removeEnchant(final @NonNull Enchantment enchantment) {
-        this.itemMeta.removeEnchant(enchantment);
+    public @NonNull B removeEnchant(final @NonNull Enchantment... enchantment) {
+        for (final Enchantment item : enchantment) {
+            this.itemMeta.removeEnchant(item);
+        }
         return (B) this;
     }
 
     /**
-     * Sets whether the {@code ItemStack} is unbreakable or not.
+     * Sets whether the {@code ItemStack} should be unbreakable.
      *
      * @param unbreakable whether the {@code ItemStack} should be unbreakable
      * @return the builder

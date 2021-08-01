@@ -92,8 +92,10 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param pattern the pattern
      * @return the builder
      */
-    public @NonNull BannerBuilder addPattern(final @NonNull Pattern pattern) {
-        this.itemMeta.addPattern(pattern);
+    public @NonNull BannerBuilder addPattern(final @NonNull Pattern... pattern) {
+        for (final Pattern item : pattern) {
+            this.itemMeta.addPattern(item);
+        }
         return this;
     }
 
@@ -103,8 +105,10 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param index the index
      * @return the builder
      */
-    public @NonNull BannerBuilder removePattern(final int index) {
-        this.itemMeta.removePattern(index);
+    public @NonNull BannerBuilder removePattern(final int... index) {
+        for (final int item : index) {
+            this.itemMeta.removePattern(item);
+        }
         return this;
     }
 
