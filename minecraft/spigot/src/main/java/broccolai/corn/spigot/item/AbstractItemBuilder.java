@@ -44,7 +44,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@link Material} of the {@code ItemStack}.
+     * Gets the {@code Material} of the {@code ItemStack}.
      *
      * @return the {@code Material}
      */
@@ -53,7 +53,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets the {@link Material} of the {@code ItemStack}.
+     * Sets the {@code Material} of the {@code ItemStack}.
      *
      * @param material the {@code Material}
      * @return the builder
@@ -87,7 +87,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * Gets data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key  the {@code NamespacedKey} to use
-     * @param type the {@code PersistentDatType to use}
+     * @param type the {@code PersistentDataType to use}
      * @param <T>  the primary object type of the data
      * @param <Z>  the retrieve object type of the data
      * @return the data
