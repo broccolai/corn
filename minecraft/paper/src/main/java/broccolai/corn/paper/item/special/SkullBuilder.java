@@ -5,9 +5,11 @@ import broccolai.corn.spigot.item.AridUtil;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +53,13 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      *
      * @return the textures
      */
-    public @NonNull List<ProfileProperty> textures() {
-        final PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
+    public @NonNull List<@NonNull ProfileProperty> textures() {
+        final @NonNull PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
 
-        final List<ProfileProperty> textures = new ArrayList<>();
-        for (final ProfileProperty property : playerProfile.getProperties()) {
-            if (property.getName().equals("textures")) {
-                textures.add(property);
+        final @NonNull List<@NonNull ProfileProperty> textures = new ArrayList<>();
+        for (final @NonNull ProfileProperty item : playerProfile.getProperties()) {
+            if (item.getName().equals("textures")) {
+                textures.add(item);
             }
         }
 
@@ -71,8 +73,48 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return the builder
      */
     public @NonNull SkullBuilder textures(final @NonNull String data) {
-        final PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
+        final @NonNull PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
         playerProfile.setProperty(new ProfileProperty("textures", data));
+        return this;
+    }
+
+    /**
+     * Gets the {@code PlayerProfile}.
+     *
+     * @return the {@code PlayerProfile}
+     */
+    public @Nullable PlayerProfile playerProfile() {
+        return this.itemMeta.getPlayerProfile();
+    }
+
+    /**
+     * Sets the {@code PlayerProfile}.
+     *
+     * @param playerProfile the {@code PlayerProfile}
+     * @return the builder
+     */
+    public @NonNull SkullBuilder playerProfile(final @Nullable PlayerProfile playerProfile) {
+        this.itemMeta.setPlayerProfile(playerProfile);
+        return this;
+    }
+
+    /**
+     * Gets the owning player.
+     *
+     * @return the owning player
+     */
+    public @Nullable OfflinePlayer owningPlayer() {
+        return this.itemMeta.getOwningPlayer();
+    }
+
+    /**
+     * Sets the owning player.
+     *
+     * @param owningPlayer the owning player
+     * @return the builder
+     */
+    public @NonNull SkullBuilder owningPlayer(final @Nullable OfflinePlayer owningPlayer) {
+        this.itemMeta.setOwningPlayer(owningPlayer);
         return this;
     }
 
