@@ -56,7 +56,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param title the title
      * @return the builder
      */
-    public @NonNull BookBuilder title(final @NonNull String title) {
+    public @NonNull BookBuilder title(final @Nullable String title) {
         this.itemMeta.setTitle(title);
         return this;
     }
@@ -76,7 +76,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param generation the generation
      * @return the builder
      */
-    public @NonNull BookBuilder generation(final BookMeta.@NonNull Generation generation) {
+    public @NonNull BookBuilder generation(final BookMeta.@Nullable Generation generation) {
         this.itemMeta.setGeneration(generation);
         return this;
     }
@@ -96,7 +96,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param author the author
      * @return the builder
      */
-    public @NonNull BookBuilder author(final @NonNull String author) {
+    public @NonNull BookBuilder author(final @Nullable String author) {
         this.itemMeta.setAuthor(author);
         return this;
     }
