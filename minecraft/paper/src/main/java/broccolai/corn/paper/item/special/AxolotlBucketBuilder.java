@@ -40,4 +40,15 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
         return AxolotlBucketBuilder.of(AridUtil.getItem(material));
     }
 
+    /**
+     * Creates a {@code AxolotlBucketBuilder} of type {@link Material#AXOLOTL_BUCKET}. A convenience method.
+     *
+     * @return instance of {@code AxolotlBucketBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull AxolotlBucketBuilder ofAxolotlBucket() throws IllegalArgumentException {
+        return ofType(Material.AXOLOTL_BUCKET);
+    }
+
 }

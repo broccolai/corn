@@ -43,6 +43,17 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
     }
 
     /**
+     * Creates a {@code TropicalFishBucketBuilder} of type {@link Material#TROPICAL_FISH_BUCKET}. A convenience method.
+     *
+     * @return instance of {@code TropicalFishBucketBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull TropicalFishBucketBuilder ofTropicalFishBucket() throws IllegalArgumentException {
+        return ofType(Material.TROPICAL_FISH_BUCKET);
+    }
+
+    /**
      * Gets the {@code Pattern}.
      *
      * @return the pattern

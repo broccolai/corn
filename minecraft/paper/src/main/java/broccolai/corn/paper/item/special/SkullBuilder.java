@@ -51,6 +51,17 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
     }
 
     /**
+     * Creates a {@code SkullBuilder} of type {@link Material#PLAYER_HEAD}. A convenience method.
+     *
+     * @return instance of {@code SkullBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull SkullBuilder ofPlayerHead() throws IllegalArgumentException {
+        return ofType(Material.PLAYER_HEAD);
+    }
+
+    /**
      * Gets the textures.
      *
      * @return the textures

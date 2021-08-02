@@ -40,4 +40,15 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
         return CrossbowBuilder.of(AridUtil.getItem(material));
     }
 
+    /**
+     * Creates a {@code CrossbowBuilder} of type {@link Material#CROSSBOW}. A convenience method.
+     *
+     * @return instance of {@code CrossbowBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull CrossbowBuilder ofCrossbow() throws IllegalArgumentException {
+        return ofType(Material.CROSSBOW);
+    }
+
 }

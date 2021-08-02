@@ -44,6 +44,17 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
     }
 
     /**
+     * Creates a {@code FireworkBuilder} of type {@link Material#FIREWORK_ROCKET}. A convenience method.
+     *
+     * @return instance of {@code FireworkBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull FireworkBuilder ofFireworkRocket() throws IllegalArgumentException {
+        return ofType(Material.FIREWORK_ROCKET);
+    }
+
+    /**
      * Gets the power.
      *
      * @return the power

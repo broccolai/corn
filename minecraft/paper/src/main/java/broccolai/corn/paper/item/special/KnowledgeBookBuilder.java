@@ -44,6 +44,17 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
     }
 
     /**
+     * Creates a {@code KnowledgeBookBuilder} of type {@link Material#KNOWLEDGE_BOOK}. A convenience method.
+     *
+     * @return instance of {@code KnowledgeBookBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull KnowledgeBookBuilder ofKnowledgeBook() throws IllegalArgumentException {
+        return ofType(Material.KNOWLEDGE_BOOK);
+    }
+
+    /**
      * Gets the recipes.
      *
      * @return the recipes

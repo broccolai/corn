@@ -45,6 +45,17 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
     }
 
     /**
+     * Creates a {@code SuspiciousStewBuilder} of type {@link Material#SUSPICIOUS_STEW}. A convenience method.
+     *
+     * @return instance of {@code SuspiciousStewBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull SuspiciousStewBuilder ofSuspiciousStew() throws IllegalArgumentException {
+        return ofType(Material.SUSPICIOUS_STEW);
+    }
+
+    /**
      * Gets the custom effects.
      *
      * @return the custom effects

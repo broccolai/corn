@@ -40,4 +40,15 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
         return BundleBuilder.of(AridUtil.getItem(material));
     }
 
+    /**
+     * Creates a {@code BundleBuilder} of type {@link Material#BUNDLE}. A convenience method.
+     *
+     * @return instance of {@code BundleBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull BundleBuilder ofBundle() throws IllegalArgumentException {
+        return ofType(Material.BUNDLE);
+    }
+
 }

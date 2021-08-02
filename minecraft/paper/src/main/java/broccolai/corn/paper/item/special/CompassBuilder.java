@@ -40,4 +40,15 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
         return CompassBuilder.of(AridUtil.getItem(material));
     }
 
+    /**
+     * Creates a {@code CompassBuilder} of type {@link Material#COMPASS}. A convenience method.
+     *
+     * @return instance of {@code CompassBuilder}
+     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
+     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
+     */
+    public static @NonNull CompassBuilder ofCompass() throws IllegalArgumentException {
+        return ofType(Material.COMPASS);
+    }
+
 }
