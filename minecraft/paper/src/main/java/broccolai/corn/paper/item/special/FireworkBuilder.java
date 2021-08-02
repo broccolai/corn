@@ -2,10 +2,13 @@ package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
+import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+
+import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link FireworkMeta}.
@@ -38,6 +41,61 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      */
     public static @NonNull FireworkBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         return FireworkBuilder.of(AridUtil.getItem(material));
+    }
+
+    /**
+     * Gets the power.
+     *
+     * @return the power
+     */
+    public @NonNull int power() {
+        return this.itemMeta.getPower();
+    }
+
+    /**
+     * Sets the power.
+     *
+     * @param power the power
+     * @return the builder
+     */
+    public @NonNull FireworkBuilder power(final @NonNull int power) {
+        this.itemMeta.setPower(power);
+        return this;
+    }
+
+    /**
+     * Gets the {@code FireworkEffect}s.
+     *
+     * @return the {@code FireworkEffect}s
+     */
+    public @NonNull List<@NonNull FireworkEffect> fireworkEffects() {
+        return this.itemMeta.getEffects();
+    }
+
+    /**
+     * Sets the {@code FireworkEffect}s.
+     *
+     * @param fireworkEffects the {@code FireworkEffect}s
+     * @return the builder
+     */
+    public @NonNull FireworkBuilder fireworkEffects(final @NonNull List<@NonNull FireworkEffect> fireworkEffects) {
+        // Although we all know Bukkit has an *amazingly* consistent API, for whatever reason,
+        // it doesn't have a method to set the effects of a firework meta. To work around this and
+        // provide a consistent API, we clear the current effects and add the new ones.
+        this.itemMeta.clearEffects();
+        this.itemMeta.addEffects(fireworkEffects);
+        return this;
+    }
+
+    /**
+     * Adds a {@code FireworkEffect}.
+     *
+     * @param fireworkEffect the {@code FireworkEffect} to add
+     * @return the builder
+     */
+    public @NonNull FireworkBuilder addFireworkEffect(final @NonNull FireworkEffect... fireworkEffect) {
+        this.itemMeta.addEffects(fireworkEffect);
+        return this;
     }
 
 }
