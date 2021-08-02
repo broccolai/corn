@@ -4,6 +4,7 @@ import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +14,8 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
@@ -54,12 +56,15 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return the textures
      */
     public @NonNull List<@NonNull ProfileProperty> textures() {
-        final @NonNull PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
+        final @Nullable PlayerProfile profile = this.itemMeta.getPlayerProfile();
+        if (profile == null) {
+            return List.of();
+        }
 
         final @NonNull List<@NonNull ProfileProperty> textures = new ArrayList<>();
-        for (final @NonNull ProfileProperty item : playerProfile.getProperties()) {
-            if (item.getName().equals("textures")) {
-                textures.add(item);
+        for (final @NonNull ProfileProperty property : profile.getProperties()) {
+            if (property.getName().equals("textures")) {
+                textures.add(property);
             }
         }
 
@@ -73,8 +78,13 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return the builder
      */
     public @NonNull SkullBuilder textures(final @NonNull String data) {
-        final @NonNull PlayerProfile playerProfile = Objects.requireNonNull(this.itemMeta.getPlayerProfile());
-        playerProfile.setProperty(new ProfileProperty("textures", data));
+        final @NonNull PlayerProfile profile = Optional
+                .ofNullable(this.itemMeta.getPlayerProfile())
+                .orElse(Bukkit.createProfile(UUID.randomUUID()));
+
+        profile.setProperty(new ProfileProperty("textures", data));
+
+        this.itemMeta.setPlayerProfile(profile);
         return this;
     }
 
