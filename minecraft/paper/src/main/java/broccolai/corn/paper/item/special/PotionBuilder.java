@@ -52,7 +52,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      *
      * @return the custom effects
      */
-    public @NonNull List<@NonNull PotionEffect> getCustomEffects() {
+    public @NonNull List<@NonNull PotionEffect> customEffects() {
         return this.itemMeta.getCustomEffects();
     }
 

@@ -49,7 +49,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      *
      * @return the custom effects
      */
-    public @NonNull List<@NonNull PotionEffect> getCustomEffects() {
+    public @NonNull List<@NonNull PotionEffect> customEffects() {
         return this.itemMeta.getCustomEffects();
     }
 
@@ -61,7 +61,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @return the builder
      */
     public @NonNull SuspiciousStewBuilder addCustomEffect(final @NonNull PotionEffect customEffect, final boolean overwrite) {
-        this.itemMeta.addCustomEffect(customEffect, true);
+        this.itemMeta.addCustomEffect(customEffect, overwrite);
         return this;
     }
 

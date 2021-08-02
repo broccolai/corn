@@ -136,7 +136,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the {@code ItemFlag}s
      */
-    public @NonNull Set<ItemFlag> getFlags() {
+    public @NonNull Set<ItemFlag> flags() {
         return this.itemMeta.getItemFlags();
     }
 
@@ -157,7 +157,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param flag the {@code ItemFlag} to remove
      * @return the builder
      */
-    public @NonNull B removeFlags(final @NonNull ItemFlag... flag) {
+    public @NonNull B removeFlag(final @NonNull ItemFlag... flag) {
         this.itemMeta.removeItemFlags(flag);
         return (B) this;
     }
@@ -167,7 +167,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the {@code Enchantment}s
      */
-    public @NonNull Map<Enchantment, Integer> getEnchants() {
+    public @NonNull Map<Enchantment, Integer> enchants() {
         return new HashMap<>(this.itemStack.getEnchantments());
     }
 

@@ -7,6 +7,7 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 /**
@@ -69,8 +70,8 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B lore(final @NonNull String... lines) {
-        this.itemMeta.setLore(List.of(lines));
+    public @NonNull B lore(final @Nullable String... lines) {
+        this.lore(List.of(lines));
         return (B) this;
     }
 
@@ -81,9 +82,10 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @return the builder
      */
     public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
-        final List<String> lore = this.itemMeta.hasLore()
-                ? this.itemMeta.getLore()
-                : new ArrayList<>();
+        final @NonNull List<@NonNull String> lore = Optional
+                .ofNullable(this.itemMeta.getLore())
+                .orElse(new ArrayList<>());
+
         consumer.accept(lore);
 
         this.itemMeta.setLore(lore);

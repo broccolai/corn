@@ -79,7 +79,8 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
             this.itemMeta.lore(null);
             return (B) this;
         }
-
+        // Bukkit likes italicizing everything for no good reason, so to alleviate this we have to
+        // first create a dummy component, set italics for that to false, and then append the name.
         final @NonNull List<Component> toAdd = new ArrayList<>(lines);
         toAdd.replaceAll((line) -> Component.text("")
                 .decoration(TextDecoration.ITALIC, false)
