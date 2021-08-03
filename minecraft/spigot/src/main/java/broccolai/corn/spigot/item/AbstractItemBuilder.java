@@ -217,6 +217,46 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets the custom model data.
+     *
+     * @return the custom model data
+     */
+    public int customModelData() {
+        return this.itemMeta.getCustomModelData();
+    }
+
+    /**
+     * Sets the custom model data.
+     *
+     * @param customModelData the custom model data
+     * @return the builder
+     */
+    public @NonNull B customModelData(final int customModelData) {
+        this.itemMeta.setCustomModelData(customModelData);
+        return (B) this;
+    }
+
+    /**
+     * Gets the localized name.
+     *
+     * @return the localized name
+     */
+    public @NonNull String localizedName() {
+        return this.itemMeta.getLocalizedName();
+    }
+
+    /**
+     * Sets the localized name.
+     *
+     * @param localizedName the localized name
+     * @return the builder
+     */
+    public @NonNull B localizedName(final @Nullable String localizedName) {
+        this.itemMeta.setLocalizedName(localizedName);
+        return (B) this;
+    }
+
+    /**
      * Builds the {@code ItemStack} from the set properties.
      *
      * @return the built {@code ItemStack}
