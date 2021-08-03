@@ -3,9 +3,12 @@ package broccolai.corn.paper.item.special;
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+
+import java.util.Map;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link EnchantmentStorageMeta}.
@@ -38,6 +41,59 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      */
     public static @NonNull EnchantmentStorageBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         return EnchantmentStorageBuilder.of(AridUtil.getItem(material));
+    }
+
+    /**
+     * Gets the stored enchants.
+     *
+     * @return the stored enchants
+     */
+    public @NonNull Map<@NonNull Enchantment, @NonNull Integer> storedEnchants() {
+        return this.itemMeta.getStoredEnchants();
+    }
+
+    /**
+     * Sets the stored enchants.
+     *
+     * @param storedEnchants the stored enchants
+     * @return the builder
+     */
+    public @NonNull EnchantmentStorageBuilder storedEnchants(final @NonNull Map<@NonNull Enchantment, @NonNull Integer> storedEnchants) {
+        // Bukkit's wonderful API back at it again without a direct set function.
+        // Iterate over the already stored enchantments and remove them.
+        for (final @NonNull Enchantment item : this.itemMeta.getStoredEnchants().keySet()) {
+            this.itemMeta.removeEnchant(item);
+        }
+        // Loop over the storedEnchants argument and add them.
+        for (final Map.@NonNull Entry<@NonNull Enchantment, @NonNull Integer> entry : storedEnchants.entrySet()) {
+            this.addStoredEnchant(entry.getKey(), entry.getValue());
+        }
+        return this;
+    }
+
+    /**
+     * Adds a stored enchant.
+     *
+     * @param enchant the {@code Enchantment} to add
+     * @param level   the level of the {@code Enchantment}
+     * @return the builder
+     */
+    public @NonNull EnchantmentStorageBuilder addStoredEnchant(final @NonNull Enchantment enchant, final int level) {
+        this.itemMeta.addStoredEnchant(enchant, level, true);
+        return this;
+    }
+
+    /**
+     * Removes a stored enchant.
+     *
+     * @param enchant the {@code Enchantment} to remove
+     * @return the builder
+     */
+    public @NonNull EnchantmentStorageBuilder removeStoredEnchant(final @NonNull Enchantment... enchant) {
+        for (final @NonNull Enchantment item : enchant) {
+            this.itemMeta.removeStoredEnchant(item);
+        }
+        return this;
     }
 
 }
