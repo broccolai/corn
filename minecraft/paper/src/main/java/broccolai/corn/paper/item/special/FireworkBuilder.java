@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.common.value.qual.IntRange;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      *
      * @return the power
      */
-    public @NonNull int power() {
+    public @IntRange(from = 0, to = 128) int power() {
         return this.itemMeta.getPower();
     }
 
@@ -69,7 +70,7 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      * @param power the power
      * @return the builder
      */
-    public @NonNull FireworkBuilder power(final @NonNull int power) {
+    public @NonNull FireworkBuilder power(final @IntRange(from = 0, to = 128) int power) {
         this.itemMeta.setPower(power);
         return this;
     }

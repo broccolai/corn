@@ -7,6 +7,7 @@ import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.common.value.qual.IntRange;
 
 import java.util.List;
 
@@ -66,10 +67,10 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
     /**
      * Gets a pattern.
      *
-     * @param index the index
+     * @param index the index (0-indexed)
      * @return the pattern
      */
-    public @NonNull Pattern getPattern(final int index) {
+    public @NonNull Pattern getPattern(final @IntRange(from = 0) int index) {
         return this.itemMeta.getPattern(index);
     }
 
@@ -77,10 +78,10 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * Sets a pattern.
      *
      * @param index   the index
-     * @param pattern the pattern
+     * @param pattern the pattern (0-indexed)
      * @return the builder
      */
-    public @NonNull BannerBuilder setPattern(final int index, final @NonNull Pattern pattern) {
+    public @NonNull BannerBuilder setPattern(final @IntRange(from = 0) int index, final @NonNull Pattern pattern) {
         this.itemMeta.setPattern(index, pattern);
         return this;
     }
