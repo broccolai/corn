@@ -6,6 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BundleMeta}.
@@ -49,6 +52,39 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      */
     public static @NonNull BundleBuilder ofBundle() throws IllegalArgumentException {
         return ofType(Material.BUNDLE);
+    }
+
+    /**
+     * Gets the items.
+     *
+     * @return the items
+     */
+    public @NonNull List<@NonNull ItemStack> items() {
+        return this.itemMeta.getItems();
+    }
+
+    /**
+     * Sets the items. Pass {@code null} to reset.
+     *
+     * @param items the items
+     * @return the builder
+     */
+    public @NonNull BundleBuilder items(final @Nullable List<@NonNull ItemStack> items) {
+        this.itemMeta.setItems(items);
+        return this;
+    }
+
+    /**
+     * Adds a item.
+     *
+     * @param item the item to add
+     * @return the builder
+     */
+    public @NonNull BundleBuilder addItem(final @NonNull ItemStack... item) {
+        for (final ItemStack i : item) {
+            this.itemMeta.addItem(i);
+        }
+        return this;
     }
 
 }

@@ -6,6 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CrossbowMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+
+import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link CrossbowMeta}.
@@ -49,6 +52,39 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      */
     public static @NonNull CrossbowBuilder ofCrossbow() throws IllegalArgumentException {
         return ofType(Material.CROSSBOW);
+    }
+
+    /**
+     * Gets the charged projectiles.
+     *
+     * @return the charged projectiles
+     */
+    public @NonNull List<@NonNull ItemStack> chargedProjectiles() {
+        return this.itemMeta.getChargedProjectiles();
+    }
+
+    /**
+     * Sets the charged projectiles. Pass {@code null} to reset.
+     *
+     * @param chargedProjectiles the charged projectiles
+     * @return the builder
+     */
+    public @NonNull CrossbowBuilder chargedProjectiles(final @Nullable List<@NonNull ItemStack> chargedProjectiles) {
+        this.itemMeta.setChargedProjectiles(chargedProjectiles);
+        return this;
+    }
+
+    /**
+     * Adds a charged projectile.
+     *
+     * @param chargedProjectile the charged projectile to add
+     * @return the builder
+     */
+    public @NonNull CrossbowBuilder addChargedProjectile(final @NonNull ItemStack... chargedProjectile) {
+        for (final ItemStack item : chargedProjectile) {
+            this.itemMeta.addChargedProjectile(item);
+        }
+        return this;
     }
 
 }

@@ -2,10 +2,12 @@ package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link CompassMeta}.
@@ -49,6 +51,46 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      */
     public static @NonNull CompassBuilder ofCompass() throws IllegalArgumentException {
         return ofType(Material.COMPASS);
+    }
+
+    /**
+     * Gets the {@code Location} of the lodestone that this compass is tracking.
+     *
+     * @return the the lodestone
+     */
+    public @Nullable Location lodestone() {
+        return this.itemMeta.getLodestone();
+    }
+
+    /**
+     * Sets the {@code Location} of the lodestone that this compass is tracking. Pass {@code null} to reset.
+     *
+     * @param lodestone the the lodestone
+     * @return the builder
+     */
+    public @NonNull CompassBuilder lodestone(final @Nullable Location lodestone) {
+        this.itemMeta.setLodestone(lodestone);
+        return this;
+    }
+
+    /**
+     * Gets whether the compass is tracking the lodestone.
+     *
+     * @return whether the compass is tracking the lodestone
+     */
+    public boolean lodestoneTracked() {
+        return this.itemMeta.isLodestoneTracked();
+    }
+
+    /**
+     * Sets whether the compass is tracking the lodestone.
+     *
+     * @param lodestoneTracked whether the compass is tracking the lodestone
+     * @return the builder
+     */
+    public @NonNull CompassBuilder lodestoneTracked(final boolean lodestoneTracked) {
+        this.itemMeta.setLodestoneTracked(lodestoneTracked);
+        return this;
     }
 
 }
