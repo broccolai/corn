@@ -39,7 +39,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
     public static @NonNull ArmorStandBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         return ArmorStandBuilder.of(AridUtil.getItem(material));
     }
-    
+
     /**
      * Creates a {@code ArmorStandBuilder} of type {@link Material#ARMOR_STAND}. A convenience method.
      *
