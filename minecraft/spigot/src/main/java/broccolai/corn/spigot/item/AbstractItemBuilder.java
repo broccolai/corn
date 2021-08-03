@@ -1,7 +1,10 @@
 package broccolai.corn.spigot.item;
 
+import com.google.common.collect.Multimap;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -253,6 +256,69 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public @NonNull B localizedName(final @Nullable String localizedName) {
         this.itemMeta.setLocalizedName(localizedName);
+        return (B) this;
+    }
+
+    /**
+     * Gets the {@code AttributeModifier}s.
+     *
+     * @return the {@code AttributeModifier}s
+     */
+    public @Nullable Multimap<Attribute, AttributeModifier> attributeModifiers() {
+        return this.itemMeta.getAttributeModifiers();
+    }
+
+    /**
+     * Sets the {@code AttributeModifier}s.
+     *
+     * @param attributeModifiers the {@code AttributeModifier}s
+     * @return the builder
+     */
+    public @NonNull B attributeModifiers(final @Nullable Multimap<Attribute, AttributeModifier> attributeModifiers) {
+        this.itemMeta.setAttributeModifiers(attributeModifiers);
+        return (B) this;
+    }
+
+    /**
+     * Adds an {@code AttributeModifier}.
+     *
+     * @param attribute the attribute to modify
+     * @param attributeModifier the {@code AttributeModifier} to add
+     * @return the builder
+     */
+    public @NonNull B addAttributeModifier(
+            final @NonNull Attribute attribute,
+            final @NonNull AttributeModifier attributeModifier
+    ) {
+        this.itemMeta.addAttributeModifier(attribute, attributeModifier);
+        return (B) this;
+    }
+
+    /**
+     * Removes an {@code AttributeModifier}.
+     *
+     * @param attribute the attribute to modify
+     * @param attributeModifier the {@code AttributeModifier} to remove
+     * @return the builder
+     */
+    public @NonNull B removeAttributeModifier(
+            final @NonNull Attribute attribute,
+            final @NonNull AttributeModifier attributeModifier
+    ) {
+        this.itemMeta.removeAttributeModifier(attribute, attributeModifier);
+        return (B) this;
+    }
+
+    /**
+     * Removes all {@code AttributeModifier}s for the given {@code attribute}.
+     *
+     * @param attribute the {@code Attribute}
+     * @return the builder
+     */
+    public @NonNull B removeAttributeModifier(final @NonNull Attribute... attribute) {
+        for (final @NonNull Attribute item : attribute) {
+            this.itemMeta.removeAttributeModifier(item);
+        }
         return (B) this;
     }
 
