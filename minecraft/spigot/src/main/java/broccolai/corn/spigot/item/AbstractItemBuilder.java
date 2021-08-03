@@ -200,9 +200,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets whether the {@code ItemStack} should be unbreakable.
+     * Sets whether the {@code ItemStack} is unbreakable.
      *
-     * @param unbreakable whether the {@code ItemStack} should be unbreakable
+     * @param unbreakable whether the {@code ItemStack} is unbreakable
      * @return the builder
      */
     public @NonNull B unbreakable(final boolean unbreakable) {

@@ -113,9 +113,9 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Sets whether the map should scale.
+     * Sets whether the map is scaling.
      *
-     * @param scaling whether the map should scale
+     * @param scaling whether the map is scaling
      * @return the builder
      */
     public @NonNull MapBuilder scaling(final boolean scaling) {
