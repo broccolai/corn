@@ -57,6 +57,27 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
     }
 
     /**
+     * Sets the custom effects. Pass {@code null} to reset.
+     *
+     * @param customEffects custom effects
+     * @return the builder
+     */
+    public @NonNull PotionBuilder customEffects(final @Nullable List<@NonNull PotionEffect> customEffects) {
+        // No set function? Huh, Bukkit? You wanna be like that? Fine. We're making our *own* set function.
+        // Clear all previous custom effects.
+        // We do this regardless of the argument being null
+        // so that people can use customEffects(null) to clear the effects.
+        this.itemMeta.clearCustomEffects();
+        // Loop over the method argument and add the effects.
+        if (customEffects != null) {
+            for (final @NonNull PotionEffect item : customEffects) {
+                this.itemMeta.addCustomEffect(item, true);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Adds a custom effect.
      *
      * @param customEffect the custom effect to add
@@ -64,7 +85,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @return the builder
      */
     public @NonNull PotionBuilder addCustomEffect(final @NonNull PotionEffect customEffect, final boolean overwrite) {
-        this.itemMeta.addCustomEffect(customEffect, true);
+        this.itemMeta.addCustomEffect(customEffect, overwrite);
         return this;
     }
 
@@ -92,16 +113,6 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
     }
 
     /**
-     * Clears all custom effects.
-     *
-     * @return the builder
-     */
-    public @NonNull PotionBuilder clearCustomEffects() {
-        this.itemMeta.clearCustomEffects();
-        return this;
-    }
-
-    /**
      * Gets the {@code Color}.
      *
      * @return the {@code Color}
@@ -111,7 +122,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
     }
 
     /**
-     * Sets the {@code Color}.
+     * Sets the {@code Color}. Pass {@code null} to reset.
      *
      * @param color the {@code Color}
      * @return the builder

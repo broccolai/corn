@@ -8,6 +8,7 @@ import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.checkerframework.checker.nullness.qual.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.List;
 
@@ -65,6 +66,27 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
     }
 
     /**
+     * Sets the custom effects. Pass {@code null} to reset.
+     *
+     * @param customEffects custom effects
+     * @return the builder
+     */
+    public @NonNull SuspiciousStewBuilder customEffects(final @Nullable List<@NonNull PotionEffect> customEffects) {
+        // No set function? Huh, Bukkit? You wanna be like that? Fine. We're making our *own* set function.
+        // Clear all previous custom effects.
+        // We do this regardless of the argument being null
+        // so that people can use customEffects(null) to clear the effects.
+        this.itemMeta.clearCustomEffects();
+        // Loop over the method argument and add the effects.
+        if (customEffects != null) {
+            for (final @NonNull PotionEffect item : customEffects) {
+                this.itemMeta.addCustomEffect(item, true);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Adds a custom effect.
      *
      * @param customEffect the custom effect to add
@@ -97,16 +119,6 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      */
     public boolean hasCustomEffect(final @NonNull PotionEffectType customEffectType) {
         return this.itemMeta.hasCustomEffect(customEffectType);
-    }
-
-    /**
-     * Clears all custom effects.
-     *
-     * @return the builder
-     */
-    public @NonNull SuspiciousStewBuilder clearCustomEffects() {
-        this.itemMeta.clearCustomEffects();
-        return this;
     }
 
 }
