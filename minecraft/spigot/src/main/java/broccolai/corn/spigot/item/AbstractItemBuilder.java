@@ -249,7 +249,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets the localized name.
+     * Sets the localized name. Pass {@code null} to reset.
      *
      * @param localizedName the localized name
      * @return the builder
@@ -269,7 +269,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets the {@code AttributeModifier}s.
+     * Sets the {@code AttributeModifier}s. Pass {@code null} to reset.
      *
      * @param attributeModifiers the {@code AttributeModifier}s
      * @return the builder

@@ -37,7 +37,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
-     * Sets the display name.
+     * Sets the display name. Pass {@code null} to reset.
      *
      * @param name the display name
      * @return the builder
@@ -68,7 +68,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
-     * Sets the lore.
+     * Sets the lore. Pass {@code List.of()} to reset.
      *
      * @param lines the lines of the lore
      * @return the builder

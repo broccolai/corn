@@ -51,7 +51,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
     }
 
     /**
-     * Sets the title.
+     * Sets the title. Pass {@code null} to reset.
      *
      * @param title the title
      * @return the builder
@@ -91,7 +91,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
     }
 
     /**
-     * Sets the author.
+     * Sets the author. Pass {@code null} to reset.
      *
      * @param author the author
      * @return the builder

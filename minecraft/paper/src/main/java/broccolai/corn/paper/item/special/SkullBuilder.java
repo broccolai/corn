@@ -109,7 +109,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
     }
 
     /**
-     * Sets the {@code PlayerProfile}.
+     * Sets the {@code PlayerProfile}. Pass {@code null} to reset.
      *
      * @param playerProfile the {@code PlayerProfile}
      * @return the builder
@@ -129,7 +129,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
     }
 
     /**
-     * Sets the owning player.
+     * Sets the owning player. Pass {@code null} to reset.
      *
      * @param owningPlayer the owning player
      * @return the builder

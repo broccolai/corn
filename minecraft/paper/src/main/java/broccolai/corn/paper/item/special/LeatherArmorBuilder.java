@@ -52,7 +52,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
     }
 
     /**
-     * Sets the color.
+     * Sets the color. Pass {@code null} to reset.
      *
      * @param color the color
      * @return the builder

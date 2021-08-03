@@ -52,7 +52,7 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
     }
 
     /**
-     * Sets the {@code FireworkEffect}.
+     * Sets the {@code FireworkEffect}. Pass {@code null} to reset.
      *
      * @param fireworkEffect the {@code FireworkEffect}
      * @return the builder

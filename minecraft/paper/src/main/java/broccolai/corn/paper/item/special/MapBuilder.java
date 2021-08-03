@@ -44,7 +44,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Gets the {@code Color}.
+     * Gets the {@code Color}. Pass {@code null} to clear.
      *
      * @return the {@code Color}
      */
@@ -53,7 +53,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Sets the {@code Color}.
+     * Sets the {@code Color}. Pass {@code null} to reset.
      *
      * @param color the {@code Color}
      * @return the builder
@@ -73,7 +73,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Sets the location name.
+     * Sets the location name. Pass {@code null} to reset.
      *
      * @param locationName the location name
      * @return the builder
@@ -93,7 +93,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Sets the {@code MapView}.
+     * Sets the {@code MapView}. Pass {@code null} to reset.
      *
      * @param mapView the {@code MapView}
      * @return the builder
