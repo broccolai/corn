@@ -224,17 +224,24 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the custom model data
      */
-    public int customModelData() {
+    public @Nullable Integer customModelData() {
+        // the reason for the return value being the wrapper
+        // and the code below is to make it consistent
+        // with the setter, which uses null
+        // as an "absent" value
+        if (!this.itemMeta.hasCustomModelData()) {
+            return null;
+        }
         return this.itemMeta.getCustomModelData();
     }
 
     /**
-     * Sets the custom model data.
+     * Sets the custom model data. Pass {@code null} to clear.
      *
      * @param customModelData the custom model data
      * @return the builder
      */
-    public @NonNull B customModelData(final int customModelData) {
+    public @NonNull B customModelData(final @Nullable Integer customModelData) {
         this.itemMeta.setCustomModelData(customModelData);
         return (B) this;
     }
@@ -282,7 +289,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     /**
      * Adds an {@code AttributeModifier}.
      *
-     * @param attribute the attribute to modify
+     * @param attribute         the attribute to modify
      * @param attributeModifier the {@code AttributeModifier} to add
      * @return the builder
      */
@@ -297,7 +304,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     /**
      * Removes an {@code AttributeModifier}.
      *
-     * @param attribute the attribute to modify
+     * @param attribute         the attribute to modify
      * @param attributeModifier the {@code AttributeModifier} to remove
      * @return the builder
      */
