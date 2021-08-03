@@ -2,11 +2,16 @@ package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
+import org.checkerframework.common.value.qual.IntRange;
+
+import java.util.List;
+
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BookMeta}.
@@ -46,8 +51,8 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      *
      * @return the title
      */
-    public @Nullable String title() {
-        return this.itemMeta.getTitle();
+    public @Nullable Component title() {
+        return this.itemMeta.title();
     }
 
     /**
@@ -56,8 +61,30 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param title the title
      * @return the builder
      */
-    public @NonNull BookBuilder title(final @Nullable String title) {
-        this.itemMeta.setTitle(title);
+    @SuppressWarnings({"ResultOfMethodCallIgnored"})
+    public @NonNull BookBuilder title(final @Nullable Component title) {
+        this.itemMeta.title(null);
+        return this;
+    }
+
+    /**
+     * Gets the author.
+     *
+     * @return the author
+     */
+    public @Nullable Component author() {
+        return this.itemMeta.author();
+    }
+
+    /**
+     * Sets the author. Pass {@code null} to reset.
+     *
+     * @param author the author
+     * @return the builder
+     */
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public @NonNull BookBuilder author(final @Nullable Component author) {
+        this.itemMeta.author(author);
         return this;
     }
 
@@ -71,7 +98,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
     }
 
     /**
-     * Sets the {@code Generation}.
+     * Sets the {@code Generation}. Pass {@code null} to reset.
      *
      * @param generation the generation
      * @return the builder
@@ -82,22 +109,75 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
     }
 
     /**
-     * Gets the author.
+     * Gets the pages.
      *
-     * @return the author
+     * @return the pages
      */
-    public @Nullable String author() {
-        return this.itemMeta.getAuthor();
+    public @NonNull List<@NonNull Component> pages() {
+        return this.itemMeta.pages();
     }
 
     /**
-     * Sets the author. Pass {@code null} to reset.
+     * Sets the pages. Pass {@code List.of()} to reset.
      *
-     * @param author the author
+     * @param pages the pages
      * @return the builder
      */
-    public @NonNull BookBuilder author(final @Nullable String author) {
-        this.itemMeta.setAuthor(author);
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    public @NonNull BookBuilder pages(final @NonNull List<@NonNull Component> pages) {
+        // so apparently, depending on the implementation, this'll actually
+        // mutate the internal BookMeta instance.
+        // you can see some discussion I had about this on the papermc discord,
+        // https://canary.discord.com/channels/289587909051416579/555462289851940864/872168673283043328
+        // https://canary.discord.com/channels/289587909051416579/555462289851940864/872172549075783690
+        // i'm probably gonna pr paper to fix this, so you can remove those comments then.
+        this.itemMeta.pages(pages);
+        return this;
+    }
+
+    /**
+     * Gets the page at that index.
+     *
+     * @param index the index (1-indexed)
+     * @return the page
+     */
+    public @NonNull Component getPage(final @IntRange(from = 1) int index) {
+        return this.itemMeta.page(index);
+    }
+
+    /**
+     * Sets the page at that index.
+     *
+     * @param index the index (1-indexed)
+     * @param page  the page
+     * @return the builder
+     */
+    public @NonNull BookBuilder setPage(final @IntRange(from = 1) int index, final @NonNull Component page) {
+        this.itemMeta.page(index, page);
+        return this;
+    }
+
+    /**
+     * Adds a page.
+     *
+     * @param page the page to add
+     * @return the builder
+     */
+    public @NonNull BookBuilder addPage(final @NonNull Component... page) {
+        this.itemMeta.addPages(page);
+        return this;
+    }
+
+    /**
+     * Removes a page.
+     *
+     * @param index the index of the page to remove (1-indexed)
+     * @return the builder
+     */
+    public @NonNull BookBuilder removePage(final @IntRange(from = 1) int... index) {
+        for (final int i : index) {
+            this.itemMeta.page(i, Component.empty());
+        }
         return this;
     }
 

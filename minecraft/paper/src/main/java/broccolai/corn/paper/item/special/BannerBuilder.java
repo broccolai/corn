@@ -102,10 +102,10 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
     /**
      * Removes a pattern.
      *
-     * @param index the index
+     * @param index the index (0-indexed)
      * @return the builder
      */
-    public @NonNull BannerBuilder removePattern(final int... index) {
+    public @NonNull BannerBuilder removePattern(final @IntRange(from = 0) int... index) {
         for (final int item : index) {
             this.itemMeta.removePattern(item);
         }

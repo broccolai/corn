@@ -51,4 +51,104 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
         return ofType(Material.ARMOR_STAND);
     }
 
+    /**
+     * Gets whether the armor stand is invisible.
+     *
+     * @return whether the armor stand is invisible
+     */
+    public boolean invisible() {
+        return this.itemMeta.isInvisible();
+    }
+
+    /**
+     * Sets whether the armor stand is invisible.
+     *
+     * @param invisible whether the armor stand is invisible
+     * @return the builder
+     */
+    public @NonNull ArmorStandBuilder invisible(final boolean invisible) {
+        this.itemMeta.setInvisible(invisible);
+        return this;
+    }
+
+    /**
+     * Gets whether the armor stand is small.
+     *
+     * @return whether the armor stand is small
+     */
+    public boolean small() {
+        return this.itemMeta.isSmall();
+    }
+
+    /**
+     * Sets whether the armor stand is small.
+     *
+     * @param small whether the armor stand is small
+     * @return the builder
+     */
+    public @NonNull ArmorStandBuilder small(final boolean small) {
+        this.itemMeta.setSmall(small);
+        return this;
+    }
+
+    /**
+     * Gets whether the armor stand shows its arms.
+     *
+     * @return whether the armor stand shows arms
+     */
+    public boolean showArms() {
+        return this.itemMeta.shouldShowArms();
+    }
+
+    /**
+     * Sets whether the armor stand shows its arms.
+     *
+     * @param showArms whether the armor stand shows arms
+     * @return the builder
+     */
+    public @NonNull ArmorStandBuilder showArms(final boolean showArms) {
+        this.itemMeta.setShowArms(showArms);
+        return this;
+    }
+
+    /**
+     * Gets whether the armor stand has no base plate.
+     *
+     * @return whether the armor stand has no base plate
+     */
+    public boolean noBasePlate() {
+        return this.itemMeta.hasNoBasePlate();
+    }
+
+    /**
+     * Sets whether the armor stand has no base plate.
+     *
+     * @param noBasePlate whether the armor stand has no base plate
+     * @return the builder
+     */
+    public @NonNull ArmorStandBuilder noBasePlate(final boolean noBasePlate) {
+        this.itemMeta.setNoBasePlate(noBasePlate);
+        return this;
+    }
+
+    /**
+     * Gets whether the armor stand is a marker.
+     *
+     * @return whether the armor stand is a marker
+     */
+    public boolean marker() {
+        return this.itemMeta.isMarker();
+    }
+
+    /**
+     * Sets whether the armor stand is a marker.
+     *
+     * @param marker whether the armor stand is a marker
+     * @return the builder
+     */
+    public @NonNull ArmorStandBuilder marker(final boolean marker) {
+        this.itemMeta.setMarker(marker);
+        return this;
+    }
+
 }

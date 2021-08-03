@@ -3,6 +3,7 @@ package broccolai.corn.paper.item.special;
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
+import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -38,6 +39,35 @@ public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockState
      */
     public static @NonNull BlockStateBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
         return BlockStateBuilder.of(AridUtil.getItem(material));
+    }
+
+    /**
+     * Gets a copy of {@code BlockState}. Creates a new one if it doesn't currently exist.
+     *
+     * @return the {@code BlockState}
+     */
+    public @NonNull BlockState blockState() {
+        return this.itemMeta.getBlockState();
+    }
+
+    /**
+     * Sets the {@code BlockState}.
+     *
+     * @param blockState the {@code BlockState}
+     * @return the builder
+     */
+    public @NonNull BlockStateBuilder blockState(final @NonNull BlockState blockState) {
+        this.itemMeta.setBlockState(blockState);
+        return this;
+    }
+
+    /**
+     * Gets whether a {@code BlockState} is currently attached.
+     *
+     * @return whether a {@code BlockState} is currently attached
+     */
+    public boolean hasBlockState() {
+        return this.itemMeta.hasBlockState();
     }
 
 }

@@ -3,6 +3,7 @@ package broccolai.corn.paper.item.special;
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import broccolai.corn.spigot.item.AridUtil;
 import org.bukkit.Material;
+import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.AxolotlBucketMeta;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -49,6 +50,36 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      */
     public static @NonNull AxolotlBucketBuilder ofAxolotlBucket() throws IllegalArgumentException {
         return ofType(Material.AXOLOTL_BUCKET);
+    }
+
+    /**
+     * Gets the variant.
+     *
+     * @return the variant
+     */
+    public Axolotl.@NonNull Variant variant() {
+        return this.itemMeta.getVariant();
+    }
+
+    /**
+     * Sets the variant.
+     *
+     * @param variant the variant
+     * @return the builder
+     */
+    public @NonNull AxolotlBucketBuilder variant(final Axolotl.@NonNull Variant variant) {
+        this.itemMeta.setVariant(variant);
+        return this;
+    }
+
+    /**
+     * Gets whether a variant tag exists.
+     * If true, a specific axolotl will be spawned.
+     *
+     * @return whether a variant tag exists
+     */
+    public boolean hasVariant() {
+        return this.itemMeta.hasVariant();
     }
 
 }
