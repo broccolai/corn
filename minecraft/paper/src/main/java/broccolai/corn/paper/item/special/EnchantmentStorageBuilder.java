@@ -62,7 +62,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
         // Bukkit's wonderful API back at it again without a direct set function.
         // Iterate over the already stored enchantments and remove them.
         for (final @NonNull Enchantment item : this.itemMeta.getStoredEnchants().keySet()) {
-            this.itemMeta.removeEnchant(item);
+            this.itemMeta.removeStoredEnchant(item);
         }
         // Loop over the storedEnchants argument and add them.
         for (final Map.@NonNull Entry<@NonNull Enchantment, @NonNull Integer> entry : storedEnchants.entrySet()) {
