@@ -23,6 +23,8 @@ import java.util.function.Consumer;
 public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilder<B, M>, M extends ItemMeta>
         extends AbstractItemBuilder<B, M> {
 
+    private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
+
     protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
         super(itemStack, itemMeta);
     }
@@ -54,11 +56,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
         }
 
         // sidestep default formatting by creating a dummy component and appending the component to that
-        this.itemMeta.displayName(
-                Component.empty()
-                        .decoration(TextDecoration.ITALIC, false)
-                        .append(name)
-        );
+        this.itemMeta.displayName(DISABLE_ITALICS.append(name));
 
         return (B) this;
     }
@@ -91,9 +89,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
 
         // sidestep default formatting by creating a dummy component and appending the component to that
         final @NonNull List<Component> toAdd = new ArrayList<>(lines);
-        toAdd.replaceAll(line -> Component.empty()
-                .decoration(TextDecoration.ITALIC, false)
-                .append(line));
+        toAdd.replaceAll(DISABLE_ITALICS::append);
 
         this.itemMeta.lore(toAdd);
         return (B) this;
