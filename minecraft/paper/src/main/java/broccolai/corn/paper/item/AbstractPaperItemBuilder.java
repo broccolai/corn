@@ -43,18 +43,18 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @return the builder
      */
     public @NonNull B name(final @Nullable Component name) {
-        // If the value is null, pass that right through to the underlying displayName method.
         if (name == null) {
             this.itemMeta.displayName(null);
             return (B) this;
         }
-        // Bukkit likes italicizing everything for no good reason, so to alleviate this we have to
-        // first create a dummy component, set italics for that to false, and then append the name.
+
+        // sidestep default formatting by creating a dummy component and appending the component to that
         this.itemMeta.displayName(
                 Component.empty()
                         .decoration(TextDecoration.ITALIC, false)
                         .append(name)
         );
+
         return (B) this;
     }
 
@@ -74,13 +74,12 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @return the builder
      */
     public @NonNull B lore(final @Nullable List<Component> lines) {
-        // If the value is null, pass that right through to the underlying lore method.
         if (lines == null) {
             this.itemMeta.lore(null);
             return (B) this;
         }
-        // Bukkit likes italicizing everything for no good reason, so to alleviate this we have to
-        // first create a dummy component, set italics for that to false, and then append the name.
+
+        // sidestep default formatting by creating a dummy component and appending the component to that
         final @NonNull List<Component> toAdd = new ArrayList<>(lines);
         toAdd.replaceAll(line -> Component.empty()
                 .decoration(TextDecoration.ITALIC, false)

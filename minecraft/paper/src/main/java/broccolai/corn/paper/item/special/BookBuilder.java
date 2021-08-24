@@ -125,12 +125,11 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public @NonNull BookBuilder pages(final @NonNull List<@NonNull Component> pages) {
-        // so apparently, depending on the implementation, this'll actually
-        // mutate the internal BookMeta instance.
-        // you can see some discussion I had about this on the papermc discord,
+        // in Paper's implementation, this will actually mutate the internal BookMeta instance
+        // you can see the discussion I had about this on the Paper discord
         // https://canary.discord.com/channels/289587909051416579/555462289851940864/872168673283043328
         // https://canary.discord.com/channels/289587909051416579/555462289851940864/872172549075783690
-        // i'm probably gonna pr paper to fix this, so you can remove those comments then.
+        // once the Javadocs are fixed on Paper's end, these comments may be removed
         this.itemMeta.pages(pages);
         return this;
     }

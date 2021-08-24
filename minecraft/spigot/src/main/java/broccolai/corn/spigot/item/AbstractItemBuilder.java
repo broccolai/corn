@@ -225,10 +225,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the custom model data
      */
     public @Nullable Integer customModelData() {
-        // the reason for the return value being the wrapper
-        // and the code below is to make it consistent
-        // with the setter, which uses null
-        // as an "absent" value
+        // we use the wrapper with null signifying absent for api consistency
         if (!this.itemMeta.hasCustomModelData()) {
             return null;
         }

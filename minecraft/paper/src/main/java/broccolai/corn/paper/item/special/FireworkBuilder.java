@@ -91,9 +91,6 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      * @return the builder
      */
     public @NonNull FireworkBuilder fireworkEffects(final @NonNull List<@NonNull FireworkEffect> fireworkEffects) {
-        // Although we all know Bukkit has an *amazingly* consistent API, for whatever reason,
-        // it doesn't have a method to set the effects of a firework meta. To work around this and
-        // provide a consistent API, we clear the current effects and add the new ones.
         this.itemMeta.clearEffects();
         this.itemMeta.addEffects(fireworkEffects);
         return this;
