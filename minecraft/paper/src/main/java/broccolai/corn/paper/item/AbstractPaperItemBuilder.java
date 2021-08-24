@@ -38,6 +38,11 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
 
     /**
      * Sets the display name. Pass {@code null} to reset.
+     * <p>
+     * The component passed in is appended to an empty component decorated with
+     * italicization set to false. This effectively bypasses the default,
+     * italicized text formatting, resulting in the text being only the component
+     * that is passed in.
      *
      * @param name the display name
      * @return the builder
@@ -69,6 +74,11 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
 
     /**
      * Sets the lore. Pass {@code List.of()} to reset.
+     * <p>
+     * Each component passed in is appended to an empty component decorated with
+     * italicization set to false. This effectively bypasses the default,
+     * italicized text formatting, resulting in the text being only the component
+     * that is passed in.
      *
      * @param lines the lines of the lore
      * @return the builder
