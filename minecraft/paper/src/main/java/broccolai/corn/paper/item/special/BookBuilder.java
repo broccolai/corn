@@ -63,7 +63,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      */
     @SuppressWarnings({"ResultOfMethodCallIgnored"})
     public @NonNull BookBuilder title(final @Nullable Component title) {
-        this.itemMeta.title(null);
+        this.itemMeta.title(title);
         return this;
     }
 
