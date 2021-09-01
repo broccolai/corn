@@ -1,4 +1,4 @@
 /**
- * Spigot specific utilities
+ * Spigot-specific utilities
  */
 package broccolai.corn.spigot;

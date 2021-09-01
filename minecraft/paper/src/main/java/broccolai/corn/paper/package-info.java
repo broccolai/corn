@@ -1,4 +1,4 @@
 /**
- * Paper specific utilities
+ * Paper-specific utilities
  */
 package broccolai.corn.paper;
