@@ -4,7 +4,6 @@ repositories {
 
 dependencies {
     compileOnly(libs.spigot.api) {
-        exclude(module = "guava")
         exclude(module = "gson")
         exclude(module = "bungeecord-chat")
         exclude(module = "snakeyaml")
