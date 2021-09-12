@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -28,7 +28,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull EnchantmentStorageBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new EnchantmentStorageBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), EnchantmentStorageMeta.class));
+        return new EnchantmentStorageBuilder(itemStack, castMeta(itemStack.getItemMeta(), EnchantmentStorageMeta.class));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull EnchantmentStorageBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return EnchantmentStorageBuilder.of(AridUtil.getItem(material));
+        return EnchantmentStorageBuilder.of(getItem(material));
     }
 
     /**

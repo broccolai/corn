@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
 import org.bukkit.Bukkit;
@@ -35,7 +35,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull SkullBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new SkullBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), SkullMeta.class));
+        return new SkullBuilder(itemStack, castMeta(itemStack.getItemMeta(), SkullMeta.class));
     }
 
     /**
@@ -47,7 +47,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull SkullBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return SkullBuilder.of(AridUtil.getItem(material));
+        return SkullBuilder.of(getItem(material));
     }
 
     /**

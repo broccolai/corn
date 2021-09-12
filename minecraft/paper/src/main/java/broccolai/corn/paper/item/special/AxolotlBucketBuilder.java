@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;
@@ -26,7 +26,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull AxolotlBucketBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new AxolotlBucketBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), AxolotlBucketMeta.class));
+        return new AxolotlBucketBuilder(itemStack, castMeta(itemStack.getItemMeta(), AxolotlBucketMeta.class));
     }
 
     /**
@@ -38,7 +38,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull AxolotlBucketBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return AxolotlBucketBuilder.of(AridUtil.getItem(material));
+        return AxolotlBucketBuilder.of(getItem(material));
     }
 
     /**

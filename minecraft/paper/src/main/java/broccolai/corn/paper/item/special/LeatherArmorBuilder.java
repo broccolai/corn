@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +27,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull LeatherArmorBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new LeatherArmorBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), LeatherArmorMeta.class));
+        return new LeatherArmorBuilder(itemStack, castMeta(itemStack.getItemMeta(), LeatherArmorMeta.class));
     }
 
     /**
@@ -39,7 +39,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull LeatherArmorBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return LeatherArmorBuilder.of(AridUtil.getItem(material));
+        return LeatherArmorBuilder.of(getItem(material));
     }
 
     /**

@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -28,7 +28,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BundleBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new BundleBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), BundleMeta.class));
+        return new BundleBuilder(itemStack, castMeta(itemStack.getItemMeta(), BundleMeta.class));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BundleBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return BundleBuilder.of(AridUtil.getItem(material));
+        return BundleBuilder.of(getItem(material));
     }
 
     /**

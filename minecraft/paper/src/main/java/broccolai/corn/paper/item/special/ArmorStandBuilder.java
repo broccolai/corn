@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -25,7 +25,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull ArmorStandBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new ArmorStandBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), ArmorStandMeta.class));
+        return new ArmorStandBuilder(itemStack, castMeta(itemStack.getItemMeta(), ArmorStandMeta.class));
     }
 
     /**
@@ -37,7 +37,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull ArmorStandBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return ArmorStandBuilder.of(AridUtil.getItem(material));
+        return ArmorStandBuilder.of(getItem(material));
     }
 
     /**

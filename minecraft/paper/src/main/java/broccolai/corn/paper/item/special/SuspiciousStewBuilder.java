@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
@@ -30,7 +30,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull SuspiciousStewBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new SuspiciousStewBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), SuspiciousStewMeta.class));
+        return new SuspiciousStewBuilder(itemStack, castMeta(itemStack.getItemMeta(), SuspiciousStewMeta.class));
     }
 
     /**
@@ -42,7 +42,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull SuspiciousStewBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return SuspiciousStewBuilder.of(AridUtil.getItem(material));
+        return SuspiciousStewBuilder.of(getItem(material));
     }
 
     /**

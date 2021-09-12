@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -28,7 +28,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull MapBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new MapBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), MapMeta.class));
+        return new MapBuilder(itemStack, castMeta(itemStack.getItemMeta(), MapMeta.class));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull MapBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return MapBuilder.of(AridUtil.getItem(material));
+        return MapBuilder.of(getItem(material));
     }
 
     /**
