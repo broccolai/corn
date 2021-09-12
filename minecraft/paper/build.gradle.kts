@@ -5,9 +5,6 @@ repositories {
 dependencies {
     api(projects.cornMinecraftSpigot)
 
-    compileOnlyApi(libs.paper.api) {
-        exclude(module = "gson")
-        exclude(module = "snakeyaml")
-        exclude(module = "commons-lang")
-    }
+    compileOnlyApi(libs.paper.api)
+    compileOnly("com.google.guava", "guava", "30.1.1-jre")
 }

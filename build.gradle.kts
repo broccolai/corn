@@ -35,6 +35,8 @@ subprojects {
     indra {
         mitLicense()
 
+        checkstyle("9.0")
+
         javaVersions {
             target(16)
             testWith(16)
