@@ -30,9 +30,9 @@ public interface ContextKey<@NonNull T> {
      * Create a ContextKey through TypeToken
      *
      * @param namespace Namespace of key
-     * @param name Name of key
-     * @param token TypeToken of the keys expected value
-     * @param <T> Type associated with the key
+     * @param name      Name of key
+     * @param token     TypeToken of the keys expected value
+     * @param <T>       Type associated with the key
      * @return Built ContextKey with T generic
      */
     static <T> ContextKey<T> of(final @NonNull String namespace, final @NonNull String name, final @NonNull TypeToken<T> token) {
@@ -43,9 +43,9 @@ public interface ContextKey<@NonNull T> {
      * Create a ContextKey through Class
      *
      * @param namespace Namespace of key
-     * @param name Name of key
-     * @param clazz Clazz of the keys expected value
-     * @param <T> Type associated with the key
+     * @param name      Name of key
+     * @param clazz     Clazz of the keys expected value
+     * @param <T>       Type associated with the key
      * @return Built ContextKey with T generic
      */
     static <T> ContextKey<T> of(final @NonNull String namespace, final @NonNull String name, final @NonNull Class<T> clazz) {

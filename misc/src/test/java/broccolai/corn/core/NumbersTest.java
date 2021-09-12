@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 class NumbersTest {
+
     @Test
     void testValueOrNullWithNumericalString() {
         Long longValue = Numbers.valueOrNull("5", Long::valueOf);
@@ -18,4 +19,5 @@ class NumbersTest {
         Integer intValue = Numbers.valueOrNull("something", Integer::valueOf);
         assertNull(intValue);
     }
+
 }

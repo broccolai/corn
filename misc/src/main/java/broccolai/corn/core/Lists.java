@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class Lists {
+
     private Lists() {
     }
 
@@ -61,4 +63,5 @@ public final class Lists {
 
         return output;
     }
+
 }

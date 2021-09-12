@@ -1,10 +1,12 @@
 package broccolai.corn.core;
 
 import java.util.function.Function;
+
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 public final class Numbers {
+
     private Numbers() {
     }
 
@@ -30,4 +32,5 @@ public final class Numbers {
             return null;
         }
     }
+
 }
