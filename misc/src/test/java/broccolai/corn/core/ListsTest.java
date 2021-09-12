@@ -12,6 +12,7 @@ final class ListsTest {
 
     @Test
     void testGroup() {
+
         class Pair<K, V> {
 
             private final K key;
@@ -50,4 +51,5 @@ final class ListsTest {
 
         assertThat(parsed).containsExactly(1, 5, 22, 41);
     }
+
 }

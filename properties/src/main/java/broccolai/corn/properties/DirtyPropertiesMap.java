@@ -12,8 +12,8 @@ public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, 
      * Create a DirtyPropertiesMap from an existing Map instance
      *
      * @param base Map instance to generate with
-     * @param <K> the type of keys maintained by this map
-     * @param <V> the type of mapped values
+     * @param <K>  the type of keys maintained by this map
+     * @param <V>  the type of mapped values
      * @return Map created with base
      */
     static <K, V extends PropertyHolder> DirtyPropertiesMap<K, V> from(final @NonNull Map<K, V> base) {

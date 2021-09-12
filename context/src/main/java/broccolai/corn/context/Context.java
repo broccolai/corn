@@ -19,9 +19,9 @@ public interface Context {
     /**
      * Store a value into the context, defined by a key.
      *
-     * @param key Context key to assign with
+     * @param key   Context key to assign with
      * @param value Value to store against the key
-     * @param <T> Type associated with the key and value
+     * @param <T>   Type associated with the key and value
      */
     <T> void put(@NonNull ContextKey<T> key, @NonNull T value);
 

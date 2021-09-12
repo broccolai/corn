@@ -7,7 +7,7 @@ public interface SafeProperty extends Property {
     /**
      * Construct a Property with an Object as it's value
      *
-     * @param name Name of the property
+     * @param name   Name of the property
      * @param object Value of the property
      * @return Constructed Property
      */
