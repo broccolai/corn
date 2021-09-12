@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +27,7 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull FireworkEffectBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new FireworkEffectBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), FireworkEffectMeta.class));
+        return new FireworkEffectBuilder(itemStack, castMeta(itemStack.getItemMeta(), FireworkEffectMeta.class));
     }
 
     /**
@@ -39,7 +39,7 @@ public final class FireworkEffectBuilder extends AbstractPaperItemBuilder<Firewo
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull FireworkEffectBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return FireworkEffectBuilder.of(AridUtil.getItem(material));
+        return FireworkEffectBuilder.of(getItem(material));
     }
 
     /**

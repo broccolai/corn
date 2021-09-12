@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -31,7 +31,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BookBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new BookBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), BookMeta.class));
+        return new BookBuilder(itemStack, castMeta(itemStack.getItemMeta(), BookMeta.class));
     }
 
     /**
@@ -43,7 +43,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BookBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return BookBuilder.of(AridUtil.getItem(material));
+        return BookBuilder.of(getItem(material));
     }
 
     /**

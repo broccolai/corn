@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -27,7 +27,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull CompassBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new CompassBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), CompassMeta.class));
+        return new CompassBuilder(itemStack, castMeta(itemStack.getItemMeta(), CompassMeta.class));
     }
 
     /**
@@ -39,7 +39,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull CompassBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return CompassBuilder.of(AridUtil.getItem(material));
+        return CompassBuilder.of(getItem(material));
     }
 
     /**

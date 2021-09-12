@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
@@ -26,7 +26,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BlockDataBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new BlockDataBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), BlockDataMeta.class));
+        return new BlockDataBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockDataMeta.class));
     }
 
     /**
@@ -38,7 +38,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull BlockDataBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return BlockDataBuilder.of(AridUtil.getItem(material));
+        return BlockDataBuilder.of(getItem(material));
     }
 
     /**

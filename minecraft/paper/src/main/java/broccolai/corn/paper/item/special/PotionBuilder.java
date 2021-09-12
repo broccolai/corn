@@ -1,7 +1,7 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-import broccolai.corn.spigot.item.AridUtil;
+
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -32,7 +32,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull PotionBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
-        return new PotionBuilder(itemStack, AridUtil.castMeta(itemStack.getItemMeta(), PotionMeta.class));
+        return new PotionBuilder(itemStack, castMeta(itemStack.getItemMeta(), PotionMeta.class));
     }
 
     /**
@@ -44,7 +44,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static @NonNull PotionBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
-        return PotionBuilder.of(AridUtil.getItem(material));
+        return PotionBuilder.of(getItem(material));
     }
 
     /**
