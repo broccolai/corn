@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -12,33 +11,12 @@ final class ListsTest {
 
     @Test
     void testGroup() {
+        TestPair p1 = new TestPair(1, 'a');
+        TestPair p2 = new TestPair(3, 'b');
+        TestPair p3 = new TestPair(1, 'c');
 
-        class Pair<K, V> {
-
-            private final K key;
-            private final V value;
-
-            Pair(final K key, final V value) {
-                this.key = key;
-                this.value = value;
-            }
-
-            K getKey() {
-                return key;
-            }
-
-            V getValue() {
-                return value;
-            }
-
-        }
-
-        Pair<Integer, String> p1 = new Pair<>(1, "a");
-        Pair<Integer, String> p2 = new Pair<>(3, "b");
-        Pair<Integer, String> p3 = new Pair<>(1, "c");
-
-        List<Pair<Integer, String>> input = Arrays.asList(p1, p2, p3);
-        Map<Integer, List<Pair<Integer, String>>> output = Lists.group(input, Pair::getKey);
+        List<TestPair> input = Arrays.asList(p1, p2, p3);
+        var output = Lists.group(input, TestPair::key);
 
         assertThat(output.get(1)).containsExactly(p1, p3);
         assertThat(output.get(3)).containsExactly(p2);
@@ -50,6 +28,10 @@ final class ListsTest {
         List<Integer> parsed = Lists.map(unparsed, Integer::parseInt);
 
         assertThat(parsed).containsExactly(1, 5, 22, 41);
+    }
+
+    record TestPair(int key, char value) {
+
     }
 
 }
