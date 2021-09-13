@@ -43,11 +43,10 @@ final class ContextKeyImpl<T> implements ContextKey<T> {
         if (this == other) {
             return true;
         }
-        if (!(other instanceof ContextKey<?>)) {
+        if (!(other instanceof ContextKey<?> that)) {
             return false;
         }
 
-        ContextKey<?> that = (ContextKey<?>) other;
         return Objects.equals(this.namespace(), that.namespace()) && Objects.equals(this.name(), that.name());
     }
 
