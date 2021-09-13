@@ -7,6 +7,7 @@ plugins {
     id("net.kyori.indra")
     id("net.kyori.indra.publishing") apply false
     id("net.kyori.indra.checkstyle") apply false
+    id("com.adarshr.test-logger")
 }
 
 group = "broccolai.corn"
@@ -17,6 +18,7 @@ subprojects {
     apply<IndraPlugin>()
     apply<IndraPublishingPlugin>()
     apply<IndraCheckstylePlugin>()
+    apply<com.adarshr.gradle.testlogger.TestLoggerPlugin>()
 
     repositories {
         mavenCentral()
@@ -60,6 +62,11 @@ subprojects {
                 }
             }
         }
+    }
+
+    testlogger {
+        theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA_PARALLEL
+        showPassed = true
     }
 }
 
