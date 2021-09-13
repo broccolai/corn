@@ -11,7 +11,12 @@ public class DelegatingContextKeyRegistry implements ContextKeyRegistry {
 
     private final Set<ContextKey<?>> keys = new HashSet<>();
 
-    protected final void register(final @NonNull ContextKey<?>... keys) {
+    /**
+     * Register an array of context keys to the registry
+     *
+     * @param keys keys to register
+     */
+    public final void register(final @NonNull ContextKey<?>... keys) {
         Collections.addAll(this.keys, keys);
     }
 
