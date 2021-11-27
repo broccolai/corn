@@ -1,7 +1,6 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -118,13 +117,18 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
     }
 
     /**
-     * Sets the pages. Pass {@code List.of()} to reset.
+     * Sets the pages. Pass {@code null} to reset.
      *
      * @param pages the pages
      * @return the builder
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public @NonNull BookBuilder pages(final @NonNull List<@NonNull Component> pages) {
+    public @NonNull BookBuilder pages(final @Nullable List<@NonNull Component> pages) {
+        if (pages == null) {
+            this.itemMeta.pages(List.of());
+            return this;
+        }
+
         // in Paper's implementation, this will actually mutate the internal BookMeta instance
         // you can see the discussion I had about this on the Paper discord
         // https://canary.discord.com/channels/289587909051416579/555462289851940864/872168673283043328

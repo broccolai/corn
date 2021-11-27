@@ -1,7 +1,6 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -44,7 +43,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
     }
 
     /**
-     * Gets the {@code Color}. Pass {@code null} to clear.
+     * Gets the {@code Color}.
      *
      * @return the {@code Color}
      */
