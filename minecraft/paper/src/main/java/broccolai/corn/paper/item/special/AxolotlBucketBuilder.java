@@ -1,7 +1,6 @@
 package broccolai.corn.paper.item.special;
 
 import broccolai.corn.paper.item.AbstractPaperItemBuilder;
-
 import org.bukkit.Material;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;

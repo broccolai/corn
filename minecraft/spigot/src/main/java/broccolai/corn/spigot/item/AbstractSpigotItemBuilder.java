@@ -54,7 +54,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the lore. Pass {@code List.of()} to reset.
+     * Sets the lore. Pass {@code null} to reset.
      *
      * @param lines the lines of the lore
      * @return the builder

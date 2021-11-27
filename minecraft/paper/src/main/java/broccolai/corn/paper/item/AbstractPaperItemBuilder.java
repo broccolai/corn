@@ -71,7 +71,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
-     * Sets the lore. Pass {@code List.of()} to reset.
+     * Sets the lore. Pass {@code null} to reset.
      * <p>
      * Each component passed in is appended to an empty component decorated with
      * italicization set to false. This effectively bypasses the default,
