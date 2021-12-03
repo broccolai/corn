@@ -212,6 +212,25 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Sets the {@code Enchantment}s. Pass {@code null} to reset.
+     *
+     * @param enchants the {@code Enchantment}s
+     */
+    public @NonNull B enchants(final @Nullable Map<Enchantment, Integer> enchants) {
+        this.clearEnchants();
+        if (enchants != null) {
+            this.itemStack.addEnchantments(enchants);
+        }
+        return (B) this;
+    }
+
+    private void clearEnchants() {
+        for (final Enchantment enchantment : this.itemMeta.getEnchants().keySet()) {
+            this.itemMeta.removeEnchant(enchantment);
+        }
+    }
+
+    /**
      * Adds an {@code Enchantment}.
      *
      * @param enchantment the {@code Enchantment} to add
