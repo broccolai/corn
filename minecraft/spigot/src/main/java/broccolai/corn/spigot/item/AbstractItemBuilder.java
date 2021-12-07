@@ -14,6 +14,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -178,6 +179,24 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public @NonNull Set<ItemFlag> flags() {
         return this.itemMeta.getItemFlags();
+    }
+
+    /**
+     * Sets the {@code ItemFlag}s. Pass {@code null} to reset.
+     *
+     * @param flags the {@code ItemFlag}s
+     * @return the builder
+     */
+    public @NonNull B flags(final @Nullable List<ItemFlag> flags) {
+        this.clearFlags();
+        if (flags != null) {
+            this.itemMeta.addItemFlags(flags.toArray(new ItemFlag[0]));
+        }
+        return (B) this;
+    }
+
+    private void clearFlags() {
+        this.itemMeta.removeItemFlags(this.itemMeta.getItemFlags().toArray(new ItemFlag[0]));
     }
 
     /**
