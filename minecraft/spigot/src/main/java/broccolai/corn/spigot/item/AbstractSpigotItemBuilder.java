@@ -67,17 +67,6 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     /**
      * Sets the lore.
      *
-     * @param lines the lines of the lore
-     * @return the builder
-     */
-    public @NonNull B lore(final @Nullable String... lines) {
-        this.lore(List.of(lines));
-        return (B) this;
-    }
-
-    /**
-     * Sets the lore.
-     *
      * @param consumer the lines of the lore
      * @return the builder
      */
