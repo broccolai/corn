@@ -98,17 +98,6 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     /**
      * Sets the lore.
      *
-     * @param lines the lines of the lore
-     * @return the builder
-     */
-    public @NonNull B lore(final @Nullable Component... lines) {
-        this.lore(List.of(lines));
-        return (B) this;
-    }
-
-    /**
-     * Sets the lore.
-     *
      * @param consumer the lines of the lore
      * @return the builder
      */
