@@ -96,13 +96,15 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
-     * Sets the lore.
+     * Directly modifies the lore with a {@link Consumer}.
+     * If the item has no lore, an empty {@code List} will
+     * be supplied to the {@code Consumer} instead.
      *
-     * @param consumer the lines of the lore
+     * @param consumer the {@code Consumer} to modify the lore with
      * @return the builder
      */
-    public @NonNull B lore(final @NonNull Consumer<List<Component>> consumer) {
-        final @NonNull List<@NonNull Component> lore = Optional
+    public @NonNull B loreModifier(final @NonNull Consumer<@NonNull List<Component>> consumer) {
+        final @NonNull List<Component> lore = Optional
                 .ofNullable(this.itemMeta.lore())
                 .orElse(new ArrayList<>());
 

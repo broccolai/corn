@@ -65,13 +65,15 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
     }
 
     /**
-     * Sets the lore.
+     * Directly modifies the lore with a {@link Consumer}.
+     * If the item has no lore, an empty {@code List} will
+     * be supplied to the {@code Consumer} instead.
      *
-     * @param consumer the lines of the lore
+     * @param consumer the {@code Consumer} to modify the lore with
      * @return the builder
      */
-    public @NonNull B lore(final @NonNull Consumer<List<String>> consumer) {
-        final @NonNull List<@NonNull String> lore = Optional
+    public @NonNull B loreModifier(final @NonNull Consumer<@NonNull List<String>> consumer) {
+        final @NonNull List<String> lore = Optional
                 .ofNullable(this.itemMeta.getLore())
                 .orElse(new ArrayList<>());
 
