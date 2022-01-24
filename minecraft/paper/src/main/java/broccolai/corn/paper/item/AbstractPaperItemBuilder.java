@@ -96,6 +96,18 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
     }
 
     /**
+     * A utility method that converts the provided {@code lines} into a
+     * {@code List} using {@link List#of(Object[])}, and calls
+     * {@link #lore(List)} using the new {@code List} as the argument.
+     *
+     * @param lines the lines of the lore
+     * @return the builder
+     */
+    public @NonNull B loreList(final @NonNull Component... lines) {
+        return this.lore(List.of(lines));
+    }
+
+    /**
      * Directly modifies the lore with a {@link Consumer}.
      * If the item has no lore, an empty {@code List} will
      * be supplied to the {@code Consumer} instead.
