@@ -59,7 +59,7 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      *
      * @return the power
      */
-    public @IntRange(from = 0, to = 128) int power() {
+    public @IntRange(from = 0, to = 127) int power() {
         return this.itemMeta.getPower();
     }
 
@@ -69,7 +69,7 @@ public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuil
      * @param power the power
      * @return the builder
      */
-    public @NonNull FireworkBuilder power(final @IntRange(from = 0, to = 128) int power) {
+    public @NonNull FireworkBuilder power(final @IntRange(from = 0, to = 127) int power) {
         this.itemMeta.setPower(power);
         return this;
     }
