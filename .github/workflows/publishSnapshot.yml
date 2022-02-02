@@ -1,16 +1,22 @@
-name: Publish package to the broccolai repo
+name: Publish snapshot build to repo.broccol.ai
+
 on:
-  release:
-    types: [created]
+  push:
+    branches: [ 'dev/**' ]
+
 jobs:
-  publish:
+  build:
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version : 11
+          distribution: 'adopt'
+          java-version: 17
+          cache: 'gradle'
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Publish package
