@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -62,6 +63,29 @@ public final class Lists {
         }
 
         return output;
+    }
+
+    /**
+     * Find the last element in a List, matching a predicate.
+     *
+     * @param input the list to search
+     * @param predicate the predicate to match against
+     * @param <T> type of list elements
+     * @return the found value
+     */
+    public static <@Nullable T> @NonNull T last(
+            final @NonNull List<T> input,
+            final @NonNull Predicate<T> predicate
+    ) {
+        for (int i = input.size() - 1; i >= 0; i--) {
+            final T value = input.get(i);
+
+            if (predicate.test(value)) {
+                return value;
+            }
+        }
+
+        throw new IllegalArgumentException();
     }
 
 }
