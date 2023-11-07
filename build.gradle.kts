@@ -3,13 +3,13 @@ import com.adarshr.gradle.testlogger.theme.ThemeType
 import net.kyori.indra.IndraPlugin
 import net.kyori.indra.IndraPublishingPlugin
 import net.kyori.indra.IndraCheckstylePlugin
-import net.kyori.indra.repository.sonatypeSnapshots
 
 plugins {
     alias(libs.plugins.indra.base)
     alias(libs.plugins.indra.publishing) apply false
     alias(libs.plugins.indra.checkstyle) apply false
     alias(libs.plugins.test.logger)
+    alias(libs.plugins.versions)
 }
 
 group = "love.broccolai.corn"
@@ -24,7 +24,7 @@ subprojects {
 
     repositories {
         mavenCentral()
-        sonatypeSnapshots()
+        sonatype.ossSnapshots()
     }
 
     dependencies {
