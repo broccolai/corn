@@ -1,13 +1,15 @@
+import com.adarshr.gradle.testlogger.TestLoggerPlugin
+import com.adarshr.gradle.testlogger.theme.ThemeType
 import net.kyori.indra.IndraPlugin
 import net.kyori.indra.IndraPublishingPlugin
 import net.kyori.indra.IndraCheckstylePlugin
 import net.kyori.indra.repository.sonatypeSnapshots
 
 plugins {
-    id("net.kyori.indra")
-    id("net.kyori.indra.publishing") apply false
-    id("net.kyori.indra.checkstyle") apply false
-    id("com.adarshr.test-logger")
+    alias(libs.plugins.indra.base)
+    alias(libs.plugins.indra.publishing) apply false
+    alias(libs.plugins.indra.checkstyle) apply false
+    alias(libs.plugins.test.logger)
 }
 
 group = "love.broccolai.corn"
@@ -18,7 +20,7 @@ subprojects {
     apply<IndraPlugin>()
     apply<IndraPublishingPlugin>()
     apply<IndraCheckstylePlugin>()
-    apply<com.adarshr.gradle.testlogger.TestLoggerPlugin>()
+    apply<TestLoggerPlugin>()
 
     repositories {
         mavenCentral()
@@ -65,7 +67,7 @@ subprojects {
     }
 
     testlogger {
-        theme = com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA_PARALLEL
+        theme = ThemeType.MOCHA_PARALLEL
         showPassed = true
     }
 }
