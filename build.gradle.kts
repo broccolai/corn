@@ -10,7 +10,7 @@ plugins {
     id("com.adarshr.test-logger")
 }
 
-group = "broccolai.corn"
+group = "love.broccolai.corn"
 version = "4.0.0-SNAPSHOT"
 description = "extremely opinionated mostly personal java utilities"
 
