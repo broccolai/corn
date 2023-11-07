@@ -6,31 +6,12 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.util.Objects;
 
-final class ContextKeyImpl<T> implements ContextKey<T> {
-
-    private final String namespace;
-    private final String name;
-    private final TypeToken<T> token;
+record ContextKeyImpl<T>(String namespace, String name, TypeToken<T> token) implements ContextKey<T> {
 
     ContextKeyImpl(final @NonNull String namespace, final @NonNull String name, final @NonNull TypeToken<T> token) {
         this.namespace = namespace;
         this.name = name;
         this.token = token;
-    }
-
-    @Override
-    public @NonNull String namespace() {
-        return this.namespace;
-    }
-
-    @Override
-    public @NonNull String name() {
-        return this.name;
-    }
-
-    @Override
-    public @NonNull TypeToken<@NonNull T> token() {
-        return this.token;
     }
 
     @Override
