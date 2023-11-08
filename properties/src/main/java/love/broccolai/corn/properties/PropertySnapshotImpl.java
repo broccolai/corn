@@ -1,6 +1,6 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -8,11 +8,12 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
 
+@NullMarked
 final class PropertySnapshotImpl implements PropertySnapshot {
 
     private final Map<String, Property> flattenedProperties = new HashMap<>();
 
-    PropertySnapshotImpl(final @NonNull Collection<@NonNull Property> properties) {
+    PropertySnapshotImpl(final Collection<Property> properties) {
         for (final Property property : properties) {
             if (property instanceof FlattenableProperty flattenableProperty) {
                 flattenableProperty.flatten().forEach((key, value) -> {
@@ -26,7 +27,7 @@ final class PropertySnapshotImpl implements PropertySnapshot {
     }
 
     @Override
-    public @NonNull Iterator<Property> iterator() {
+    public Iterator<Property> iterator() {
         return this.flattenedProperties.values().iterator();
     }
 

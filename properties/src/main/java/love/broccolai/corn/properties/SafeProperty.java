@@ -1,7 +1,8 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public interface SafeProperty extends Property {
 
     /**
@@ -11,7 +12,7 @@ public interface SafeProperty extends Property {
      * @param object Value of the property
      * @return Constructed Property
      */
-    static @NonNull Property of(final @NonNull String name, final @NonNull Object object) {
+    static Property of(final String name, final Object object) {
         return new ObjectSafeProperty(name, object);
     }
 

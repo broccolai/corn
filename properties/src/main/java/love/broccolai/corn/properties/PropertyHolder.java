@@ -1,7 +1,8 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
+@NullMarked
 public interface PropertyHolder {
 
     /**
@@ -9,6 +10,6 @@ public interface PropertyHolder {
      *
      * @return A snapshot of the current properties
      */
-    @NonNull PropertySnapshot properties();
+    PropertySnapshot properties();
 
 }

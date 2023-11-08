@@ -1,14 +1,15 @@
 package love.broccolai.corn.context;
 
 import io.leangen.geantyref.TypeToken;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
+@NullMarked
 record ContextKeyImpl<T>(String namespace, String name, TypeToken<T> token) implements ContextKey<T> {
 
-    ContextKeyImpl(final @NonNull String namespace, final @NonNull String name, final @NonNull TypeToken<T> token) {
+    ContextKeyImpl(final String namespace, final String name, final TypeToken<T> token) {
         this.namespace = namespace;
         this.name = name;
         this.token = token;

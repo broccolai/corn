@@ -1,22 +1,23 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
+@NullMarked
 final class ObjectSafeProperty implements Property {
 
-    private final @NonNull String name;
+    private final String name;
     private final @Nullable Object object;
 
-    ObjectSafeProperty(final @NonNull String name, final @Nullable Object object) {
+    ObjectSafeProperty(final String name, final @Nullable Object object) {
         this.name = name;
         this.object = object;
     }
 
     @Override
-    public @NonNull String name() {
+    public String name() {
         return name;
     }
 

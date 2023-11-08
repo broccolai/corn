@@ -1,9 +1,10 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Map;
 
+@NullMarked
 public interface FlattenableProperty extends Property {
 
     /**
@@ -11,6 +12,6 @@ public interface FlattenableProperty extends Property {
      *
      * @return Map of keys to properties
      */
-    @NonNull Map<String, Property> flatten();
+    Map<String, Property> flatten();
 
 }

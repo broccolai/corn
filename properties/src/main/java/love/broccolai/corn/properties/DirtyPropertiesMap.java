@@ -1,11 +1,12 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@NullMarked
 public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, V> {
 
     /**
@@ -16,7 +17,7 @@ public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, 
      * @param <V>  the type of mapped values
      * @return Map created with base
      */
-    static <K, V extends PropertyHolder> DirtyPropertiesMap<K, V> from(final @NonNull Map<K, V> base) {
+    static <K, V extends PropertyHolder> DirtyPropertiesMap<K, V> from(final Map<K, V> base) {
         return new DirtyPropertiesMapImpl<>(base);
     }
 
@@ -41,7 +42,7 @@ public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, 
      *
      * @return Collection containing dirty values
      */
-    @NonNull Collection<@NonNull V> dirty();
+    Collection<V> dirty();
 
     /**
      * Check if a key currently has a dirty value
@@ -49,13 +50,13 @@ public interface DirtyPropertiesMap<K, V extends PropertyHolder> extends Map<K, 
      * @param key Key to lookup with
      * @return true if the key has a dirty value
      */
-    boolean isDirty(@NonNull K key);
+    boolean isDirty(K key);
 
     /**
      * Set a keys value to be dirty
      *
      * @param key Key to set with
      */
-    void setDirty(@NonNull K key);
+    void setDirty(K key);
 
 }

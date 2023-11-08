@@ -1,18 +1,19 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@NullMarked
 record CollectionProperty(
-        @NonNull String name,
-        @NonNull Collection<PropertyHolder> collection
+        String name,
+        Collection<PropertyHolder> collection
 ) implements FlattenableProperty {
 
     @Override
-    public @NonNull Map<String, Property> flatten() {
+    public Map<String, Property> flatten() {
         Map<String, Property> results = new HashMap<>();
 
         for (final PropertyHolder propertyHolder : this.collection) {

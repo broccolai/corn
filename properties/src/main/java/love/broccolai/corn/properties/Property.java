@@ -1,9 +1,10 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Collection;
 
+@NullMarked
 public interface Property {
 
     /**
@@ -11,7 +12,7 @@ public interface Property {
      *
      * @return Name of the property
      */
-    @NonNull String name();
+    String name();
 
     /**
      * Construct a Property with an Object as it's value
@@ -20,7 +21,7 @@ public interface Property {
      * @param object Value of the property
      * @return Constructed Property
      */
-    static @NonNull Property of(final @NonNull String name, final @NonNull Object object) {
+    static Property of(final String name, final Object object) {
         return new ObjectProperty(name, object);
     }
 
@@ -31,7 +32,7 @@ public interface Property {
      * @param propertyHolder Value of the property
      * @return Constructed Property
      */
-    static @NonNull Property of(final @NonNull String name, final @NonNull PropertyHolder propertyHolder) {
+    static Property of(final String name, final PropertyHolder propertyHolder) {
         return new NestedProperty(name, propertyHolder);
     }
 
@@ -42,7 +43,7 @@ public interface Property {
      * @param propertyCollection Value of the property
      * @return Constructed Property
      */
-    static @NonNull Property of(final @NonNull String name, final @NonNull Collection<PropertyHolder> propertyCollection) {
+    static Property of(final String name, final Collection<PropertyHolder> propertyCollection) {
         return new CollectionProperty(name, propertyCollection);
     }
 
