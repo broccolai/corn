@@ -1,22 +1,23 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
+@NullMarked
 final class ObjectProperty implements Property {
 
-    private final @NonNull String name;
+    private final String name;
     private final @Nullable Integer objectHash;
 
-    ObjectProperty(final @NonNull String name, final @Nullable Object object) {
+    ObjectProperty(final String name, final @Nullable Object object) {
         this.name = name;
         this.objectHash = object != null ? object.hashCode() : null;
     }
 
     @Override
-    public @NonNull String name() {
+    public String name() {
         return this.name;
     }
 

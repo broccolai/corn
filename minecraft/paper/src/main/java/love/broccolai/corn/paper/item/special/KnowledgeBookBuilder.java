@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.KnowledgeBookMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 
@@ -13,9 +13,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link KnowledgeBookMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<KnowledgeBookBuilder, KnowledgeBookMeta> {
 
-    private KnowledgeBookBuilder(final @NonNull ItemStack itemStack, final @NonNull KnowledgeBookMeta itemMeta) {
+    private KnowledgeBookBuilder(final ItemStack itemStack, final KnowledgeBookMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -26,7 +27,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @return instance of {@code KnowledgeBookBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull KnowledgeBookBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static KnowledgeBookBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new KnowledgeBookBuilder(itemStack, castMeta(itemStack.getItemMeta(), KnowledgeBookMeta.class));
     }
 
@@ -38,7 +39,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull KnowledgeBookBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static KnowledgeBookBuilder ofType(final Material material) throws IllegalArgumentException {
         return KnowledgeBookBuilder.of(getItem(material));
     }
 
@@ -49,7 +50,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull KnowledgeBookBuilder ofKnowledgeBook() throws IllegalArgumentException {
+    public static KnowledgeBookBuilder ofKnowledgeBook() throws IllegalArgumentException {
         return ofType(Material.KNOWLEDGE_BOOK);
     }
 
@@ -58,7 +59,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      *
      * @return the recipes
      */
-    public @NonNull List<NamespacedKey> recipes() {
+    public List<NamespacedKey> recipes() {
         return this.itemMeta.getRecipes();
     }
 
@@ -68,7 +69,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @param recipes the recipes
      * @return the builder
      */
-    public @NonNull KnowledgeBookBuilder recipes(final @NonNull List<@NonNull NamespacedKey> recipes) {
+    public KnowledgeBookBuilder recipes(final List<NamespacedKey> recipes) {
         this.itemMeta.setRecipes(recipes);
         return this;
     }
@@ -79,7 +80,7 @@ public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<Knowled
      * @param recipe the recipe to add
      * @return the builder
      */
-    public @NonNull KnowledgeBookBuilder addRecipe(final @NonNull NamespacedKey... recipe) {
+    public KnowledgeBookBuilder addRecipe(final NamespacedKey... recipe) {
         this.itemMeta.addRecipe(recipe);
         return this;
     }

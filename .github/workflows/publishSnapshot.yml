@@ -1,26 +1,26 @@
 name: Publish snapshot build to repo.broccol.ai
 
 on:
-  push:
-    branches: [ 'dev/**' ]
+    push:
+        branches: [ 'dev/**' ]
 
 jobs:
-  build:
+    build:
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: 17
-          cache: 'gradle'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Publish package
-        run: ./gradlew build publish -x requireClean -x signMavenPublication
-        env:
-          ORG_GRADLE_PROJECT_broccolaiUsername: ${{ secrets.BROCCOLAI_USERNAME }}
-          ORG_GRADLE_PROJECT_broccolaiPassword: ${{ secrets.BROCCOLAI_PASSWORD }}
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Set up Java
+                uses: actions/setup-java@v2
+                with:
+                    distribution: 'adopt'
+                    java-version: 17
+                    cache: 'gradle'
+            -   name: Grant execute permission for gradlew
+                run: chmod +x gradlew
+            -   name: Publish package
+                run: ./gradlew build publish -x requireClean -x signMavenPublication
+                env:
+                    ORG_GRADLE_PROJECT_broccolaiUsername: ${{ secrets.BROCCOLAI_USERNAME }}
+                    ORG_GRADLE_PROJECT_broccolaiPassword: ${{ secrets.BROCCOLAI_PASSWORD }}

@@ -5,15 +5,16 @@ import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockDataMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BlockDataMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBuilder, BlockDataMeta> {
 
-    private BlockDataBuilder(final @NonNull ItemStack itemStack, final @NonNull BlockDataMeta itemMeta) {
+    private BlockDataBuilder(final ItemStack itemStack, final BlockDataMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -24,7 +25,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      * @return instance of {@code BlockDataBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BlockDataBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static BlockDataBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new BlockDataBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockDataMeta.class));
     }
 
@@ -36,7 +37,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BlockDataBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static BlockDataBuilder ofType(final Material material) throws IllegalArgumentException {
         return BlockDataBuilder.of(getItem(material));
     }
 
@@ -46,7 +47,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      * @param material the material the data should be retrieved in the context of
      * @return the {@code BlockData}
      */
-    public @NonNull BlockData blockData(final @NonNull Material material) {
+    public BlockData blockData(final Material material) {
         return this.itemMeta.getBlockData(material);
     }
 
@@ -56,7 +57,7 @@ public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBu
      * @param blockData the {@code BlockData}
      * @return the builder
      */
-    public @NonNull BlockDataBuilder blockData(final @NonNull BlockData blockData) {
+    public BlockDataBuilder blockData(final BlockData blockData) {
         this.itemMeta.setBlockData(blockData);
         return this;
     }

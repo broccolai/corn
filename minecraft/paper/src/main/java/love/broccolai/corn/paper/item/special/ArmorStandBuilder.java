@@ -1,18 +1,19 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
+import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ArmorStandMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStandBuilder, ArmorStandMeta> {
 
-    private ArmorStandBuilder(final @NonNull ItemStack itemStack, final @NonNull ArmorStandMeta itemMeta) {
+    private ArmorStandBuilder(final ItemStack itemStack, final ArmorStandMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -23,7 +24,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @return instance of {@code ArmorStandBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull ArmorStandBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static ArmorStandBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new ArmorStandBuilder(itemStack, castMeta(itemStack.getItemMeta(), ArmorStandMeta.class));
     }
 
@@ -35,7 +36,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull ArmorStandBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static ArmorStandBuilder ofType(final Material material) throws IllegalArgumentException {
         return ArmorStandBuilder.of(getItem(material));
     }
 
@@ -46,7 +47,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull ArmorStandBuilder ofArmorStand() throws IllegalArgumentException {
+    public static ArmorStandBuilder ofArmorStand() throws IllegalArgumentException {
         return ofType(Material.ARMOR_STAND);
     }
 
@@ -65,7 +66,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @param invisible whether the armor stand is invisible
      * @return the builder
      */
-    public @NonNull ArmorStandBuilder invisible(final boolean invisible) {
+    public ArmorStandBuilder invisible(final boolean invisible) {
         this.itemMeta.setInvisible(invisible);
         return this;
     }
@@ -85,7 +86,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @param small whether the armor stand is small
      * @return the builder
      */
-    public @NonNull ArmorStandBuilder small(final boolean small) {
+    public ArmorStandBuilder small(final boolean small) {
         this.itemMeta.setSmall(small);
         return this;
     }
@@ -105,7 +106,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @param showArms whether the armor stand shows arms
      * @return the builder
      */
-    public @NonNull ArmorStandBuilder showArms(final boolean showArms) {
+    public ArmorStandBuilder showArms(final boolean showArms) {
         this.itemMeta.setShowArms(showArms);
         return this;
     }
@@ -125,7 +126,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @param noBasePlate whether the armor stand has no base plate
      * @return the builder
      */
-    public @NonNull ArmorStandBuilder noBasePlate(final boolean noBasePlate) {
+    public ArmorStandBuilder noBasePlate(final boolean noBasePlate) {
         this.itemMeta.setNoBasePlate(noBasePlate);
         return this;
     }
@@ -145,7 +146,7 @@ public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStand
      * @param marker whether the armor stand is a marker
      * @return the builder
      */
-    public @NonNull ArmorStandBuilder marker(final boolean marker) {
+    public ArmorStandBuilder marker(final boolean marker) {
         this.itemMeta.setMarker(marker);
         return this;
     }

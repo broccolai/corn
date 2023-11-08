@@ -1,10 +1,11 @@
 package love.broccolai.corn.context;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;
 
+@NullMarked
 public interface Context {
 
     /**
@@ -14,7 +15,7 @@ public interface Context {
      * @param <T> Type associated with the key
      * @return Optional of the stored context key assigned ot the T type
      */
-    <T> Optional<T> get(@NonNull ContextKey<T> key);
+    <T> Optional<T> get(ContextKey<T> key);
 
     /**
      * Store a value into the context, defined by a key.
@@ -23,13 +24,13 @@ public interface Context {
      * @param value Value to store against the key
      * @param <T>   Type associated with the key and value
      */
-    <T> void put(@NonNull ContextKey<T> key, @NonNull T value);
+    <T> void put(ContextKey<T> key, T value);
 
     /**
      * Performs given consumer on all entries stored.
      *
      * @param consumer Consumer to be applied
      */
-    void forEach(@NonNull BiConsumer<ContextKey<?>, Object> consumer);
+    void forEach(BiConsumer<ContextKey<?>, Object> consumer);
 
 }

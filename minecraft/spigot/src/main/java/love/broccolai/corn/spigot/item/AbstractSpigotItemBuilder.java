@@ -2,8 +2,8 @@ package love.broccolai.corn.spigot.item;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +17,11 @@ import java.util.function.Consumer;
  * @param <M> the {@link ItemMeta} type
  */
 @SuppressWarnings({"unchecked", "unused"})
+@NullMarked
 public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuilder<B, M>, M extends ItemMeta>
         extends AbstractItemBuilder<B, M> {
 
-    protected AbstractSpigotItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
+    protected AbstractSpigotItemBuilder(final ItemStack itemStack, final M itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -39,7 +40,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @param name the display name
      * @return the builder
      */
-    public @NonNull B name(final @Nullable String name) {
+    public B name(final @Nullable String name) {
         this.itemMeta.setDisplayName(name);
         return (B) this;
     }
@@ -59,7 +60,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B lore(final @Nullable List<String> lines) {
+    public B lore(final @Nullable List<String> lines) {
         this.itemMeta.setLore(lines);
         return (B) this;
     }
@@ -72,7 +73,7 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B loreList(final @NonNull String... lines) {
+    public B loreList(final String... lines) {
         return this.lore(List.of(lines));
     }
 
@@ -84,8 +85,8 @@ public abstract class AbstractSpigotItemBuilder<B extends AbstractSpigotItemBuil
      * @param consumer the {@code Consumer} to modify the lore with
      * @return the builder
      */
-    public @NonNull B loreModifier(final @NonNull Consumer<@NonNull List<String>> consumer) {
-        final @NonNull List<String> lore = Optional
+    public B loreModifier(final Consumer<List<String>> consumer) {
+        final List<String> lore = Optional
                 .ofNullable(this.itemMeta.getLore())
                 .orElse(new ArrayList<>());
 

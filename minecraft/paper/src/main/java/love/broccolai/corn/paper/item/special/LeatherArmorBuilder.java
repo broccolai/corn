@@ -5,16 +5,17 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link LeatherArmorMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
 
-    private LeatherArmorBuilder(final @NonNull ItemStack itemStack, final @NonNull LeatherArmorMeta itemMeta) {
+    private LeatherArmorBuilder(final ItemStack itemStack, final LeatherArmorMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -25,7 +26,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      * @return instance of {@code LeatherArmorBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull LeatherArmorBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static LeatherArmorBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new LeatherArmorBuilder(itemStack, castMeta(itemStack.getItemMeta(), LeatherArmorMeta.class));
     }
 
@@ -37,7 +38,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull LeatherArmorBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static LeatherArmorBuilder ofType(final Material material) throws IllegalArgumentException {
         return LeatherArmorBuilder.of(getItem(material));
     }
 
@@ -46,7 +47,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      *
      * @return the color
      */
-    public @NonNull Color color() {
+    public Color color() {
         return this.itemMeta.getColor();
     }
 
@@ -56,7 +57,7 @@ public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherA
      * @param color the color
      * @return the builder
      */
-    public @NonNull LeatherArmorBuilder color(final @Nullable Color color) {
+    public LeatherArmorBuilder color(final @Nullable Color color) {
         this.itemMeta.setColor(color);
         return this;
     }

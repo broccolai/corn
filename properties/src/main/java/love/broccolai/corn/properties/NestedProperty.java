@@ -1,16 +1,17 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-record NestedProperty(@NonNull String name, @Nullable PropertyHolder propertyHolder) implements FlattenableProperty {
+@NullMarked
+record NestedProperty(String name, @Nullable PropertyHolder propertyHolder) implements FlattenableProperty {
 
     @Override
-    public @NonNull Map<String, Property> flatten() {
+    public Map<String, Property> flatten() {
         if (propertyHolder == null) {
             return Collections.emptyMap();
         }

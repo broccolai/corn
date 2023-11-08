@@ -5,16 +5,17 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CompassMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link CompassMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilder, CompassMeta> {
 
-    private CompassBuilder(final @NonNull ItemStack itemStack, final @NonNull CompassMeta itemMeta) {
+    private CompassBuilder(final ItemStack itemStack, final CompassMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -25,7 +26,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @return instance of {@code CompassBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CompassBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static CompassBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new CompassBuilder(itemStack, castMeta(itemStack.getItemMeta(), CompassMeta.class));
     }
 
@@ -37,7 +38,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CompassBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static CompassBuilder ofType(final Material material) throws IllegalArgumentException {
         return CompassBuilder.of(getItem(material));
     }
 
@@ -48,7 +49,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CompassBuilder ofCompass() throws IllegalArgumentException {
+    public static CompassBuilder ofCompass() throws IllegalArgumentException {
         return ofType(Material.COMPASS);
     }
 
@@ -67,7 +68,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @param lodestone the the lodestone
      * @return the builder
      */
-    public @NonNull CompassBuilder lodestone(final @Nullable Location lodestone) {
+    public CompassBuilder lodestone(final @Nullable Location lodestone) {
         this.itemMeta.setLodestone(lodestone);
         return this;
     }
@@ -87,7 +88,7 @@ public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilde
      * @param lodestoneTracked whether the compass is tracking the lodestone
      * @return the builder
      */
-    public @NonNull CompassBuilder lodestoneTracked(final boolean lodestoneTracked) {
+    public CompassBuilder lodestoneTracked(final boolean lodestoneTracked) {
         this.itemMeta.setLodestoneTracked(lodestoneTracked);
         return this;
     }

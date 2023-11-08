@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Map;
 
@@ -13,9 +13,10 @@ import java.util.Map;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link EnchantmentStorageMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<EnchantmentStorageBuilder, EnchantmentStorageMeta> {
 
-    private EnchantmentStorageBuilder(final @NonNull ItemStack itemStack, final @NonNull EnchantmentStorageMeta itemMeta) {
+    private EnchantmentStorageBuilder(final ItemStack itemStack, final EnchantmentStorageMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -26,7 +27,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @return instance of {@code EnchantmentStorageBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull EnchantmentStorageBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static EnchantmentStorageBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new EnchantmentStorageBuilder(itemStack, castMeta(itemStack.getItemMeta(), EnchantmentStorageMeta.class));
     }
 
@@ -38,7 +39,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull EnchantmentStorageBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static EnchantmentStorageBuilder ofType(final Material material) throws IllegalArgumentException {
         return EnchantmentStorageBuilder.of(getItem(material));
     }
 
@@ -47,7 +48,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      *
      * @return the stored enchants
      */
-    public @NonNull Map<@NonNull Enchantment, @NonNull Integer> storedEnchants() {
+    public Map<Enchantment, Integer> storedEnchants() {
         return this.itemMeta.getStoredEnchants();
     }
 
@@ -57,11 +58,11 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @param storedEnchants the stored enchants
      * @return the builder
      */
-    public @NonNull EnchantmentStorageBuilder storedEnchants(final @NonNull Map<@NonNull Enchantment, @NonNull Integer> storedEnchants) {
-        for (final @NonNull Enchantment item : this.itemMeta.getStoredEnchants().keySet()) {
+    public EnchantmentStorageBuilder storedEnchants(final Map<Enchantment, Integer> storedEnchants) {
+        for (final Enchantment item : this.itemMeta.getStoredEnchants().keySet()) {
             this.itemMeta.removeStoredEnchant(item);
         }
-        for (final Map.@NonNull Entry<@NonNull Enchantment, @NonNull Integer> entry : storedEnchants.entrySet()) {
+        for (final Map.Entry<Enchantment, Integer> entry : storedEnchants.entrySet()) {
             this.addStoredEnchant(entry.getKey(), entry.getValue());
         }
         return this;
@@ -74,7 +75,7 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @param level   the level of the {@code Enchantment}
      * @return the builder
      */
-    public @NonNull EnchantmentStorageBuilder addStoredEnchant(final @NonNull Enchantment enchant, final int level) {
+    public EnchantmentStorageBuilder addStoredEnchant(final Enchantment enchant, final int level) {
         this.itemMeta.addStoredEnchant(enchant, level, true);
         return this;
     }
@@ -85,8 +86,8 @@ public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<En
      * @param enchant the {@code Enchantment} to remove
      * @return the builder
      */
-    public @NonNull EnchantmentStorageBuilder removeStoredEnchant(final @NonNull Enchantment... enchant) {
-        for (final @NonNull Enchantment item : enchant) {
+    public EnchantmentStorageBuilder removeStoredEnchant(final Enchantment... enchant) {
+        for (final Enchantment item : enchant) {
             this.itemMeta.removeStoredEnchant(item);
         }
         return this;

@@ -6,16 +6,17 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MapMeta;
 import org.bukkit.map.MapView;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link MapMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMeta> {
 
-    private MapBuilder(final @NonNull ItemStack itemStack, final @NonNull MapMeta itemMeta) {
+    private MapBuilder(final ItemStack itemStack, final MapMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -26,7 +27,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @return instance of {@code MapBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull MapBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static MapBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new MapBuilder(itemStack, castMeta(itemStack.getItemMeta(), MapMeta.class));
     }
 
@@ -38,7 +39,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull MapBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static MapBuilder ofType(final Material material) throws IllegalArgumentException {
         return MapBuilder.of(getItem(material));
     }
 
@@ -57,7 +58,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @param color the {@code Color}
      * @return the builder
      */
-    public @NonNull MapBuilder color(final @Nullable Color color) {
+    public MapBuilder color(final @Nullable Color color) {
         this.itemMeta.setColor(color);
         return this;
     }
@@ -77,7 +78,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @param locationName the location name
      * @return the builder
      */
-    public @NonNull MapBuilder locationName(final @Nullable String locationName) {
+    public MapBuilder locationName(final @Nullable String locationName) {
         this.itemMeta.setLocationName(locationName);
         return this;
     }
@@ -97,7 +98,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @param mapView the {@code MapView}
      * @return the builder
      */
-    public @NonNull MapBuilder mapView(final @Nullable MapView mapView) {
+    public MapBuilder mapView(final @Nullable MapView mapView) {
         this.itemMeta.setMapView(mapView);
         return this;
     }
@@ -117,7 +118,7 @@ public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMe
      * @param scaling whether the map is scaling
      * @return the builder
      */
-    public @NonNull MapBuilder scaling(final boolean scaling) {
+    public MapBuilder scaling(final boolean scaling) {
         this.itemMeta.setScaling(scaling);
         return this;
     }

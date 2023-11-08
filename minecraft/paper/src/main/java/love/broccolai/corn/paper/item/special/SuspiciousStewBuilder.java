@@ -6,8 +6,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -15,9 +15,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SuspiciousStewMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<SuspiciousStewBuilder, SuspiciousStewMeta> {
 
-    private SuspiciousStewBuilder(final @NonNull ItemStack itemStack, final @NonNull SuspiciousStewMeta itemMeta) {
+    private SuspiciousStewBuilder(final ItemStack itemStack, final SuspiciousStewMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -28,7 +29,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @return instance of {@code SuspiciousStewBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SuspiciousStewBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static SuspiciousStewBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new SuspiciousStewBuilder(itemStack, castMeta(itemStack.getItemMeta(), SuspiciousStewMeta.class));
     }
 
@@ -40,7 +41,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SuspiciousStewBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static SuspiciousStewBuilder ofType(final Material material) throws IllegalArgumentException {
         return SuspiciousStewBuilder.of(getItem(material));
     }
 
@@ -51,7 +52,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SuspiciousStewBuilder ofSuspiciousStew() throws IllegalArgumentException {
+    public static SuspiciousStewBuilder ofSuspiciousStew() throws IllegalArgumentException {
         return ofType(Material.SUSPICIOUS_STEW);
     }
 
@@ -60,7 +61,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      *
      * @return the custom effects
      */
-    public @NonNull List<@NonNull PotionEffect> customEffects() {
+    public List<PotionEffect> customEffects() {
         return this.itemMeta.getCustomEffects();
     }
 
@@ -70,10 +71,10 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @param customEffects custom effects
      * @return the builder
      */
-    public @NonNull SuspiciousStewBuilder customEffects(final @Nullable List<@NonNull PotionEffect> customEffects) {
+    public SuspiciousStewBuilder customEffects(final @Nullable List<PotionEffect> customEffects) {
         this.itemMeta.clearCustomEffects();
         if (customEffects != null) {
-            for (final @NonNull PotionEffect item : customEffects) {
+            for (final PotionEffect item : customEffects) {
                 this.itemMeta.addCustomEffect(item, true);
             }
         }
@@ -87,7 +88,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
      * @return the builder
      */
-    public @NonNull SuspiciousStewBuilder addCustomEffect(final @NonNull PotionEffect customEffect, final boolean overwrite) {
+    public SuspiciousStewBuilder addCustomEffect(final PotionEffect customEffect, final boolean overwrite) {
         this.itemMeta.addCustomEffect(customEffect, overwrite);
         return this;
     }
@@ -98,7 +99,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @param customEffectType the custom effect type to remove
      * @return the builder
      */
-    public @NonNull SuspiciousStewBuilder removeCustomEffect(final @NonNull PotionEffectType... customEffectType) {
+    public SuspiciousStewBuilder removeCustomEffect(final PotionEffectType... customEffectType) {
         for (final PotionEffectType item : customEffectType) {
             this.itemMeta.removeCustomEffect(item);
         }
@@ -111,7 +112,7 @@ public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<Suspic
      * @param customEffectType the custom effect type
      * @return the builder
      */
-    public boolean hasCustomEffect(final @NonNull PotionEffectType customEffectType) {
+    public boolean hasCustomEffect(final PotionEffectType customEffectType) {
         return this.itemMeta.hasCustomEffect(customEffectType);
     }
 

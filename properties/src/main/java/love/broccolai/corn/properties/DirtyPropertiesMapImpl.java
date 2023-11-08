@@ -1,6 +1,6 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,13 +9,14 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+@NullMarked
 final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements DirtyPropertiesMap<K, V> {
 
     private final Map<K, V> base;
     private final Map<K, PropertySnapshot> previousProperties = new HashMap<>();
     private final Set<K> knownDirty = new HashSet<>();
 
-    DirtyPropertiesMapImpl(final @NonNull Map<K, V> base) {
+    DirtyPropertiesMapImpl(final Map<K, V> base) {
         this.base = base;
         this.fillPreviousProperties();
     }
@@ -27,7 +28,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public @NonNull Collection<@NonNull V> dirty() {
+    public Collection<V> dirty() {
         Collection<V> dirtyValues = new ArrayList<>();
 
         for (final K key : this.base.keySet()) {
@@ -40,7 +41,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public boolean isDirty(@NonNull final K key) {
+    public boolean isDirty(final K key) {
         if (this.knownDirty.contains(key)) {
             return true;
         }
@@ -57,7 +58,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public void setDirty(@NonNull final K key) {
+    public void setDirty(final K key) {
         this.knownDirty.add(key);
     }
 
@@ -102,7 +103,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public void putAll(final @NonNull Map<? extends K, ? extends V> m) {
+    public void putAll(final Map<? extends K, ? extends V> m) {
         this.base.putAll(m);
     }
 
@@ -114,17 +115,17 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public @NonNull Set<K> keySet() {
+    public Set<K> keySet() {
         return this.base.keySet();
     }
 
     @Override
-    public @NonNull Collection<V> values() {
+    public Collection<V> values() {
         return this.base.values();
     }
 
     @Override
-    public @NonNull Set<Entry<K, V>> entrySet() {
+    public Set<Entry<K, V>> entrySet() {
         return this.base.entrySet();
     }
 

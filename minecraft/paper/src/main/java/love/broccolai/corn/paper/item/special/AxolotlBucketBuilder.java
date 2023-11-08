@@ -5,15 +5,16 @@ import org.bukkit.Material;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.AxolotlBucketMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link AxolotlBucketMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<AxolotlBucketBuilder, AxolotlBucketMeta> {
 
-    private AxolotlBucketBuilder(final @NonNull ItemStack itemStack, final @NonNull AxolotlBucketMeta itemMeta) {
+    private AxolotlBucketBuilder(final ItemStack itemStack, final AxolotlBucketMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -24,7 +25,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      * @return instance of {@code AxolotlBucketBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull AxolotlBucketBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static AxolotlBucketBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new AxolotlBucketBuilder(itemStack, castMeta(itemStack.getItemMeta(), AxolotlBucketMeta.class));
     }
 
@@ -36,7 +37,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull AxolotlBucketBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static AxolotlBucketBuilder ofType(final Material material) throws IllegalArgumentException {
         return AxolotlBucketBuilder.of(getItem(material));
     }
 
@@ -47,7 +48,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull AxolotlBucketBuilder ofAxolotlBucket() throws IllegalArgumentException {
+    public static AxolotlBucketBuilder ofAxolotlBucket() throws IllegalArgumentException {
         return ofType(Material.AXOLOTL_BUCKET);
     }
 
@@ -56,7 +57,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      *
      * @return the variant
      */
-    public Axolotl.@NonNull Variant variant() {
+    public Axolotl.Variant variant() {
         return this.itemMeta.getVariant();
     }
 
@@ -66,7 +67,7 @@ public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<Axolotl
      * @param variant the variant
      * @return the builder
      */
-    public @NonNull AxolotlBucketBuilder variant(final Axolotl.@NonNull Variant variant) {
+    public AxolotlBucketBuilder variant(final Axolotl.Variant variant) {
         this.itemMeta.setVariant(variant);
         return this;
     }

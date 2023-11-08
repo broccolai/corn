@@ -4,24 +4,24 @@
 name: Java CI with Gradle
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [ master ]
+    pull_request:
+        branches: [ master ]
 
 jobs:
-  build:
+    build:
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: 17
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-      - name: Build with Gradle
-        run: ./gradlew build
+        steps:
+            -   uses: actions/checkout@v2
+            -   name: Set up Java
+                uses: actions/setup-java@v2
+                with:
+                    distribution: 'adopt'
+                    java-version: 17
+            -   name: Grant execute permission for gradlew
+                run: chmod +x gradlew
+            -   name: Build with Gradle
+                run: ./gradlew build

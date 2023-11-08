@@ -4,16 +4,17 @@ import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Repairable;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link Repairable}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class RepairableBuilder extends AbstractPaperItemBuilder<RepairableBuilder, Repairable> {
 
-    private RepairableBuilder(final @NonNull ItemStack itemStack, final @NonNull Repairable itemMeta) {
+    private RepairableBuilder(final ItemStack itemStack, final Repairable itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -24,7 +25,7 @@ public final class RepairableBuilder extends AbstractPaperItemBuilder<Repairable
      * @return instance of {@code RepairableBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull RepairableBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static RepairableBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new RepairableBuilder(itemStack, castMeta(itemStack.getItemMeta(), Repairable.class));
     }
 
@@ -36,7 +37,7 @@ public final class RepairableBuilder extends AbstractPaperItemBuilder<Repairable
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull RepairableBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static RepairableBuilder ofType(final Material material) throws IllegalArgumentException {
         return RepairableBuilder.of(getItem(material));
     }
 
@@ -58,7 +59,7 @@ public final class RepairableBuilder extends AbstractPaperItemBuilder<Repairable
      * @param repairCost the repair cost
      * @return the builder
      */
-    public @NonNull RepairableBuilder repairCost(final @NonNull Integer repairCost) {
+    public RepairableBuilder repairCost(final Integer repairCost) {
         this.itemMeta.setRepairCost(repairCost);
         return this;
     }

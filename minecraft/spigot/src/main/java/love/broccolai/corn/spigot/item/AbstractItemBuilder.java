@@ -10,8 +10,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,24 +25,25 @@ import java.util.Set;
  * @param <M> the {@link ItemMeta} type
  */
 @SuppressWarnings({"unchecked", "unused"})
+@NullMarked
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
     /**
      * The {@code ItemStack} to modify during building. This will be cloned and
      * returned upon {@link #build()}.
      */
-    protected final @NonNull ItemStack itemStack;
+    protected final ItemStack itemStack;
     /**
      * The {@code ItemMeta} to modify during building. This will be applied to
      * the {@link #itemStack} upon {@link #build()}.
      */
-    protected final @NonNull M itemMeta;
+    protected final M itemMeta;
 
     /**
      * @param itemStack the {@code ItemStack}
      * @param itemMeta  the {@code ItemMeta}
      */
-    protected AbstractItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
+    protected AbstractItemBuilder(final ItemStack itemStack, final M itemMeta) {
         this.itemStack = itemStack.clone();
         this.itemMeta = itemMeta;
     }
@@ -77,7 +78,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return an {@code ItemStack} of type {@code material}
      * @throws IllegalArgumentException if {@code material} is not an item
      */
-    protected static @NonNull ItemStack getItem(final @NonNull Material material) throws IllegalArgumentException {
+    protected static ItemStack getItem(final Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
             throw new IllegalArgumentException("The Material must be an obtainable item.");
         }
@@ -89,7 +90,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the {@code Material}
      */
-    public @NonNull Material material() {
+    public Material material() {
         return this.itemStack.getType();
     }
 
@@ -99,7 +100,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param material the {@code Material}
      * @return the builder
      */
-    public @NonNull B material(final @NonNull Material material) {
+    public B material(final Material material) {
         this.itemStack.setType(material);
         return (B) this;
     }
@@ -119,7 +120,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param amount the quantity
      * @return the builder
      */
-    public @NonNull B amount(final int amount) {
+    public B amount(final int amount) {
         this.itemStack.setAmount(amount);
         return (B) this;
     }
@@ -134,8 +135,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the data
      */
     public <T, Z> @Nullable Z getData(
-            final @NonNull NamespacedKey key,
-            final @NonNull PersistentDataType<T, Z> type
+            final NamespacedKey key,
+            final PersistentDataType<T, Z> type
     ) {
         return this.itemMeta.getPersistentDataContainer().get(key, type);
     }
@@ -150,10 +151,10 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param <Z>    the retrieve object type of the data
      * @return the builder
      */
-    public <T, Z> @NonNull B setData(
-            final @NonNull NamespacedKey key,
-            final @NonNull PersistentDataType<T, Z> type,
-            final @NonNull Z object
+    public <T, Z> B setData(
+            final NamespacedKey key,
+            final PersistentDataType<T, Z> type,
+            final Z object
     ) {
         this.itemMeta.getPersistentDataContainer().set(key, type, object);
         return (B) this;
@@ -165,8 +166,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param key the {@code NamespacedKey} to use
      * @return the builder
      */
-    public @NonNull B removeData(
-            final @NonNull NamespacedKey key
+    public B removeData(
+            final NamespacedKey key
     ) {
         this.itemMeta.getPersistentDataContainer().remove(key);
         return (B) this;
@@ -177,7 +178,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the {@code ItemFlag}s
      */
-    public @NonNull Set<ItemFlag> flags() {
+    public Set<ItemFlag> flags() {
         return this.itemMeta.getItemFlags();
     }
 
@@ -187,7 +188,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param flags the {@code ItemFlag}s
      * @return the builder
      */
-    public @NonNull B flags(final @Nullable List<ItemFlag> flags) {
+    public B flags(final @Nullable List<ItemFlag> flags) {
         this.clearFlags();
         if (flags != null) {
             this.itemMeta.addItemFlags(flags.toArray(new ItemFlag[0]));
@@ -205,7 +206,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param flag the {@code ItemFlag} to add
      * @return the builder
      */
-    public @NonNull B addFlag(final @NonNull ItemFlag... flag) {
+    public B addFlag(final ItemFlag... flag) {
         this.itemMeta.addItemFlags(flag);
         return (B) this;
     }
@@ -216,7 +217,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param flag the {@code ItemFlag} to remove
      * @return the builder
      */
-    public @NonNull B removeFlag(final @NonNull ItemFlag... flag) {
+    public B removeFlag(final ItemFlag... flag) {
         this.itemMeta.removeItemFlags(flag);
         return (B) this;
     }
@@ -226,7 +227,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the {@code Enchantment}s
      */
-    public @NonNull Map<Enchantment, Integer> enchants() {
+    public Map<Enchantment, Integer> enchants() {
         return new HashMap<>(this.itemStack.getEnchantments());
     }
 
@@ -236,7 +237,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param enchants the {@code Enchantment}s
      * @return the builder
      */
-    public @NonNull B enchants(final @Nullable Map<Enchantment, Integer> enchants) {
+    public B enchants(final @Nullable Map<Enchantment, Integer> enchants) {
         this.clearEnchants();
         if (enchants != null) {
             this.itemStack.addEnchantments(enchants);
@@ -257,7 +258,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param level       the level of the {@code Enchantment}
      * @return the builder
      */
-    public @NonNull B addEnchant(final @NonNull Enchantment enchantment, final int level) {
+    public B addEnchant(final Enchantment enchantment, final int level) {
         this.itemMeta.addEnchant(enchantment, level, true);
         return (B) this;
     }
@@ -268,7 +269,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param enchantment the {@code Enchantment} to remove
      * @return the builder
      */
-    public @NonNull B removeEnchant(final @NonNull Enchantment... enchantment) {
+    public B removeEnchant(final Enchantment... enchantment) {
         for (final Enchantment item : enchantment) {
             this.itemMeta.removeEnchant(item);
         }
@@ -281,7 +282,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param unbreakable whether the {@code ItemStack} is unbreakable
      * @return the builder
      */
-    public @NonNull B unbreakable(final boolean unbreakable) {
+    public B unbreakable(final boolean unbreakable) {
         itemMeta.setUnbreakable(unbreakable);
         return (B) this;
     }
@@ -314,7 +315,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param customModelData the custom model data
      * @return the builder
      */
-    public @NonNull B customModelData(final @Nullable Integer customModelData) {
+    public B customModelData(final @Nullable Integer customModelData) {
         this.itemMeta.setCustomModelData(customModelData);
         return (B) this;
     }
@@ -324,7 +325,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the localized name
      */
-    public @NonNull String localizedName() {
+    public String localizedName() {
         return this.itemMeta.getLocalizedName();
     }
 
@@ -334,7 +335,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param localizedName the localized name
      * @return the builder
      */
-    public @NonNull B localizedName(final @Nullable String localizedName) {
+    public B localizedName(final @Nullable String localizedName) {
         this.itemMeta.setLocalizedName(localizedName);
         return (B) this;
     }
@@ -354,7 +355,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param attributeModifiers the {@code AttributeModifier}s
      * @return the builder
      */
-    public @NonNull B attributeModifiers(final @Nullable Multimap<Attribute, AttributeModifier> attributeModifiers) {
+    public B attributeModifiers(final @Nullable Multimap<Attribute, AttributeModifier> attributeModifiers) {
         this.itemMeta.setAttributeModifiers(attributeModifiers);
         return (B) this;
     }
@@ -366,9 +367,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param attributeModifier the {@code AttributeModifier} to add
      * @return the builder
      */
-    public @NonNull B addAttributeModifier(
-            final @NonNull Attribute attribute,
-            final @NonNull AttributeModifier attributeModifier
+    public B addAttributeModifier(
+            final Attribute attribute,
+            final AttributeModifier attributeModifier
     ) {
         this.itemMeta.addAttributeModifier(attribute, attributeModifier);
         return (B) this;
@@ -381,9 +382,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param attributeModifier the {@code AttributeModifier} to remove
      * @return the builder
      */
-    public @NonNull B removeAttributeModifier(
-            final @NonNull Attribute attribute,
-            final @NonNull AttributeModifier attributeModifier
+    public B removeAttributeModifier(
+            final Attribute attribute,
+            final AttributeModifier attributeModifier
     ) {
         this.itemMeta.removeAttributeModifier(attribute, attributeModifier);
         return (B) this;
@@ -395,8 +396,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param attribute the {@code Attribute}
      * @return the builder
      */
-    public @NonNull B removeAttributeModifier(final @NonNull Attribute... attribute) {
-        for (final @NonNull Attribute item : attribute) {
+    public B removeAttributeModifier(final Attribute... attribute) {
+        for (final Attribute item : attribute) {
             this.itemMeta.removeAttributeModifier(item);
         }
         return (B) this;
@@ -407,7 +408,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      *
      * @return the built {@code ItemStack}
      */
-    public @NonNull ItemStack build() {
+    public ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack.clone();
     }

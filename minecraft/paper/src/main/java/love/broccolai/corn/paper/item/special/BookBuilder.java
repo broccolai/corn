@@ -5,9 +5,8 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-import org.checkerframework.common.value.qual.IntRange;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -16,9 +15,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BookMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, BookMeta> {
 
-    private BookBuilder(final @NonNull ItemStack itemStack, final @NonNull BookMeta itemMeta) {
+    private BookBuilder(final ItemStack itemStack, final BookMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -29,7 +29,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @return instance of {@code BookBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BookBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static BookBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new BookBuilder(itemStack, castMeta(itemStack.getItemMeta(), BookMeta.class));
     }
 
@@ -41,7 +41,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BookBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static BookBuilder ofType(final Material material) throws IllegalArgumentException {
         return BookBuilder.of(getItem(material));
     }
 
@@ -61,7 +61,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @return the builder
      */
     @SuppressWarnings({"ResultOfMethodCallIgnored"})
-    public @NonNull BookBuilder title(final @Nullable Component title) {
+    public BookBuilder title(final @Nullable Component title) {
         this.itemMeta.title(title);
         return this;
     }
@@ -82,7 +82,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @return the builder
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public @NonNull BookBuilder author(final @Nullable Component author) {
+    public BookBuilder author(final @Nullable Component author) {
         this.itemMeta.author(author);
         return this;
     }
@@ -102,7 +102,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param generation the generation
      * @return the builder
      */
-    public @NonNull BookBuilder generation(final BookMeta.@Nullable Generation generation) {
+    public BookBuilder generation(final BookMeta.@Nullable Generation generation) {
         this.itemMeta.setGeneration(generation);
         return this;
     }
@@ -112,7 +112,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      *
      * @return the pages
      */
-    public @NonNull List<@NonNull Component> pages() {
+    public List<Component> pages() {
         return this.itemMeta.pages();
     }
 
@@ -123,7 +123,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @return the builder
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    public @NonNull BookBuilder pages(final @Nullable List<@NonNull Component> pages) {
+    public BookBuilder pages(final @Nullable List<Component> pages) {
         if (pages == null) {
             this.itemMeta.pages(List.of());
             return this;
@@ -144,7 +144,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param index the index (1-indexed)
      * @return the page
      */
-    public @NonNull Component getPage(final @IntRange(from = 1) int index) {
+    public Component getPage(final int index) {
         return this.itemMeta.page(index);
     }
 
@@ -155,7 +155,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param page  the page
      * @return the builder
      */
-    public @NonNull BookBuilder setPage(final @IntRange(from = 1) int index, final @NonNull Component page) {
+    public BookBuilder setPage(final int index, final Component page) {
         this.itemMeta.page(index, page);
         return this;
     }
@@ -166,7 +166,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param page the page to add
      * @return the builder
      */
-    public @NonNull BookBuilder addPage(final @NonNull Component... page) {
+    public BookBuilder addPage(final Component... page) {
         this.itemMeta.addPages(page);
         return this;
     }
@@ -177,7 +177,7 @@ public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, Boo
      * @param index the index of the page to remove (1-indexed)
      * @return the builder
      */
-    public @NonNull BookBuilder removePage(final @IntRange(from = 1) int... index) {
+    public BookBuilder removePage(final int... index) {
         for (final int i : index) {
             this.itemMeta.page(i, Component.empty());
         }

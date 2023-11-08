@@ -8,8 +8,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -17,9 +17,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link PotionMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder, PotionMeta> {
 
-    private PotionBuilder(final @NonNull ItemStack itemStack, final @NonNull PotionMeta itemMeta) {
+    private PotionBuilder(final ItemStack itemStack, final PotionMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -30,7 +31,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @return instance of {@code PotionBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull PotionBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static PotionBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new PotionBuilder(itemStack, castMeta(itemStack.getItemMeta(), PotionMeta.class));
     }
 
@@ -42,7 +43,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull PotionBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static PotionBuilder ofType(final Material material) throws IllegalArgumentException {
         return PotionBuilder.of(getItem(material));
     }
 
@@ -51,7 +52,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      *
      * @return the custom effects
      */
-    public @NonNull List<@NonNull PotionEffect> customEffects() {
+    public List<PotionEffect> customEffects() {
         return this.itemMeta.getCustomEffects();
     }
 
@@ -61,10 +62,10 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param customEffects custom effects
      * @return the builder
      */
-    public @NonNull PotionBuilder customEffects(final @Nullable List<@NonNull PotionEffect> customEffects) {
+    public PotionBuilder customEffects(final @Nullable List<PotionEffect> customEffects) {
         this.itemMeta.clearCustomEffects();
         if (customEffects != null) {
-            for (final @NonNull PotionEffect item : customEffects) {
+            for (final PotionEffect item : customEffects) {
                 this.itemMeta.addCustomEffect(item, true);
             }
         }
@@ -78,7 +79,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
      * @return the builder
      */
-    public @NonNull PotionBuilder addCustomEffect(final @NonNull PotionEffect customEffect, final boolean overwrite) {
+    public PotionBuilder addCustomEffect(final PotionEffect customEffect, final boolean overwrite) {
         this.itemMeta.addCustomEffect(customEffect, overwrite);
         return this;
     }
@@ -89,7 +90,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param customEffectType the custom effect type to remove
      * @return the builder
      */
-    public @NonNull PotionBuilder removeCustomEffect(final @NonNull PotionEffectType... customEffectType) {
+    public PotionBuilder removeCustomEffect(final PotionEffectType... customEffectType) {
         for (final PotionEffectType item : customEffectType) {
             this.itemMeta.removeCustomEffect(item);
         }
@@ -102,7 +103,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param customEffectType the custom effect type
      * @return the builder
      */
-    public boolean hasCustomEffect(final @NonNull PotionEffectType customEffectType) {
+    public boolean hasCustomEffect(final PotionEffectType customEffectType) {
         return this.itemMeta.hasCustomEffect(customEffectType);
     }
 
@@ -121,7 +122,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param color the {@code Color}
      * @return the builder
      */
-    public @NonNull PotionBuilder color(final @Nullable Color color) {
+    public PotionBuilder color(final @Nullable Color color) {
         this.itemMeta.setColor(color);
         return this;
     }
@@ -131,7 +132,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      *
      * @return the base {@code PotionData}
      */
-    public @NonNull PotionData basePotionData() {
+    public PotionData basePotionData() {
         return this.itemMeta.getBasePotionData();
     }
 
@@ -141,7 +142,7 @@ public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder,
      * @param basePotionData the base {@code PotionData}
      * @return the builder
      */
-    public @NonNull PotionBuilder basePotionData(final @NonNull PotionData basePotionData) {
+    public PotionBuilder basePotionData(final PotionData basePotionData) {
         this.itemMeta.setBasePotionData(basePotionData);
         return this;
     }

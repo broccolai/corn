@@ -4,16 +4,17 @@ import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link Damageable}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class DamageableBuilder extends AbstractPaperItemBuilder<DamageableBuilder, Damageable> {
 
-    private DamageableBuilder(final @NonNull ItemStack itemStack, final @NonNull Damageable itemMeta) {
+    private DamageableBuilder(final ItemStack itemStack, final Damageable itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -24,7 +25,7 @@ public final class DamageableBuilder extends AbstractPaperItemBuilder<Damageable
      * @return instance of {@code DamageableBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull DamageableBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static DamageableBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new DamageableBuilder(itemStack, castMeta(itemStack.getItemMeta(), Damageable.class));
     }
 
@@ -36,7 +37,7 @@ public final class DamageableBuilder extends AbstractPaperItemBuilder<Damageable
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull DamageableBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static DamageableBuilder ofType(final Material material) throws IllegalArgumentException {
         return DamageableBuilder.of(getItem(material));
     }
 
@@ -58,7 +59,7 @@ public final class DamageableBuilder extends AbstractPaperItemBuilder<Damageable
      * @param damage the damage
      * @return the builder
      */
-    public @NonNull DamageableBuilder damage(final @NonNull Integer damage) {
+    public DamageableBuilder damage(final Integer damage) {
         this.itemMeta.setDamage(damage);
         return this;
     }

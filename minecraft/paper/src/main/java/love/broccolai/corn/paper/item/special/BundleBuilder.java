@@ -4,8 +4,8 @@ import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -13,9 +13,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BundleMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder, BundleMeta> {
 
-    private BundleBuilder(final @NonNull ItemStack itemStack, final @NonNull BundleMeta itemMeta) {
+    private BundleBuilder(final ItemStack itemStack, final BundleMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -26,7 +27,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @return instance of {@code BundleBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BundleBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static BundleBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new BundleBuilder(itemStack, castMeta(itemStack.getItemMeta(), BundleMeta.class));
     }
 
@@ -38,7 +39,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BundleBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static BundleBuilder ofType(final Material material) throws IllegalArgumentException {
         return BundleBuilder.of(getItem(material));
     }
 
@@ -49,7 +50,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BundleBuilder ofBundle() throws IllegalArgumentException {
+    public static BundleBuilder ofBundle() throws IllegalArgumentException {
         return ofType(Material.BUNDLE);
     }
 
@@ -58,7 +59,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      *
      * @return the items
      */
-    public @NonNull List<@NonNull ItemStack> items() {
+    public List<ItemStack> items() {
         return this.itemMeta.getItems();
     }
 
@@ -68,7 +69,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @param items the items
      * @return the builder
      */
-    public @NonNull BundleBuilder items(final @Nullable List<@NonNull ItemStack> items) {
+    public BundleBuilder items(final @Nullable List<ItemStack> items) {
         this.itemMeta.setItems(items);
         return this;
     }
@@ -79,7 +80,7 @@ public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder,
      * @param item the item to add
      * @return the builder
      */
-    public @NonNull BundleBuilder addItem(final @NonNull ItemStack... item) {
+    public BundleBuilder addItem(final ItemStack... item) {
         for (final ItemStack i : item) {
             this.itemMeta.addItem(i);
         }

@@ -1,12 +1,13 @@
 package love.broccolai.corn.context;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+@NullMarked
 public class DelegatingContextKeyRegistry implements ContextKeyRegistry {
 
     private final Set<ContextKey<?>> keys = new HashSet<>();
@@ -16,12 +17,12 @@ public class DelegatingContextKeyRegistry implements ContextKeyRegistry {
      *
      * @param keys keys to register
      */
-    public final void register(final @NonNull ContextKey<?>... keys) {
+    public final void register(final ContextKey<?>... keys) {
         Collections.addAll(this.keys, keys);
     }
 
     @Override
-    public final @NonNull Iterator<ContextKey<?>> iterator() {
+    public final Iterator<ContextKey<?>> iterator() {
         return this.keys.iterator();
     }
 

@@ -5,15 +5,16 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BlockStateMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockStateBuilder, BlockStateMeta> {
 
-    private BlockStateBuilder(final @NonNull ItemStack itemStack, final @NonNull BlockStateMeta itemMeta) {
+    private BlockStateBuilder(final ItemStack itemStack, final BlockStateMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -24,7 +25,7 @@ public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockState
      * @return instance of {@code BlockStateBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BlockStateBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static BlockStateBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new BlockStateBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockStateMeta.class));
     }
 
@@ -36,7 +37,7 @@ public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockState
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BlockStateBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static BlockStateBuilder ofType(final Material material) throws IllegalArgumentException {
         return BlockStateBuilder.of(getItem(material));
     }
 
@@ -45,7 +46,7 @@ public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockState
      *
      * @return the {@code BlockState}
      */
-    public @NonNull BlockState blockState() {
+    public BlockState blockState() {
         return this.itemMeta.getBlockState();
     }
 
@@ -55,7 +56,7 @@ public final class BlockStateBuilder extends AbstractPaperItemBuilder<BlockState
      * @param blockState the {@code BlockState}
      * @return the builder
      */
-    public @NonNull BlockStateBuilder blockState(final @NonNull BlockState blockState) {
+    public BlockStateBuilder blockState(final BlockState blockState) {
         this.itemMeta.setBlockState(blockState);
         return this;
     }

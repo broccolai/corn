@@ -5,8 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.common.value.qual.IntRange;
+import org.jspecify.annotations.NullMarked;
 
 import java.util.List;
 
@@ -14,9 +13,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BannerMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder, BannerMeta> {
 
-    private BannerBuilder(final @NonNull ItemStack itemStack, final @NonNull BannerMeta itemMeta) {
+    private BannerBuilder(final ItemStack itemStack, final BannerMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -27,7 +27,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @return instance of {@code BannerBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BannerBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static BannerBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new BannerBuilder(itemStack, castMeta(itemStack.getItemMeta(), BannerMeta.class));
     }
 
@@ -39,7 +39,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull BannerBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static BannerBuilder ofType(final Material material) throws IllegalArgumentException {
         return BannerBuilder.of(getItem(material));
     }
 
@@ -48,7 +48,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      *
      * @return the patterns
      */
-    public @NonNull List<Pattern> patterns() {
+    public List<Pattern> patterns() {
         return this.itemMeta.getPatterns();
     }
 
@@ -58,7 +58,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param patterns the patterns
      * @return the builder
      */
-    public @NonNull BannerBuilder patterns(final @NonNull List<Pattern> patterns) {
+    public BannerBuilder patterns(final List<Pattern> patterns) {
         this.itemMeta.setPatterns(patterns);
         return this;
     }
@@ -69,7 +69,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param index the index (0-indexed)
      * @return the pattern
      */
-    public @NonNull Pattern getPattern(final @IntRange(from = 0) int index) {
+    public Pattern getPattern(final int index) {
         return this.itemMeta.getPattern(index);
     }
 
@@ -80,7 +80,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param pattern the pattern (0-indexed)
      * @return the builder
      */
-    public @NonNull BannerBuilder setPattern(final @IntRange(from = 0) int index, final @NonNull Pattern pattern) {
+    public BannerBuilder setPattern(final int index, final Pattern pattern) {
         this.itemMeta.setPattern(index, pattern);
         return this;
     }
@@ -91,7 +91,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param pattern the pattern
      * @return the builder
      */
-    public @NonNull BannerBuilder addPattern(final @NonNull Pattern... pattern) {
+    public BannerBuilder addPattern(final Pattern... pattern) {
         for (final Pattern item : pattern) {
             this.itemMeta.addPattern(item);
         }
@@ -104,7 +104,7 @@ public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder,
      * @param index the index (0-indexed)
      * @return the builder
      */
-    public @NonNull BannerBuilder removePattern(final @IntRange(from = 0) int... index) {
+    public BannerBuilder removePattern(final int... index) {
         for (final int item : index) {
             this.itemMeta.removePattern(item);
         }

@@ -5,8 +5,8 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +19,14 @@ import java.util.function.Consumer;
  * @param <B> the builder type
  * @param <M> the {@link ItemMeta} type
  */
+@NullMarked
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilder<B, M>, M extends ItemMeta>
         extends AbstractItemBuilder<B, M> {
 
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
-    protected AbstractPaperItemBuilder(final @NonNull ItemStack itemStack, final @NonNull M itemMeta) {
+    protected AbstractPaperItemBuilder(final ItemStack itemStack, final M itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -49,7 +50,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @param name the display name
      * @return the builder
      */
-    public @NonNull B name(final @Nullable Component name) {
+    public B name(final @Nullable Component name) {
         if (name == null) {
             this.itemMeta.displayName(null);
             return (B) this;
@@ -81,14 +82,14 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B lore(final @Nullable List<Component> lines) {
+    public B lore(final @Nullable List<Component> lines) {
         if (lines == null) {
             this.itemMeta.lore(null);
             return (B) this;
         }
 
         // sidestep default formatting by creating a dummy component and appending the component to that
-        final @NonNull List<Component> toAdd = new ArrayList<>(lines);
+        final List<Component> toAdd = new ArrayList<>(lines);
         toAdd.replaceAll(DISABLE_ITALICS::append);
 
         this.itemMeta.lore(toAdd);
@@ -103,7 +104,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @param lines the lines of the lore
      * @return the builder
      */
-    public @NonNull B loreList(final @NonNull Component... lines) {
+    public B loreList(final Component... lines) {
         return this.lore(List.of(lines));
     }
 
@@ -115,8 +116,8 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @param consumer the {@code Consumer} to modify the lore with
      * @return the builder
      */
-    public @NonNull B loreModifier(final @NonNull Consumer<@NonNull List<Component>> consumer) {
-        final @NonNull List<Component> lore = Optional
+    public B loreModifier(final Consumer<List<Component>> consumer) {
+        final List<Component> lore = Optional
                 .ofNullable(this.itemMeta.lore())
                 .orElse(new ArrayList<>());
 

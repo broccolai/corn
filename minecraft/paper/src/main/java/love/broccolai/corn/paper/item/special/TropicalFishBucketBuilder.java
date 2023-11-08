@@ -6,15 +6,16 @@ import org.bukkit.Material;
 import org.bukkit.entity.TropicalFish;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.TropicalFishBucketMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link TropicalFishBucketMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<TropicalFishBucketBuilder, TropicalFishBucketMeta> {
 
-    private TropicalFishBucketBuilder(final @NonNull ItemStack itemStack, final @NonNull TropicalFishBucketMeta itemMeta) {
+    private TropicalFishBucketBuilder(final ItemStack itemStack, final TropicalFishBucketMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -25,7 +26,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @return instance of {@code TropicalFishBucketBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull TropicalFishBucketBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static TropicalFishBucketBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new TropicalFishBucketBuilder(itemStack, castMeta(itemStack.getItemMeta(), TropicalFishBucketMeta.class));
     }
 
@@ -37,7 +38,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull TropicalFishBucketBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static TropicalFishBucketBuilder ofType(final Material material) throws IllegalArgumentException {
         return TropicalFishBucketBuilder.of(getItem(material));
     }
 
@@ -48,7 +49,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull TropicalFishBucketBuilder ofTropicalFishBucket() throws IllegalArgumentException {
+    public static TropicalFishBucketBuilder ofTropicalFishBucket() throws IllegalArgumentException {
         return ofType(Material.TROPICAL_FISH_BUCKET);
     }
 
@@ -57,7 +58,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      *
      * @return the pattern
      */
-    public TropicalFish.@NonNull Pattern pattern() {
+    public TropicalFish.Pattern pattern() {
         return this.itemMeta.getPattern();
     }
 
@@ -67,7 +68,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @param pattern the pattern
      * @return the builder
      */
-    public @NonNull TropicalFishBucketBuilder pattern(final TropicalFish.@NonNull Pattern pattern) {
+    public TropicalFishBucketBuilder pattern(final TropicalFish.Pattern pattern) {
         this.itemMeta.setPattern(pattern);
         return this;
     }
@@ -77,7 +78,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      *
      * @return the pattern color
      */
-    public @NonNull DyeColor patternColor() {
+    public DyeColor patternColor() {
         return this.itemMeta.getPatternColor();
     }
 
@@ -87,7 +88,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @param patternColor the pattern color
      * @return the builder
      */
-    public @NonNull TropicalFishBucketBuilder patternColor(final @NonNull DyeColor patternColor) {
+    public TropicalFishBucketBuilder patternColor(final DyeColor patternColor) {
         this.itemMeta.setPatternColor(patternColor);
         return this;
     }
@@ -97,7 +98,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      *
      * @return the body color
      */
-    public @NonNull DyeColor bodyColor() {
+    public DyeColor bodyColor() {
         return this.itemMeta.getBodyColor();
     }
 
@@ -107,7 +108,7 @@ public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<Tr
      * @param bodyColor the body color
      * @return the builder
      */
-    public @NonNull TropicalFishBucketBuilder bodyColor(final @NonNull DyeColor bodyColor) {
+    public TropicalFishBucketBuilder bodyColor(final DyeColor bodyColor) {
         this.itemMeta.setBodyColor(bodyColor);
         return this;
     }

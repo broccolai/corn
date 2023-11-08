@@ -1,15 +1,15 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,10 @@ import java.util.UUID;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
 
-    private SkullBuilder(final @NonNull ItemStack itemStack, final @NonNull SkullMeta itemMeta) {
+    private SkullBuilder(final ItemStack itemStack, final SkullMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -33,7 +34,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @return instance of {@code SkullBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SkullBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static SkullBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new SkullBuilder(itemStack, castMeta(itemStack.getItemMeta(), SkullMeta.class));
     }
 
@@ -45,7 +46,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SkullBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static SkullBuilder ofType(final Material material) throws IllegalArgumentException {
         return SkullBuilder.of(getItem(material));
     }
 
@@ -56,7 +57,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull SkullBuilder ofPlayerHead() throws IllegalArgumentException {
+    public static SkullBuilder ofPlayerHead() throws IllegalArgumentException {
         return ofType(Material.PLAYER_HEAD);
     }
 
@@ -65,14 +66,14 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      *
      * @return the textures
      */
-    public @NonNull List<@NonNull ProfileProperty> textures() {
-        final @Nullable PlayerProfile profile = this.itemMeta.getPlayerProfile();
+    public List<ProfileProperty> textures() {
+        final PlayerProfile profile = this.itemMeta.getPlayerProfile();
         if (profile == null) {
             return List.of();
         }
 
-        final @NonNull List<@NonNull ProfileProperty> textures = new ArrayList<>();
-        for (final @NonNull ProfileProperty property : profile.getProperties()) {
+        final List<ProfileProperty> textures = new ArrayList<>();
+        for (final ProfileProperty property : profile.getProperties()) {
             if (property.getName().equals("textures")) {
                 textures.add(property);
             }
@@ -87,8 +88,8 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @param data the textures
      * @return the builder
      */
-    public @NonNull SkullBuilder textures(final @NonNull String data) {
-        final @NonNull PlayerProfile profile = Optional
+    public SkullBuilder textures(final String data) {
+        final PlayerProfile profile = Optional
                 .ofNullable(this.itemMeta.getPlayerProfile())
                 .orElse(Bukkit.createProfile(UUID.randomUUID()));
 
@@ -113,7 +114,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @param playerProfile the {@code PlayerProfile}
      * @return the builder
      */
-    public @NonNull SkullBuilder playerProfile(final @Nullable PlayerProfile playerProfile) {
+    public SkullBuilder playerProfile(final @Nullable PlayerProfile playerProfile) {
         this.itemMeta.setPlayerProfile(playerProfile);
         return this;
     }
@@ -133,7 +134,7 @@ public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, S
      * @param owningPlayer the owning player
      * @return the builder
      */
-    public @NonNull SkullBuilder owningPlayer(final @Nullable OfflinePlayer owningPlayer) {
+    public SkullBuilder owningPlayer(final @Nullable OfflinePlayer owningPlayer) {
         this.itemMeta.setOwningPlayer(owningPlayer);
         return this;
     }

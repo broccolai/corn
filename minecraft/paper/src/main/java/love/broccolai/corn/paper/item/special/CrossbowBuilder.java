@@ -4,8 +4,8 @@ import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CrossbowMeta;
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -13,9 +13,10 @@ import java.util.List;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link CrossbowMeta}.
  */
 @SuppressWarnings("unused")
+@NullMarked
 public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuilder, CrossbowMeta> {
 
-    private CrossbowBuilder(final @NonNull ItemStack itemStack, final @NonNull CrossbowMeta itemMeta) {
+    private CrossbowBuilder(final ItemStack itemStack, final CrossbowMeta itemMeta) {
         super(itemStack, itemMeta);
     }
 
@@ -26,7 +27,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      * @return instance of {@code CrossbowBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CrossbowBuilder of(final @NonNull ItemStack itemStack) throws IllegalArgumentException {
+    public static CrossbowBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
         return new CrossbowBuilder(itemStack, castMeta(itemStack.getItemMeta(), CrossbowMeta.class));
     }
 
@@ -38,7 +39,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CrossbowBuilder ofType(final @NonNull Material material) throws IllegalArgumentException {
+    public static CrossbowBuilder ofType(final Material material) throws IllegalArgumentException {
         return CrossbowBuilder.of(getItem(material));
     }
 
@@ -49,7 +50,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static @NonNull CrossbowBuilder ofCrossbow() throws IllegalArgumentException {
+    public static CrossbowBuilder ofCrossbow() throws IllegalArgumentException {
         return ofType(Material.CROSSBOW);
     }
 
@@ -58,7 +59,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      *
      * @return the charged projectiles
      */
-    public @NonNull List<@NonNull ItemStack> chargedProjectiles() {
+    public List<ItemStack> chargedProjectiles() {
         return this.itemMeta.getChargedProjectiles();
     }
 
@@ -69,7 +70,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      * @param chargedProjectiles the charged projectiles
      * @return the builder
      */
-    public @NonNull CrossbowBuilder chargedProjectiles(final @Nullable List<@NonNull ItemStack> chargedProjectiles) {
+    public CrossbowBuilder chargedProjectiles(final @Nullable List<ItemStack> chargedProjectiles) {
         this.itemMeta.setChargedProjectiles(chargedProjectiles);
         return this;
     }
@@ -81,7 +82,7 @@ public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuil
      * @param chargedProjectile the charged projectile to add
      * @return the builder
      */
-    public @NonNull CrossbowBuilder addChargedProjectile(final @NonNull ItemStack... chargedProjectile) {
+    public CrossbowBuilder addChargedProjectile(final ItemStack... chargedProjectile) {
         for (final ItemStack item : chargedProjectile) {
             this.itemMeta.addChargedProjectile(item);
         }
