@@ -1,8 +1,8 @@
 import com.adarshr.gradle.testlogger.TestLoggerPlugin
 import com.adarshr.gradle.testlogger.theme.ThemeType
+import net.kyori.indra.IndraCheckstylePlugin
 import net.kyori.indra.IndraPlugin
 import net.kyori.indra.IndraPublishingPlugin
-import net.kyori.indra.IndraCheckstylePlugin
 
 plugins {
     alias(libs.plugins.indra.base)
@@ -28,7 +28,7 @@ subprojects {
     }
 
     dependencies {
-        compileOnly(rootProject.libs.checker.qual)
+        compileOnly(rootProject.libs.jspecify)
 
         testImplementation(rootProject.libs.truth)
 
@@ -60,6 +60,10 @@ subprojects {
                     developer {
                         id.set("broccolai")
                         email.set("me@broccol.ai")
+                    }
+                    developer {
+                        id.set("TehBrian")
+                        email.set("tehbrian@proton.me")
                     }
                 }
             }

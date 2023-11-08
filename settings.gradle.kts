@@ -1,24 +1,12 @@
 rootProject.name = "corn-parent"
 
-basicProjects("misc", "context", "properties")
-minecraftProjects("spigot", "paper")
+projects("misc", "context", "properties", "minecraft")
 
-fun basicProjects(vararg names: String) {
+fun projects(vararg names: String) {
     include(*names)
 
     names.forEach {
         project(":$it").name = "corn-$it"
-    }
-}
-
-fun minecraftProjects(vararg names: String) {
-    include(*names)
-
-    names.forEach {
-        project(":$it").apply {
-            projectDir = file("minecraft/$it")
-            name = "corn-minecraft-$it"
-        }
     }
 }
 

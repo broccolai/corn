@@ -1,30 +1,31 @@
 package love.broccolai.corn.context;
 
 import io.leangen.geantyref.TypeToken;
-import org.checkerframework.checker.nullness.qual.NonNull;
+import org.jspecify.annotations.NullMarked;
 
-public interface ContextKey<@NonNull T> {
+@NullMarked
+public interface ContextKey<T> {
 
     /**
      * Get the namespace name.
      *
      * @return Namespace of key
      */
-    @NonNull String namespace();
+    String namespace();
 
     /**
      * Get the name of the key.
      *
      * @return Name of key
      */
-    @NonNull String name();
+    String name();
 
     /**
      * Get the type via a TypeToken of the expected value.
      *
      * @return TypeToken of the expected type of value
      */
-    @NonNull TypeToken<@NonNull T> token();
+    TypeToken<T> token();
 
     /**
      * Create a ContextKey through TypeToken
@@ -35,7 +36,7 @@ public interface ContextKey<@NonNull T> {
      * @param <T>       Type associated with the key
      * @return Built ContextKey with T generic
      */
-    static <T> ContextKey<T> of(final @NonNull String namespace, final @NonNull String name, final @NonNull TypeToken<T> token) {
+    static <T> ContextKey<T> of(final String namespace, final String name, final TypeToken<T> token) {
         return new ContextKeyImpl<>(namespace, name, token);
     }
 
@@ -48,7 +49,7 @@ public interface ContextKey<@NonNull T> {
      * @param <T>       Type associated with the key
      * @return Built ContextKey with T generic
      */
-    static <T> ContextKey<T> of(final @NonNull String namespace, final @NonNull String name, final @NonNull Class<T> clazz) {
+    static <T> ContextKey<T> of(final String namespace, final String name, final Class<T> clazz) {
         return new ContextKeyImpl<>(namespace, name, TypeToken.get(clazz));
     }
 

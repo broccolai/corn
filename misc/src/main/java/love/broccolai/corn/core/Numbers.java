@@ -1,10 +1,11 @@
 package love.broccolai.corn.core;
 
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
+
 import java.util.function.Function;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-
+@NullMarked
 public final class Numbers {
 
     private Numbers() {
@@ -20,7 +21,7 @@ public final class Numbers {
      */
     public static <T extends Number> @Nullable T valueOrNull(
             final @Nullable String input,
-            final @NonNull Function<String, T> function
+            final Function<String, T> function
     ) {
         if (input == null) {
             return null;

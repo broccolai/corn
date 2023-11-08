@@ -1,5 +1,7 @@
 package love.broccolai.corn.core;
 
+import org.jspecify.annotations.NullMarked;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,9 +9,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
-import org.checkerframework.checker.nullness.qual.Nullable;
-
+@NullMarked
 public final class Lists {
 
     private Lists() {
@@ -24,9 +24,9 @@ public final class Lists {
      * @param function Function to group the result by
      * @return Map of R as the keys and T as the values
      */
-    public static <@Nullable T, @Nullable R> @NonNull Map<R, @NonNull List<T>> group(
-            final @NonNull Iterable<T> input,
-            final @NonNull Function<T, R> function
+    public static <T, R> Map<R, List<T>> group(
+            final Iterable<T> input,
+            final Function<T, R> function
     ) {
         final Map<R, List<T>> output = new HashMap<>();
 
@@ -52,9 +52,9 @@ public final class Lists {
      * @param <T>      current type of the lists elements
      * @return a list with the mapped elements
      */
-    public static <@Nullable R, @Nullable T> @NonNull List<R> map(
-            final @NonNull Iterable<T> input,
-            final @NonNull Function<T, R> function
+    public static <R, T> List<R> map(
+            final Iterable<T> input,
+            final Function<T, R> function
     ) {
         final List<R> output = new ArrayList<>();
 
@@ -68,14 +68,14 @@ public final class Lists {
     /**
      * Find the last element in a List, matching a predicate.
      *
-     * @param input the list to search
+     * @param input     the list to search
      * @param predicate the predicate to match against
-     * @param <T> type of list elements
+     * @param <T>       type of list elements
      * @return the found value
      */
-    public static <@Nullable T> @NonNull T last(
-            final @NonNull List<T> input,
-            final @NonNull Predicate<T> predicate
+    public static <T> T last(
+            final List<T> input,
+            final Predicate<T> predicate
     ) {
         for (int i = input.size() - 1; i >= 0; i--) {
             final T value = input.get(i);

@@ -1,6 +1,5 @@
 package love.broccolai.corn.properties;
 
-import org.checkerframework.checker.nullness.qual.NonNull;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -83,7 +82,7 @@ public final class DirtyPropertiesMapTest {
         }
 
         @Override
-        public @NonNull PropertySnapshot properties() {
+        public PropertySnapshot properties() {
             return PropertySnapshot.of(
                     Property.of("number", this.number),
                     SafeProperty.of("word", this.word)
@@ -111,7 +110,7 @@ public final class DirtyPropertiesMapTest {
         }
 
         @Override
-        public @NonNull PropertySnapshot properties() {
+        public PropertySnapshot properties() {
             return PropertySnapshot.of(
                     Property.of("number", this.number),
                     Property.of("someHolder", this.someHolder)
