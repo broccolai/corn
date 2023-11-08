@@ -5,9 +5,9 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -128,22 +128,22 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
     }
 
     /**
-     * Gets the base {@code PotionData}.
+     * Gets the base {@code PotionType}.
      *
-     * @return the base {@code PotionData}
+     * @return the base {@code PotionType}
      */
-    public PotionData basePotionData() {
-        return this.itemMeta.getBasePotionData();
+    public PotionType basePotionType() {
+        return this.itemMeta.getBasePotionType();
     }
 
     /**
-     * Sets the base {@code PotionData}.
+     * Sets the base {@code PotionType}.
      *
-     * @param basePotionData the base {@code PotionData}
+     * @param basePotionType the base {@code PotionType}
      * @return the builder
      */
-    public PotionBuilder basePotionData(final PotionData basePotionData) {
-        this.itemMeta.setBasePotionData(basePotionData);
+    public PotionBuilder basePotionType(final PotionType basePotionType) {
+        this.itemMeta.setBasePotionType(basePotionType);
         return this;
     }
 

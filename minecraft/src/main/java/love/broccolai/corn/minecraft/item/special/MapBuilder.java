@@ -64,26 +64,6 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
     }
 
     /**
-     * Gets the location name.
-     *
-     * @return the location name
-     */
-    public @Nullable String locationName() {
-        return this.itemMeta.getLocationName();
-    }
-
-    /**
-     * Sets the location name. Pass {@code null} to reset.
-     *
-     * @param locationName the location name
-     * @return the builder
-     */
-    public MapBuilder locationName(final @Nullable String locationName) {
-        this.itemMeta.setLocationName(locationName);
-        return this;
-    }
-
-    /**
      * Gets the {@code MapView}.
      *
      * @return the {@code MapView}

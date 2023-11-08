@@ -425,26 +425,6 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the localized name.
-     *
-     * @return the localized name
-     */
-    public String localizedName() {
-        return this.itemMeta.getLocalizedName();
-    }
-
-    /**
-     * Sets the localized name. Pass {@code null} to reset.
-     *
-     * @param localizedName the localized name
-     * @return the builder
-     */
-    public B localizedName(final @Nullable String localizedName) {
-        this.itemMeta.setLocalizedName(localizedName);
-        return (B) this;
-    }
-
-    /**
      * Gets the {@code AttributeModifier}s.
      *
      * @return the {@code AttributeModifier}s
