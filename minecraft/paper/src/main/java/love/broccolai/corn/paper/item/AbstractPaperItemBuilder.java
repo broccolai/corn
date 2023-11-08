@@ -1,6 +1,5 @@
 package love.broccolai.corn.paper.item;
 
-import love.broccolai.corn.spigot.item.AbstractItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.inventory.ItemStack;
