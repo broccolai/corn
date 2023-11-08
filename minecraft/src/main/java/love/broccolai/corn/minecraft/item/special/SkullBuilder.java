@@ -19,7 +19,6 @@ import java.util.UUID;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullMeta> {
 

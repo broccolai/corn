@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link CrossbowMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, CrossbowMeta> {
 

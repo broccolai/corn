@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link KnowledgeBookMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class KnowledgeBookBuilder extends AbstractItemBuilder<KnowledgeBookBuilder, KnowledgeBookMeta> {
 

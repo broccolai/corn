@@ -14,7 +14,6 @@ import org.jspecify.annotations.Nullable;
  * <p>
  * Composite of {@link ArmorBuilder} and {@link LeatherArmorBuilder}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableArmorBuilder, ColorableArmorMeta> {
 

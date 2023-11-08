@@ -9,7 +9,6 @@ import org.jspecify.annotations.NullMarked;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ArmorStandMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class ArmorStandBuilder extends AbstractItemBuilder<ArmorStandBuilder, ArmorStandMeta> {
 

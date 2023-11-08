@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BannerMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, BannerMeta> {
 

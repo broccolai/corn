@@ -11,7 +11,6 @@ import org.jspecify.annotations.NullMarked;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link TropicalFishBucketMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class TropicalFishBucketBuilder extends AbstractItemBuilder<TropicalFishBucketBuilder, TropicalFishBucketMeta> {
 

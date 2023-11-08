@@ -10,7 +10,6 @@ import org.jspecify.annotations.Nullable;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link Repairable}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuilder, Repairable> {
 

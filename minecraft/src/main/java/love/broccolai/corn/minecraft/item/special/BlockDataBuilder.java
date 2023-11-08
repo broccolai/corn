@@ -10,7 +10,6 @@ import org.jspecify.annotations.NullMarked;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BlockDataMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder, BlockDataMeta> {
 

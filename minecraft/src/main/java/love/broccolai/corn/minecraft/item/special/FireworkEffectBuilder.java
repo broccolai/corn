@@ -11,7 +11,6 @@ import org.jspecify.annotations.Nullable;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link FireworkEffectMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEffectBuilder, FireworkEffectMeta> {
 

@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BookMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta> {
 

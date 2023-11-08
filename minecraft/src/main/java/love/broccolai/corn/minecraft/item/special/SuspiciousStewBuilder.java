@@ -14,7 +14,6 @@ import java.util.List;
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SuspiciousStewMeta}.
  */
-@SuppressWarnings("unused")
 @NullMarked
 public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousStewBuilder, SuspiciousStewMeta> {
 
