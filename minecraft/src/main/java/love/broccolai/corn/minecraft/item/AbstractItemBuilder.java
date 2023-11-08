@@ -1,4 +1,4 @@
-package love.broccolai.corn.paper.item;
+package love.broccolai.corn.minecraft.item;
 
 import com.google.common.collect.Multimap;
 import net.kyori.adventure.text.Component;

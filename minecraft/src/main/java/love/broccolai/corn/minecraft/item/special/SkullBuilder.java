@@ -1,8 +1,8 @@
-package love.broccolai.corn.paper.item.special;
+package love.broccolai.corn.minecraft.item.special;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import love.broccolai.corn.paper.item.AbstractItemBuilder;
+import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;

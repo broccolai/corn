@@ -1,6 +1,6 @@
-package love.broccolai.corn.paper.item.special;
+package love.broccolai.corn.minecraft.item.special;
 
-import love.broccolai.corn.paper.item.AbstractItemBuilder;
+import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.TropicalFish;

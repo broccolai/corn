@@ -1,7 +1,7 @@
-package love.broccolai.corn.paper.item.special;
+package love.broccolai.corn.minecraft.item.special;
 
 import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
-import love.broccolai.corn.paper.item.AbstractItemBuilder;
+import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;

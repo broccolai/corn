@@ -1,4 +1,4 @@
-package love.broccolai.corn.paper.item;
+package love.broccolai.corn.minecraft.item;
 
 
 import org.bukkit.Bukkit;

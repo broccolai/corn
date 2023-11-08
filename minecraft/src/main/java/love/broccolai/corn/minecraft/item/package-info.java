@@ -1,4 +1,4 @@
 /**
  * Utilities for manipulating items
  */
-package love.broccolai.corn.paper.item;
+package love.broccolai.corn.minecraft.item;
