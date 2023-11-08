@@ -55,7 +55,7 @@ public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, Co
     /**
      * Gets the {@code Location} of the lodestone that this compass is tracking.
      *
-     * @return the the lodestone
+     * @return the lodestone
      */
     public @Nullable Location lodestone() {
         return this.itemMeta.getLodestone();
@@ -64,7 +64,7 @@ public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, Co
     /**
      * Sets the {@code Location} of the lodestone that this compass is tracking. Pass {@code null} to reset.
      *
-     * @param lodestone the the lodestone
+     * @param lodestone the lodestone
      * @return the builder
      */
     public CompassBuilder lodestone(final @Nullable Location lodestone) {
