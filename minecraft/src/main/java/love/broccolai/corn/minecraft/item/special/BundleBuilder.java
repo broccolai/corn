@@ -74,7 +74,7 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
     }
 
     /**
-     * Adds a item.
+     * Adds an item.
      *
      * @param item the item to add
      * @return the builder
