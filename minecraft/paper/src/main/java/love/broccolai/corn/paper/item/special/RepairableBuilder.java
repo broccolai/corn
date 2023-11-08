@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Repairable;
@@ -12,7 +12,7 @@ import org.jspecify.annotations.Nullable;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class RepairableBuilder extends AbstractPaperItemBuilder<RepairableBuilder, Repairable> {
+public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuilder, Repairable> {
 
     private RepairableBuilder(final ItemStack itemStack, final Repairable itemMeta) {
         super(itemStack, itemMeta);

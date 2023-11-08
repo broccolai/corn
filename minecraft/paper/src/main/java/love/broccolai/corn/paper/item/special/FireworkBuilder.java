@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class FireworkBuilder extends AbstractPaperItemBuilder<FireworkBuilder, FireworkMeta> {
+public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, FireworkMeta> {
 
     private FireworkBuilder(final ItemStack itemStack, final FireworkMeta itemMeta) {
         super(itemStack, itemMeta);

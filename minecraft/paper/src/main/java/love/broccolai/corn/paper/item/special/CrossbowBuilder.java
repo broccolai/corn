@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.CrossbowMeta;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class CrossbowBuilder extends AbstractPaperItemBuilder<CrossbowBuilder, CrossbowMeta> {
+public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, CrossbowMeta> {
 
     private CrossbowBuilder(final ItemStack itemStack, final CrossbowMeta itemMeta) {
         super(itemStack, itemMeta);

@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ import org.jspecify.annotations.Nullable;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class CompassBuilder extends AbstractPaperItemBuilder<CompassBuilder, CompassMeta> {
+public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, CompassMeta> {
 
     private CompassBuilder(final ItemStack itemStack, final CompassMeta itemMeta) {
         super(itemStack, itemMeta);

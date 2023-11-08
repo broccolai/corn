@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class BundleBuilder extends AbstractPaperItemBuilder<BundleBuilder, BundleMeta> {
+public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, BundleMeta> {
 
     private BundleBuilder(final ItemStack itemStack, final BundleMeta itemMeta) {
         super(itemStack, itemMeta);

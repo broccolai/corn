@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +18,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class PotionBuilder extends AbstractPaperItemBuilder<PotionBuilder, PotionMeta> {
+public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, PotionMeta> {
 
     private PotionBuilder(final ItemStack itemStack, final PotionMeta itemMeta) {
         super(itemStack, itemMeta);

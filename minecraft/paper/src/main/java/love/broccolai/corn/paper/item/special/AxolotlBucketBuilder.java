@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +12,7 @@ import org.jspecify.annotations.NullMarked;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class AxolotlBucketBuilder extends AbstractPaperItemBuilder<AxolotlBucketBuilder, AxolotlBucketMeta> {
+public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucketBuilder, AxolotlBucketMeta> {
 
     private AxolotlBucketBuilder(final ItemStack itemStack, final AxolotlBucketMeta itemMeta) {
         super(itemStack, itemMeta);

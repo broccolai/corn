@@ -2,7 +2,7 @@ package love.broccolai.corn.paper.item.special;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
@@ -21,7 +21,7 @@ import java.util.UUID;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class SkullBuilder extends AbstractPaperItemBuilder<SkullBuilder, SkullMeta> {
+public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullMeta> {
 
     private SkullBuilder(final ItemStack itemStack, final SkullMeta itemMeta) {
         super(itemStack, itemMeta);

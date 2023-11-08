@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ import java.util.Map;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class EnchantmentStorageBuilder extends AbstractPaperItemBuilder<EnchantmentStorageBuilder, EnchantmentStorageMeta> {
+public final class EnchantmentStorageBuilder extends AbstractItemBuilder<EnchantmentStorageBuilder, EnchantmentStorageMeta> {
 
     private EnchantmentStorageBuilder(final ItemStack itemStack, final EnchantmentStorageMeta itemMeta) {
         super(itemStack, itemMeta);

@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ import org.jspecify.annotations.Nullable;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class MapBuilder extends AbstractPaperItemBuilder<MapBuilder, MapMeta> {
+public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
 
     private MapBuilder(final ItemStack itemStack, final MapMeta itemMeta) {
         super(itemStack, itemMeta);

@@ -15,9 +15,9 @@ import java.util.Objects;
  */
 @SuppressWarnings({"unused"})
 @NullMarked
-public final class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBuilder, ItemMeta> {
+public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta> {
 
-    private PaperItemBuilder(final ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
+    private ItemBuilder(final ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
                 ? itemMeta
                 : Objects.requireNonNull(
@@ -26,24 +26,24 @@ public final class PaperItemBuilder extends AbstractPaperItemBuilder<PaperItemBu
     }
 
     /**
-     * Creates a {@code PaperItemBuilder}.
+     * Creates a {@code ItemBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
-     * @return instance of {@code PaperItemBuilder}
+     * @return instance of {@code ItemBuilder}
      */
-    public static PaperItemBuilder of(final ItemStack itemStack) {
-        return new PaperItemBuilder(itemStack, itemStack.getItemMeta());
+    public static ItemBuilder of(final ItemStack itemStack) {
+        return new ItemBuilder(itemStack, itemStack.getItemMeta());
     }
 
     /**
-     * Creates a {@code PaperItemBuilder}.
+     * Creates a {@code ItemBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
-     * @return instance of {@code PaperItemBuilder}
+     * @return instance of {@code ItemBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
-    public static PaperItemBuilder ofType(final Material material) throws IllegalArgumentException {
-        return PaperItemBuilder.of(getItem(material));
+    public static ItemBuilder ofType(final Material material) throws IllegalArgumentException {
+        return ItemBuilder.of(getItem(material));
     }
 
 }

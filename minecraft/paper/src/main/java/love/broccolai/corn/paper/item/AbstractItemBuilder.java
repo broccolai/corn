@@ -24,14 +24,14 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 /**
- * Modifies {@link ItemStack}s using Paper-specific methods.
+ * Modifies {@link ItemStack}s.
  *
  * @param <B> the builder type
  * @param <M> the {@link ItemMeta} type
  */
 @NullMarked
 @SuppressWarnings({"unchecked", "unused"})
-public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilder<B, M>, M extends ItemMeta> {
+public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
@@ -50,7 +50,7 @@ public abstract class AbstractPaperItemBuilder<B extends AbstractPaperItemBuilde
      * @param itemStack the {@code ItemStack}
      * @param itemMeta  the {@code ItemMeta}
      */
-    protected AbstractPaperItemBuilder(final ItemStack itemStack, final M itemMeta) {
+    protected AbstractItemBuilder(final ItemStack itemStack, final M itemMeta) {
         this.itemStack = itemStack.clone();
         this.itemMeta = itemMeta;
     }

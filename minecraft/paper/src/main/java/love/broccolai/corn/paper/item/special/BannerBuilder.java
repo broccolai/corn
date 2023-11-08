@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class BannerBuilder extends AbstractPaperItemBuilder<BannerBuilder, BannerMeta> {
+public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, BannerMeta> {
 
     private BannerBuilder(final ItemStack itemStack, final BannerMeta itemMeta) {
         super(itemStack, itemMeta);

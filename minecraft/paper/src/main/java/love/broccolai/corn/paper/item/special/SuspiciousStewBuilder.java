@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class SuspiciousStewBuilder extends AbstractPaperItemBuilder<SuspiciousStewBuilder, SuspiciousStewMeta> {
+public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousStewBuilder, SuspiciousStewMeta> {
 
     private SuspiciousStewBuilder(final ItemStack itemStack, final SuspiciousStewMeta itemMeta) {
         super(itemStack, itemMeta);

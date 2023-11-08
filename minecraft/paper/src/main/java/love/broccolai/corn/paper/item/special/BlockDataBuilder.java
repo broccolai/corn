@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
@@ -12,7 +12,7 @@ import org.jspecify.annotations.NullMarked;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class BlockDataBuilder extends AbstractPaperItemBuilder<BlockDataBuilder, BlockDataMeta> {
+public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder, BlockDataMeta> {
 
     private BlockDataBuilder(final ItemStack itemStack, final BlockDataMeta itemMeta) {
         super(itemStack, itemMeta);

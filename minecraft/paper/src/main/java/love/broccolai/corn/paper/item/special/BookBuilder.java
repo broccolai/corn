@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class BookBuilder extends AbstractPaperItemBuilder<BookBuilder, BookMeta> {
+public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta> {
 
     private BookBuilder(final ItemStack itemStack, final BookMeta itemMeta) {
         super(itemStack, itemMeta);

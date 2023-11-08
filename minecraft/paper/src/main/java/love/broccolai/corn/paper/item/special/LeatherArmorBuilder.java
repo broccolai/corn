@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +13,7 @@ import org.jspecify.annotations.Nullable;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class LeatherArmorBuilder extends AbstractPaperItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
+public final class LeatherArmorBuilder extends AbstractItemBuilder<LeatherArmorBuilder, LeatherArmorMeta> {
 
     private LeatherArmorBuilder(final ItemStack itemStack, final LeatherArmorMeta itemMeta) {
         super(itemStack, itemMeta);

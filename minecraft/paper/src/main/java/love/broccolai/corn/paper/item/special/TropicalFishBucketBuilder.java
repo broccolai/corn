@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.TropicalFish;
@@ -13,7 +13,7 @@ import org.jspecify.annotations.NullMarked;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class TropicalFishBucketBuilder extends AbstractPaperItemBuilder<TropicalFishBucketBuilder, TropicalFishBucketMeta> {
+public final class TropicalFishBucketBuilder extends AbstractItemBuilder<TropicalFishBucketBuilder, TropicalFishBucketMeta> {
 
     private TropicalFishBucketBuilder(final ItemStack itemStack, final TropicalFishBucketMeta itemMeta) {
         super(itemStack, itemMeta);

@@ -1,6 +1,6 @@
 package love.broccolai.corn.paper.item.special;
 
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class KnowledgeBookBuilder extends AbstractPaperItemBuilder<KnowledgeBookBuilder, KnowledgeBookMeta> {
+public final class KnowledgeBookBuilder extends AbstractItemBuilder<KnowledgeBookBuilder, KnowledgeBookMeta> {
 
     private KnowledgeBookBuilder(final ItemStack itemStack, final KnowledgeBookMeta itemMeta) {
         super(itemStack, itemMeta);

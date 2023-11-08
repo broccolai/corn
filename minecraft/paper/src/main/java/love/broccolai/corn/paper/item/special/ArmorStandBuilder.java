@@ -1,7 +1,7 @@
 package love.broccolai.corn.paper.item.special;
 
 import com.destroystokyo.paper.inventory.meta.ArmorStandMeta;
-import love.broccolai.corn.paper.item.AbstractPaperItemBuilder;
+import love.broccolai.corn.paper.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.jspecify.annotations.NullMarked;
@@ -11,7 +11,7 @@ import org.jspecify.annotations.NullMarked;
  */
 @SuppressWarnings("unused")
 @NullMarked
-public final class ArmorStandBuilder extends AbstractPaperItemBuilder<ArmorStandBuilder, ArmorStandMeta> {
+public final class ArmorStandBuilder extends AbstractItemBuilder<ArmorStandBuilder, ArmorStandMeta> {
 
     private ArmorStandBuilder(final ItemStack itemStack, final ArmorStandMeta itemMeta) {
         super(itemStack, itemMeta);
