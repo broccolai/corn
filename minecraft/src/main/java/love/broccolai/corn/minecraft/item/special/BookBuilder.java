@@ -59,7 +59,6 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @param title the title
      * @return the builder
      */
-    @SuppressWarnings({"ResultOfMethodCallIgnored"})
     public BookBuilder title(final @Nullable Component title) {
         this.itemMeta.title(title);
         return this;
@@ -80,7 +79,6 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @param author the author
      * @return the builder
      */
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     public BookBuilder author(final @Nullable Component author) {
         this.itemMeta.author(author);
         return this;
