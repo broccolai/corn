@@ -108,7 +108,14 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B material(final Material material) {
+        final boolean fakeEnch = hasFakeEnchant();
+        if (fakeEnch) {
+            this.removeFakeEnchant();
+        }
         this.itemStack.setType(material);
+        if (fakeEnch) {
+            this.fakeEnchant();
+        }
         return (B) this;
     }
 
@@ -378,6 +385,44 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
             this.itemMeta.removeEnchant(item);
         }
         return (B) this;
+    }
+
+    /**
+     * Applies a fake enchantment glint to the item.
+     * <p>
+     * This works by enchanting the {@code ItemStack} with an incompatible
+     * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.
+     *
+     * @return the builder
+     */
+    public B fakeEnchant() {
+        this.addEnchant(incompatibleEnchantment(), 1);
+        this.addFlag(ItemFlag.HIDE_ENCHANTS);
+        return (B) this;
+    }
+
+    /**
+     * Undoes the work of {@link #fakeEnchant()}.
+     *
+     * @return the builder
+     */
+    public B removeFakeEnchant() {
+        this.removeEnchant(incompatibleEnchantment());
+        this.removeFlag(ItemFlag.HIDE_ENCHANTS);
+        return (B) this;
+    }
+
+    private Enchantment incompatibleEnchantment() {
+        if (Enchantment.LURE.canEnchantItem(this.itemStack)) {
+            return Enchantment.RIPTIDE; // exclusive to tridents.
+        } else {
+            return Enchantment.LURE; // exclusive to fishing rods.
+        }
+    }
+
+    public boolean hasFakeEnchant() {
+        return this.enchants().containsKey(incompatibleEnchantment())
+                && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
     /**
