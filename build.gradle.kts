@@ -61,6 +61,10 @@ subprojects {
                         id.set("broccolai")
                         email.set("me@broccol.ai")
                     }
+                    developer {
+                        id.set("TehBrian")
+                        email.set("tehbrian@proton.me")
+                    }
                 }
             }
         }
