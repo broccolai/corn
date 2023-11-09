@@ -392,6 +392,15 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets whether the {@code ItemStack} is unbreakable.
+     *
+     * @return whether the {@code ItemStack} is unbreakable
+     */
+    public boolean unbreakable() {
+        return itemMeta.isUnbreakable();
+    }
+
+    /**
      * Get the max stack size.
      *
      * @return the max stack size
