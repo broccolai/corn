@@ -33,6 +33,8 @@ import java.util.function.Consumer;
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
+    private static final int FAKE_ENCHANT_LEVEL = 102; // f in ASCII.
+
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
     /**
@@ -108,13 +110,13 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B material(final Material material) {
-        final boolean fakeEnch = hasFakeEnchant();
+        final boolean fakeEnch = fakeEnchant();
         if (fakeEnch) {
-            this.removeFakeEnchant();
+            this.fakeEnchant(false);
         }
         this.itemStack.setType(material);
         if (fakeEnch) {
-            this.fakeEnchant();
+            this.fakeEnchant(true);
         }
         return (B) this;
     }
@@ -388,41 +390,41 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Applies a fake enchantment glint to the item.
+     * Sets whether the {@code ItemStack} has a fake enchantment glint.
      * <p>
      * This works by enchanting the {@code ItemStack} with an incompatible
      * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.
      *
      * @return the builder
      */
-    public B fakeEnchant() {
-        this.addEnchant(incompatibleEnchantment(), 1);
-        this.addFlag(ItemFlag.HIDE_ENCHANTS);
+    public B fakeEnchant(final boolean fakeEnchant) {
+        if (fakeEnchant && !fakeEnchant()) {
+            this.addEnchant(incompatibleEnchantment(), FAKE_ENCHANT_LEVEL);
+            this.addFlag(ItemFlag.HIDE_ENCHANTS);
+        } else if (!fakeEnchant && fakeEnchant()) {
+            this.removeEnchant(incompatibleEnchantment());
+            this.removeFlag(ItemFlag.HIDE_ENCHANTS);
+        }
         return (B) this;
     }
 
     /**
-     * Undoes the work of {@link #fakeEnchant()}.
+     * Gets whether the {@code ItemStack} has a fake enchantment glint.
      *
-     * @return the builder
+     * @return whether the {@code ItemStack} has a fake enchantment glint
      */
-    public B removeFakeEnchant() {
-        this.removeEnchant(incompatibleEnchantment());
-        this.removeFlag(ItemFlag.HIDE_ENCHANTS);
-        return (B) this;
+    public boolean fakeEnchant() {
+        return this.enchants().containsKey(incompatibleEnchantment())
+                && this.enchants().get(incompatibleEnchantment()) == FAKE_ENCHANT_LEVEL
+                && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
     private Enchantment incompatibleEnchantment() {
-        if (Enchantment.LURE.canEnchantItem(this.itemStack)) {
+        if (!Enchantment.LURE.canEnchantItem(this.itemStack)) {
             return Enchantment.RIPTIDE; // exclusive to tridents.
         } else {
             return Enchantment.LURE; // exclusive to fishing rods.
         }
-    }
-
-    public boolean hasFakeEnchant() {
-        return this.enchants().containsKey(incompatibleEnchantment())
-                && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
     /**
