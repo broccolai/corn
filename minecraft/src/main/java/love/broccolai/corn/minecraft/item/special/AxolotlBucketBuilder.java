@@ -73,6 +73,7 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
 
     /**
      * Gets whether a variant tag exists.
+     * <p>
      * If true, a specific axolotl will be spawned.
      *
      * @return whether a variant tag exists

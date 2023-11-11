@@ -64,7 +64,8 @@ public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, 
 
     /**
      * Sets the charged projectiles. Pass {@code null} to reset.
-     * The items must be either of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
+     * <p>
+     * The items must be of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
      *
      * @param chargedProjectiles the charged projectiles
      * @return the builder
@@ -76,7 +77,8 @@ public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, 
 
     /**
      * Adds a charged projectile.
-     * Must be either of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
+     * <p>
+     * The item must be of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
      *
      * @param chargedProjectile the charged projectile to add
      * @return the builder
