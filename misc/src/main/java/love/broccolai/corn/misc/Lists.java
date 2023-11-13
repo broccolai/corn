@@ -1,13 +1,12 @@
 package love.broccolai.corn.misc;
 
-import org.jspecify.annotations.NullMarked;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public final class Lists {
@@ -16,7 +15,7 @@ public final class Lists {
     }
 
     /**
-     * Group a list by a given function
+     * Group a list by a given function.
      *
      * @param <R>      Type to be grouped by
      * @param <T>      Type of the lists elements
@@ -25,8 +24,8 @@ public final class Lists {
      * @return Map of R as the keys and T as the values
      */
     public static <T, R> Map<R, List<T>> group(
-            final Iterable<T> input,
-            final Function<T, R> function
+        final Iterable<T> input,
+        final Function<T, R> function
     ) {
         final Map<R, List<T>> output = new HashMap<>();
 
@@ -53,8 +52,8 @@ public final class Lists {
      * @return a list with the mapped elements
      */
     public static <R, T> List<R> map(
-            final Iterable<T> input,
-            final Function<T, R> function
+        final Iterable<T> input,
+        final Function<T, R> function
     ) {
         final List<R> output = new ArrayList<>();
 
@@ -74,8 +73,8 @@ public final class Lists {
      * @return the found value
      */
     public static <T> T last(
-            final List<T> input,
-            final Predicate<T> predicate
+        final List<T> input,
+        final Predicate<T> predicate
     ) {
         for (int i = input.size() - 1; i >= 0; i--) {
             final T value = input.get(i);

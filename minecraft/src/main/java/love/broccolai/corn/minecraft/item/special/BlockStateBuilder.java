@@ -37,7 +37,7 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static BlockStateBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BlockStateBuilder.of(getItem(material));
+        return BlockStateBuilder.of(itemOfMaterial(material));
     }
 
     /**

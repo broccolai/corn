@@ -38,7 +38,7 @@ public final class ArmorBuilder extends AbstractItemBuilder<ArmorBuilder, ArmorM
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static ArmorBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ArmorBuilder.of(getItem(material));
+        return ArmorBuilder.of(itemOfMaterial(material));
     }
 
     /**

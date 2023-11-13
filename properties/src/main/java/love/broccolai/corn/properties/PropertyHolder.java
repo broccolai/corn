@@ -7,7 +7,7 @@ import org.jspecify.annotations.NullMarked;
 public interface PropertyHolder {
 
     /**
-     * Create a snapshot of the holders current properties
+     * Create a snapshot of the holders current properties.
      *
      * @return A snapshot of the current properties
      */

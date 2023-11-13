@@ -37,7 +37,7 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static AxolotlBucketBuilder ofType(final Material material) throws IllegalArgumentException {
-        return AxolotlBucketBuilder.of(getItem(material));
+        return AxolotlBucketBuilder.of(itemOfMaterial(material));
     }
 
     /**

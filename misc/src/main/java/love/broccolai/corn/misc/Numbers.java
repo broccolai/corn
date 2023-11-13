@@ -1,9 +1,8 @@
 package love.broccolai.corn.misc;
 
+import java.util.function.Function;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.function.Function;
 
 @NullMarked
 public final class Numbers {
@@ -12,7 +11,7 @@ public final class Numbers {
     }
 
     /**
-     * Get the value of a String or null if it could not be read
+     * Get the value of a String or null if it could not be read.
      *
      * @param input    String to get the number from
      * @param function Function to be used to find value
@@ -20,8 +19,8 @@ public final class Numbers {
      * @return Parsed number or null if it could not be parsed
      */
     public static <T extends Number> @Nullable T valueOrNull(
-            final @Nullable String input,
-            final Function<String, T> function
+        final @Nullable String input,
+        final Function<String, T> function
     ) {
         if (input == null) {
             return null;

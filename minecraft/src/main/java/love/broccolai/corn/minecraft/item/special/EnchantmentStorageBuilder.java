@@ -1,13 +1,12 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.Map;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.jspecify.annotations.NullMarked;
-
-import java.util.Map;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link EnchantmentStorageMeta}.
@@ -39,7 +38,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static EnchantmentStorageBuilder ofType(final Material material) throws IllegalArgumentException {
-        return EnchantmentStorageBuilder.of(getItem(material));
+        return EnchantmentStorageBuilder.of(itemOfMaterial(material));
     }
 
     /**

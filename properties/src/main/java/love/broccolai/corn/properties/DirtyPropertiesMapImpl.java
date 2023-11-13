@@ -1,8 +1,5 @@
 package love.broccolai.corn.properties;
 
-import love.broccolai.corn.properties.snapshot.PropertySnapshot;
-import org.jspecify.annotations.NullMarked;
-
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +7,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import love.broccolai.corn.properties.snapshot.PropertySnapshot;
+import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> extends AbstractMap<K, V> implements DirtyPropertiesMap<K, V> {
@@ -49,7 +48,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> extends Abstract
         }
 
         V propertyHolder = this.base.get(key);
-        PropertySnapshot previousSnapshot = previousProperties.get(key);
+        PropertySnapshot previousSnapshot = this.previousProperties.get(key);
 
         if (!previousSnapshot.equals(propertyHolder.properties())) {
             this.knownDirty.add(key);
@@ -60,7 +59,7 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> extends Abstract
     }
 
     @Override
-    public void setDirty(final K key) {
+    public void dirty(final K key) {
         this.knownDirty.add(key);
     }
 

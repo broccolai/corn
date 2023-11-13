@@ -1,9 +1,8 @@
 package love.broccolai.corn.context;
 
-import org.jspecify.annotations.NullMarked;
-
 import java.util.Optional;
 import java.util.function.BiConsumer;
+import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public interface Context {

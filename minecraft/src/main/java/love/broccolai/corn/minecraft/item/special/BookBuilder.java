@@ -1,5 +1,6 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
@@ -7,8 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.List;
 
 
 /**
@@ -41,7 +40,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static BookBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BookBuilder.of(getItem(material));
+        return BookBuilder.of(itemOfMaterial(material));
     }
 
     /**
@@ -141,7 +140,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @param index the index (1-indexed)
      * @return the page
      */
-    public Component getPage(final int index) {
+    public Component page(final int index) {
         return this.itemMeta.page(index);
     }
 
@@ -152,7 +151,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @param page  the page
      * @return the builder
      */
-    public BookBuilder setPage(final int index, final Component page) {
+    public BookBuilder page(final int index, final Component page) {
         this.itemMeta.page(index, page);
         return this;
     }

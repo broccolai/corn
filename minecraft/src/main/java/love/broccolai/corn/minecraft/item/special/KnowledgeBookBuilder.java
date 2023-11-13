@@ -1,13 +1,12 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.KnowledgeBookMeta;
 import org.jspecify.annotations.NullMarked;
-
-import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link KnowledgeBookMeta}.
@@ -39,7 +38,7 @@ public final class KnowledgeBookBuilder extends AbstractItemBuilder<KnowledgeBoo
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static KnowledgeBookBuilder ofType(final Material material) throws IllegalArgumentException {
-        return KnowledgeBookBuilder.of(getItem(material));
+        return KnowledgeBookBuilder.of(itemOfMaterial(material));
     }
 
     /**

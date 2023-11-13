@@ -39,7 +39,7 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static MapBuilder ofType(final Material material) throws IllegalArgumentException {
-        return MapBuilder.of(getItem(material));
+        return MapBuilder.of(itemOfMaterial(material));
     }
 
     /**

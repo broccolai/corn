@@ -38,7 +38,7 @@ public final class TropicalFishBucketBuilder extends AbstractItemBuilder<Tropica
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static TropicalFishBucketBuilder ofType(final Material material) throws IllegalArgumentException {
-        return TropicalFishBucketBuilder.of(getItem(material));
+        return TropicalFishBucketBuilder.of(itemOfMaterial(material));
     }
 
     /**

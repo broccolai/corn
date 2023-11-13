@@ -1,14 +1,13 @@
 package love.broccolai.corn.properties.snapshot;
 
-import love.broccolai.corn.properties.property.FlattenableProperty;
-import love.broccolai.corn.properties.property.Property;
-import org.jspecify.annotations.NullMarked;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
+import love.broccolai.corn.properties.property.FlattenableProperty;
+import love.broccolai.corn.properties.property.Property;
+import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 final class PropertySnapshotImpl implements PropertySnapshot {
@@ -35,7 +34,7 @@ final class PropertySnapshotImpl implements PropertySnapshot {
 
     @Override
     public int hashCode() {
-        return Objects.hash(flattenedProperties);
+        return Objects.hash(this.flattenedProperties);
     }
 
     @Override

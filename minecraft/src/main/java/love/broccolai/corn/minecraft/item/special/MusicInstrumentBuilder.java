@@ -37,7 +37,7 @@ public final class MusicInstrumentBuilder extends AbstractItemBuilder<MusicInstr
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static MusicInstrumentBuilder ofType(final Material material) throws IllegalArgumentException {
-        return MusicInstrumentBuilder.of(getItem(material));
+        return MusicInstrumentBuilder.of(itemOfMaterial(material));
     }
 
     /**

@@ -16,14 +16,14 @@ public final class DirtyPropertiesMapTest {
 
     private final SomePropertyHolder entryOne = new SomePropertyHolder(20, "word");
     private final SomeComplexPropertyHolder entryTwo = new SomeComplexPropertyHolder(
-            20,
-            new SomePropertyHolder(10, "test")
+        20,
+        new SomePropertyHolder(10, "test")
     );
 
     @BeforeAll
     void create() {
-        this.dirtyMap.put(1, entryOne);
-        this.dirtyMap.put(5, entryTwo);
+        this.dirtyMap.put(1, this.entryOne);
+        this.dirtyMap.put(5, this.entryTwo);
     }
 
     @BeforeEach
@@ -33,36 +33,36 @@ public final class DirtyPropertiesMapTest {
 
     @Test
     void isEmpty() {
-        assertThat(dirtyMap.dirty()).isEmpty();
+        assertThat(this.dirtyMap.dirty()).isEmpty();
     }
 
     @Test
     void simpleChange() {
-        entryOne.number(25);
-        assertThat(dirtyMap.dirty()).containsExactly(entryOne);
+        this.entryOne.number(25);
+        assertThat(this.dirtyMap.dirty()).containsExactly(this.entryOne);
     }
 
     @Test
     void simpleChangeAndClean() {
-        entryOne.number(25);
-        dirtyMap.clean();
-        assertThat(dirtyMap.dirty()).isEmpty();
+        this.entryOne.number(25);
+        this.dirtyMap.clean();
+        assertThat(this.dirtyMap.dirty()).isEmpty();
     }
 
     @Test
     void changeBackToNormal() {
-        entryTwo.number(25);
-        dirtyMap.clean();
+        this.entryTwo.number(25);
+        this.dirtyMap.clean();
 
-        entryTwo.number(20);
-        entryTwo.number(25);
-        assertThat(dirtyMap.dirty()).isEmpty();
+        this.entryTwo.number(20);
+        this.entryTwo.number(25);
+        assertThat(this.dirtyMap.dirty()).isEmpty();
     }
 
     @Test
     void changeNestedField() {
-        entryTwo.someHolder.number(14);
-        assertThat(dirtyMap.dirty()).containsExactly(entryTwo);
+        this.entryTwo.someHolder.number(14);
+        assertThat(this.dirtyMap.dirty()).containsExactly(this.entryTwo);
     }
 
     static final class SomePropertyHolder implements PropertyHolder {
@@ -86,8 +86,8 @@ public final class DirtyPropertiesMapTest {
         @Override
         public PropertySnapshot properties() {
             return PropertySnapshot.of(
-                    Property.of("number", this.number),
-                    Property.of("word", this.word)
+                Property.of("number", this.number),
+                Property.of("word", this.word)
             );
         }
 
@@ -114,12 +114,11 @@ public final class DirtyPropertiesMapTest {
         @Override
         public PropertySnapshot properties() {
             return PropertySnapshot.of(
-                    Property.of("number", this.number),
-                    Property.of("someHolder", this.someHolder)
+                Property.of("number", this.number),
+                Property.of("someHolder", this.someHolder)
             );
         }
 
     }
-
 
 }

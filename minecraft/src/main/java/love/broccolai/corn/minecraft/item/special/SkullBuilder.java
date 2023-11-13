@@ -2,6 +2,10 @@ package love.broccolai.corn.minecraft.item.special;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,11 +14,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SkullMeta}.
@@ -46,7 +45,7 @@ public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullM
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static SkullBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SkullBuilder.of(getItem(material));
+        return SkullBuilder.of(itemOfMaterial(material));
     }
 
     /**
@@ -89,8 +88,8 @@ public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullM
      */
     public SkullBuilder textures(final String data) {
         final PlayerProfile profile = Optional
-                .ofNullable(this.itemMeta.getPlayerProfile())
-                .orElse(Bukkit.createProfile(UUID.randomUUID()));
+            .ofNullable(this.itemMeta.getPlayerProfile())
+            .orElse(Bukkit.createProfile(UUID.randomUUID()));
 
         profile.setProperty(new ProfileProperty("textures", data));
 
