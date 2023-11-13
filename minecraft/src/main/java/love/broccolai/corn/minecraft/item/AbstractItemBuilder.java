@@ -38,13 +38,15 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
     /**
-     * The {@code ItemStack} to modify during building. This will be cloned and
-     * returned upon {@link #build()}.
+     * The {@code ItemStack} to modify during building.
+     * <p>
+     * This will be cloned and returned upon {@link #build()}.
      */
     protected final ItemStack itemStack;
     /**
-     * The {@code ItemMeta} to modify during building. This will be applied to
-     * the {@link #itemStack} upon {@link #build()}.
+     * The {@code ItemMeta} to modify during building.
+     * <p>
+     * This will be applied to the {@link #itemStack} upon {@link #build()}.
      */
     protected final M itemMeta;
 
@@ -221,8 +223,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     /**
      * Directly modifies the lore with a {@link Consumer}.
+     * <p>
      * If the item has no lore, an empty {@code List} will
-     * be supplied to the {@code Consumer} instead.
+     * be supplied to the {@code Consumer}.
      *
      * @param consumer the {@code Consumer} to modify the lore with
      * @return the builder

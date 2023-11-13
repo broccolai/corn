@@ -46,7 +46,7 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      *
      * @return the {@code FireworkEffect}
      */
-    public @Nullable FireworkEffect fireworkEffect() {
+    public @Nullable FireworkEffect effect() {
         return this.itemMeta.getEffect();
     }
 
@@ -56,7 +56,7 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      * @param fireworkEffect the {@code FireworkEffect}
      * @return the builder
      */
-    public FireworkEffectBuilder fireworkEffect(final @Nullable FireworkEffect fireworkEffect) {
+    public FireworkEffectBuilder effect(final @Nullable FireworkEffect fireworkEffect) {
         this.itemMeta.setEffect(fireworkEffect);
         return this;
     }
