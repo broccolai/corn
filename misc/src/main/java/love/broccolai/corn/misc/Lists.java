@@ -1,4 +1,4 @@
-package love.broccolai.corn.core;
+package love.broccolai.corn.misc;
 
 import org.jspecify.annotations.NullMarked;
 
