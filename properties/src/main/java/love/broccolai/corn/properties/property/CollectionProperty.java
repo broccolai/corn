@@ -1,26 +1,27 @@
-package love.broccolai.corn.properties;
+package love.broccolai.corn.properties.property;
 
+import love.broccolai.corn.properties.PropertyHolder;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 @NullMarked
-record MapProperty(
+record CollectionProperty(
         String name,
-        Map<String, PropertyHolder> entries
+        Collection<PropertyHolder> collection
 ) implements FlattenableProperty {
 
     @Override
     public Map<String, Property> flatten() {
         Map<String, Property> results = new HashMap<>();
 
-        this.entries.forEach((key, propertyHolder) -> {
-            String keyedName = this.name + ":" + key;
+        for (final PropertyHolder propertyHolder : this.collection) {
             for (final Property property : propertyHolder.properties()) {
-                results.put(keyedName + ":" + property.name(), property);
+                results.put(this.name + ":" + property.name(), property);
             }
-        });
+        }
 
         return results;
     }

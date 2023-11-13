@@ -1,7 +1,9 @@
 package love.broccolai.corn.properties;
 
+import love.broccolai.corn.properties.snapshot.PropertySnapshot;
 import org.jspecify.annotations.NullMarked;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 @NullMarked
-final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements DirtyPropertiesMap<K, V> {
+final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> extends AbstractMap<K, V> implements DirtyPropertiesMap<K, V> {
 
     private final Map<K, V> base;
     private final Map<K, PropertySnapshot> previousProperties = new HashMap<>();
@@ -67,61 +69,16 @@ final class DirtyPropertiesMapImpl<K, V extends PropertyHolder> implements Dirty
     }
 
     @Override
-    public int size() {
-        return this.base.size();
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.base.isEmpty();
-    }
-
-    @Override
-    public boolean containsKey(final Object key) {
-        return this.base.containsKey(key);
-    }
-
-    @Override
-    public boolean containsValue(final Object value) {
-        return this.base.containsValue(value);
-    }
-
-    @Override
-    public V get(final Object key) {
-        return this.base.get(key);
-    }
-
-    @Override
     public V put(final K key, final V value) {
-        this.previousProperties.put(key, value.properties());
         return this.base.put(key, value);
     }
 
     @Override
-    public V remove(final Object key) {
-        return this.base.remove(key);
-    }
-
-    @Override
-    public void putAll(final Map<? extends K, ? extends V> m) {
-        this.base.putAll(m);
-    }
-
-    @Override
     public void clear() {
-        this.base.clear();
+        super.clear();
+
         this.previousProperties.clear();
         this.knownDirty.clear();
-    }
-
-    @Override
-    public Set<K> keySet() {
-        return this.base.keySet();
-    }
-
-    @Override
-    public Collection<V> values() {
-        return this.base.values();
     }
 
     @Override

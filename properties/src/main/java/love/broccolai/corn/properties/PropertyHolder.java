@@ -1,5 +1,6 @@
 package love.broccolai.corn.properties;
 
+import love.broccolai.corn.properties.snapshot.PropertySnapshot;
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
