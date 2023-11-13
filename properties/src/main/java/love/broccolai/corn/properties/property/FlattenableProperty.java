@@ -1,4 +1,4 @@
-package love.broccolai.corn.properties;
+package love.broccolai.corn.properties.property;
 
 import org.jspecify.annotations.NullMarked;
 

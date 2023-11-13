@@ -1,5 +1,6 @@
-package love.broccolai.corn.properties;
+package love.broccolai.corn.properties.property;
 
+import love.broccolai.corn.properties.PropertyHolder;
 import org.jspecify.annotations.NullMarked;
 
 import java.util.Collection;

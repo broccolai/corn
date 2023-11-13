@@ -1,5 +1,7 @@
 package love.broccolai.corn.properties;
 
+import love.broccolai.corn.properties.property.Property;
+import love.broccolai.corn.properties.snapshot.PropertySnapshot;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,7 +87,7 @@ public final class DirtyPropertiesMapTest {
         public PropertySnapshot properties() {
             return PropertySnapshot.of(
                     Property.of("number", this.number),
-                    SafeProperty.of("word", this.word)
+                    Property.of("word", this.word)
             );
         }
 
