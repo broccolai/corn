@@ -6,6 +6,7 @@ import org.bukkit.entity.Axolotl;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.AxolotlBucketMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link AxolotlBucketMeta}.
@@ -52,11 +53,16 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
     }
 
     /**
-     * Gets the variant.
+     * Gets the variant. Returns null if {@code !#hasVariant}.
+     * <p>
+     * If {@code #hasVariant}, a specific axolotl will be spawned.
      *
      * @return the variant
      */
-    public Axolotl.Variant variant() {
+    public Axolotl.@Nullable Variant variant() {
+        if (!this.itemMeta.hasVariant()) {
+            return null;
+        }
         return this.itemMeta.getVariant();
     }
 
@@ -69,17 +75,6 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
     public AxolotlBucketBuilder variant(final Axolotl.Variant variant) {
         this.itemMeta.setVariant(variant);
         return this;
-    }
-
-    /**
-     * Gets whether a variant tag exists.
-     * <p>
-     * If true, a specific axolotl will be spawned.
-     *
-     * @return whether a variant tag exists
-     */
-    public boolean hasVariant() {
-        return this.itemMeta.hasVariant();
     }
 
 }
