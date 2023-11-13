@@ -37,7 +37,7 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static BlockDataBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BlockDataBuilder.of(getItem(material));
+        return BlockDataBuilder.of(itemOfMaterial(material));
     }
 
     /**

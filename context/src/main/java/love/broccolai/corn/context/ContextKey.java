@@ -28,7 +28,7 @@ public interface ContextKey<T> {
     TypeToken<T> token();
 
     /**
-     * Create a ContextKey through TypeToken
+     * Create a ContextKey through TypeToken.
      *
      * @param namespace Namespace of key
      * @param name      Name of key
@@ -41,7 +41,7 @@ public interface ContextKey<T> {
     }
 
     /**
-     * Create a ContextKey through Class
+     * Create a ContextKey through Class.
      *
      * @param namespace Namespace of key
      * @param name      Name of key

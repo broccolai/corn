@@ -1,14 +1,12 @@
 package love.broccolai.corn.minecraft.item;
 
-
+import java.util.Objects;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.Objects;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ItemMeta}.
@@ -19,10 +17,10 @@ public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta
 
     private ItemBuilder(final ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
-                ? itemMeta
-                : Objects.requireNonNull(
-                        Bukkit.getItemFactory().getItemMeta(itemStack.getType())
-                ));
+            ? itemMeta
+            : Objects.requireNonNull(
+            Bukkit.getItemFactory().getItemMeta(itemStack.getType())
+        ));
     }
 
     /**
@@ -43,7 +41,7 @@ public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
     public static ItemBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ItemBuilder.of(getItem(material));
+        return ItemBuilder.of(itemOfMaterial(material));
     }
 
 }

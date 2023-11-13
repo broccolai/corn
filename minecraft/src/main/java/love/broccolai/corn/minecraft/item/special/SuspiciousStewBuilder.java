@@ -1,5 +1,6 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -8,8 +9,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SuspiciousStewMeta}.
@@ -41,7 +40,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static SuspiciousStewBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SuspiciousStewBuilder.of(getItem(material));
+        return SuspiciousStewBuilder.of(itemOfMaterial(material));
     }
 
     /**

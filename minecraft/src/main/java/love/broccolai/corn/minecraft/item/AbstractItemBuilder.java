@@ -1,6 +1,13 @@
 package love.broccolai.corn.minecraft.item;
 
 import com.google.common.collect.Multimap;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Consumer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -14,14 +21,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Consumer;
 
 /**
  * Modifies {@link ItemStack}s.
@@ -37,18 +36,12 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
-    /**
-     * The {@code ItemStack} to modify during building. This will be cloned and
-     * returned upon {@link #build()}.
-     */
     protected final ItemStack itemStack;
-    /**
-     * The {@code ItemMeta} to modify during building. This will be applied to
-     * the {@link #itemStack} upon {@link #build()}.
-     */
     protected final M itemMeta;
 
     /**
+     * Construct AbstractItemBuilder with an ItemStack and it's meta type.
+     *
      * @param itemStack the {@code ItemStack}
      * @param itemMeta  the {@code ItemMeta}
      */
@@ -68,14 +61,14 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @throws IllegalArgumentException if {@code} meta is not the type of {@code expectedType}
      */
     protected static <T extends ItemMeta> T castMeta(final ItemMeta meta, final Class<T> expectedType)
-            throws IllegalArgumentException {
+        throws IllegalArgumentException {
         try {
             return expectedType.cast(meta);
         } catch (final ClassCastException e) {
             throw new IllegalArgumentException("The ItemMeta must be of type "
-                    + expectedType.getSimpleName()
-                    + " but received ItemMeta of type "
-                    + meta.getClass().getSimpleName());
+                + expectedType.getSimpleName()
+                + " but received ItemMeta of type "
+                + meta.getClass().getSimpleName());
         }
     }
 
@@ -87,7 +80,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return an {@code ItemStack} of type {@code material}
      * @throws IllegalArgumentException if {@code material} is not an item
      */
-    protected static ItemStack getItem(final Material material) throws IllegalArgumentException {
+    protected static ItemStack itemOfMaterial(final Material material) throws IllegalArgumentException {
         if (!material.isItem()) {
             throw new IllegalArgumentException("The Material must be an obtainable item.");
         }
@@ -110,7 +103,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B material(final Material material) {
-        final boolean fakeEnch = fakeEnchant();
+        final boolean fakeEnch = this.fakeEnchant();
         if (fakeEnch) {
             this.fakeEnchant(false);
         }
@@ -152,11 +145,11 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     /**
      * Sets the display name. Pass {@code null} to reset.
-     * <p>
-     * The component passed in is appended to an empty component decorated with
+     *
+     * <p>The component passed in is appended to an empty component decorated with
      * italicization set to false. This effectively bypasses the default,
      * italicized text formatting, resulting in the text being only the component
-     * that is passed in.
+     * that is passed in.</p>
      *
      * @param name the display name
      * @return the builder
@@ -184,11 +177,11 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     /**
      * Sets the lore. Pass {@code null} to reset.
-     * <p>
-     * Each component passed in is appended to an empty component decorated with
+     *
+     * <p>Each component passed in is appended to an empty component decorated with
      * italicization set to false. This effectively bypasses the default,
      * italicized text formatting, resulting in the text being only the component
-     * that is passed in.
+     * that is passed in.</p>
      *
      * @param lines the lines of the lore
      * @return the builder
@@ -229,8 +222,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public B loreModifier(final Consumer<List<Component>> consumer) {
         final List<Component> lore = Optional
-                .ofNullable(this.itemMeta.lore())
-                .orElse(new ArrayList<>());
+            .ofNullable(this.itemMeta.lore())
+            .orElse(new ArrayList<>());
 
         consumer.accept(lore);
 
@@ -247,9 +240,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param <Z>  the retrieve object type of the data
      * @return the data
      */
-    public <T, Z> @Nullable Z getData(
-            final NamespacedKey key,
-            final PersistentDataType<T, Z> type
+    public <T, Z> @Nullable Z data(
+        final NamespacedKey key,
+        final PersistentDataType<T, Z> type
     ) {
         return this.itemMeta.getPersistentDataContainer().get(key, type);
     }
@@ -264,10 +257,10 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @param <Z>    the retrieve object type of the data
      * @return the builder
      */
-    public <T, Z> B setData(
-            final NamespacedKey key,
-            final PersistentDataType<T, Z> type,
-            final Z object
+    public <T, Z> B data(
+        final NamespacedKey key,
+        final PersistentDataType<T, Z> type,
+        final Z object
     ) {
         this.itemMeta.getPersistentDataContainer().set(key, type, object);
         return (B) this;
@@ -280,7 +273,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B removeData(
-            final NamespacedKey key
+        final NamespacedKey key
     ) {
         this.itemMeta.getPersistentDataContainer().remove(key);
         return (B) this;
@@ -391,19 +384,19 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     /**
      * Sets whether the {@code ItemStack} has a fake enchantment glint.
-     * <p>
-     * This works by enchanting the {@code ItemStack} with an incompatible
-     * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.
+     *
+     * <p>This works by enchanting the {@code ItemStack} with an incompatible
+     * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.</p>
      *
      * @param fakeEnchant whether the {@code ItemStack} has a fake enchant glint
      * @return the builder
      */
     public B fakeEnchant(final boolean fakeEnchant) {
-        if (fakeEnchant && !fakeEnchant()) {
-            this.addEnchant(incompatibleEnchantment(), FAKE_ENCHANT_LEVEL);
+        if (fakeEnchant && !this.fakeEnchant()) {
+            this.addEnchant(this.incompatibleEnchantment(), FAKE_ENCHANT_LEVEL);
             this.addFlag(ItemFlag.HIDE_ENCHANTS);
-        } else if (!fakeEnchant && fakeEnchant()) {
-            this.removeEnchant(incompatibleEnchantment());
+        } else if (!fakeEnchant && this.fakeEnchant()) {
+            this.removeEnchant(this.incompatibleEnchantment());
             this.removeFlag(ItemFlag.HIDE_ENCHANTS);
         }
         return (B) this;
@@ -415,9 +408,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return whether the {@code ItemStack} has a fake enchantment glint
      */
     public boolean fakeEnchant() {
-        return this.enchants().containsKey(incompatibleEnchantment())
-                && this.enchants().get(incompatibleEnchantment()) == FAKE_ENCHANT_LEVEL
-                && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
+        return this.enchants().containsKey(this.incompatibleEnchantment())
+            && this.enchants().get(this.incompatibleEnchantment()) == FAKE_ENCHANT_LEVEL
+            && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
     private Enchantment incompatibleEnchantment() {
@@ -435,7 +428,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B unbreakable(final boolean unbreakable) {
-        itemMeta.setUnbreakable(unbreakable);
+        this.itemMeta.setUnbreakable(unbreakable);
         return (B) this;
     }
 
@@ -445,7 +438,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return whether the {@code ItemStack} is unbreakable
      */
     public boolean unbreakable() {
-        return itemMeta.isUnbreakable();
+        return this.itemMeta.isUnbreakable();
     }
 
     /**
@@ -509,8 +502,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B addAttributeModifier(
-            final Attribute attribute,
-            final AttributeModifier attributeModifier
+        final Attribute attribute,
+        final AttributeModifier attributeModifier
     ) {
         this.itemMeta.addAttributeModifier(attribute, attributeModifier);
         return (B) this;
@@ -524,8 +517,8 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B removeAttributeModifier(
-            final Attribute attribute,
-            final AttributeModifier attributeModifier
+        final Attribute attribute,
+        final AttributeModifier attributeModifier
     ) {
         this.itemMeta.removeAttributeModifier(attribute, attributeModifier);
         return (B) this;

@@ -1,13 +1,12 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jspecify.annotations.NullMarked;
-
-import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link FireworkMeta}.
@@ -39,7 +38,7 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static FireworkBuilder ofType(final Material material) throws IllegalArgumentException {
-        return FireworkBuilder.of(getItem(material));
+        return FireworkBuilder.of(itemOfMaterial(material));
     }
 
     /**

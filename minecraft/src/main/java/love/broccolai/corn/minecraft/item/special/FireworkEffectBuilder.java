@@ -38,7 +38,7 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static FireworkEffectBuilder ofType(final Material material) throws IllegalArgumentException {
-        return FireworkEffectBuilder.of(getItem(material));
+        return FireworkEffectBuilder.of(itemOfMaterial(material));
     }
 
     /**

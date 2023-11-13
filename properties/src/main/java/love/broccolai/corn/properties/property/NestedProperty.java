@@ -1,19 +1,18 @@
 package love.broccolai.corn.properties.property;
 
-import love.broccolai.corn.properties.PropertyHolder;
-import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import love.broccolai.corn.properties.PropertyHolder;
+import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 @NullMarked
 record NestedProperty(String name, @Nullable PropertyHolder propertyHolder) implements FlattenableProperty {
 
     @Override
     public Map<String, Property> flatten() {
-        if (propertyHolder == null) {
+        if (this.propertyHolder == null) {
             return Collections.emptyMap();
         }
 

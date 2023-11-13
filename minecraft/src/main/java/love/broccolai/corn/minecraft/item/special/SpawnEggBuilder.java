@@ -37,7 +37,7 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static SpawnEggBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SpawnEggBuilder.of(getItem(material));
+        return SpawnEggBuilder.of(itemOfMaterial(material));
     }
 
     /**

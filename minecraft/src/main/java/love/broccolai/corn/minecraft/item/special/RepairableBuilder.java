@@ -37,7 +37,7 @@ public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuild
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static RepairableBuilder ofType(final Material material) throws IllegalArgumentException {
-        return RepairableBuilder.of(getItem(material));
+        return RepairableBuilder.of(itemOfMaterial(material));
     }
 
     /**

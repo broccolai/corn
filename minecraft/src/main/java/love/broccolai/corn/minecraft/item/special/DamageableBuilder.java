@@ -37,7 +37,7 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static DamageableBuilder ofType(final Material material) throws IllegalArgumentException {
-        return DamageableBuilder.of(getItem(material));
+        return DamageableBuilder.of(itemOfMaterial(material));
     }
 
     /**

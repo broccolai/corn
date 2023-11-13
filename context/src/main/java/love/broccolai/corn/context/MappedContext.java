@@ -1,11 +1,10 @@
 package love.broccolai.corn.context;
 
-import org.jspecify.annotations.NullMarked;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiConsumer;
+import org.jspecify.annotations.NullMarked;
 
 @NullMarked
 public final class MappedContext implements Context {

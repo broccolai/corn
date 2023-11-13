@@ -1,13 +1,12 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
-
-import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BundleMeta}.
@@ -39,7 +38,7 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static BundleBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BundleBuilder.of(getItem(material));
+        return BundleBuilder.of(itemOfMaterial(material));
     }
 
     /**

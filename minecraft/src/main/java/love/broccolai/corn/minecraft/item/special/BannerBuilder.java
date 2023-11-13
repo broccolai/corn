@@ -1,13 +1,12 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.block.banner.Pattern;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BannerMeta;
 import org.jspecify.annotations.NullMarked;
-
-import java.util.List;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BannerMeta}.
@@ -39,7 +38,7 @@ public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, Bann
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static BannerBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BannerBuilder.of(getItem(material));
+        return BannerBuilder.of(itemOfMaterial(material));
     }
 
     /**
@@ -68,7 +67,7 @@ public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, Bann
      * @param index the index (0-indexed)
      * @return the pattern
      */
-    public Pattern getPattern(final int index) {
+    public Pattern pattern(final int index) {
         return this.itemMeta.getPattern(index);
     }
 
@@ -79,7 +78,7 @@ public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, Bann
      * @param pattern the pattern (0-indexed)
      * @return the builder
      */
-    public BannerBuilder setPattern(final int index, final Pattern pattern) {
+    public BannerBuilder pattern(final int index, final Pattern pattern) {
         this.itemMeta.setPattern(index, pattern);
         return this;
     }

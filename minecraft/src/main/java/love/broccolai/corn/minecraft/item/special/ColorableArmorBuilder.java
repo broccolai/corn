@@ -11,8 +11,8 @@ import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link ColorableArmorMeta}.
- * <p>
- * Composite of {@link ArmorBuilder} and {@link LeatherArmorBuilder}.
+ *
+ * <p>Composite of {@link ArmorBuilder} and {@link LeatherArmorBuilder}.</p>
  */
 @NullMarked
 public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableArmorBuilder, ColorableArmorMeta> {
@@ -41,7 +41,7 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static ColorableArmorBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ColorableArmorBuilder.of(getItem(material));
+        return ColorableArmorBuilder.of(itemOfMaterial(material));
     }
 
     /**

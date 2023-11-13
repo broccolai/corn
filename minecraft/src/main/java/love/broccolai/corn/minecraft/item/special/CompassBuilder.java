@@ -38,7 +38,7 @@ public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, Co
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
     public static CompassBuilder ofType(final Material material) throws IllegalArgumentException {
-        return CompassBuilder.of(getItem(material));
+        return CompassBuilder.of(itemOfMaterial(material));
     }
 
     /**

@@ -1,15 +1,14 @@
 package love.broccolai.corn.properties.property;
 
+import java.util.HashMap;
+import java.util.Map;
 import love.broccolai.corn.properties.PropertyHolder;
 import org.jspecify.annotations.NullMarked;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @NullMarked
 record MapProperty(
-        String name,
-        Map<String, PropertyHolder> entries
+    String name,
+    Map<String, PropertyHolder> entries
 ) implements FlattenableProperty {
 
     @Override
