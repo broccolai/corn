@@ -1,6 +1,6 @@
 rootProject.name = "corn-parent"
 
-projects("misc", "context", "properties", "minecraft")
+projects("trove", "context", "properties", "minecraft")
 
 fun projects(vararg names: String) {
     include(*names)
