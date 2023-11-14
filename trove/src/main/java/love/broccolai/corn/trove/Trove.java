@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -22,6 +23,8 @@ public interface Trove<T> {
 
     <R> Trove<R> map(Function<T, R> mapper);
 
+    <R> Trove<R> mapIfPresent(Function<T, Optional<R>> mapper);
+
     <R> Trove<R> flatMap(Function<T, Collection<R>> mapper);
 
     T reduce(T identity, BinaryOperator<T> accumulator);
@@ -31,6 +34,8 @@ public interface Trove<T> {
     Trove<T> filter(Predicate<T> predicate);
 
     <I> Trove<I> filterIsInstance(Class<I> type);
+
+    T average(T identity, BinaryOperator<T> accumulator, BiFunction<T, Integer, T> divider);
 
     default Optional<T> first() {
         return this.first(Predicates.alwaysTrue());

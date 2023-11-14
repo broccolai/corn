@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -28,6 +29,17 @@ final class ListBackedTrove<T> implements Trove<T> {
 
         for (T entry : this.source) {
             result.add(mapper.apply(entry));
+        }
+
+        return new ListBackedTrove<>(result);
+    }
+
+    @Override
+    public <R> Trove<R> mapIfPresent(final Function<T, Optional<R>> mapper) {
+        List<R> result = new ArrayList<>();
+
+        for (T entry : this.source) {
+            mapper.apply(entry).ifPresent(result::add);
         }
 
         return new ListBackedTrove<>(result);
@@ -100,6 +112,17 @@ final class ListBackedTrove<T> implements Trove<T> {
         }
 
         return new ListBackedTrove<>(result);
+    }
+
+    @Override
+    public T average(
+        final T identity,
+        final BinaryOperator<T> accumulator,
+        final BiFunction<T, Integer, T> divider
+    ) {
+        T sum = this.reduce(identity, accumulator);
+
+        return divider.apply(sum, this.source.size());
     }
 
     @Override
