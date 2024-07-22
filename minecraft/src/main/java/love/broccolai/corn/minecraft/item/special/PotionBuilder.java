@@ -130,7 +130,7 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      *
      * @return the base {@code PotionType}
      */
-    public PotionType basePotionType() {
+    public @Nullable PotionType basePotionType() {
         return this.itemMeta.getBasePotionType();
     }
 

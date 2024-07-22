@@ -24,7 +24,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-        sonatype.ossSnapshots()
     }
 
     dependencies {
@@ -42,8 +41,8 @@ subprojects {
         checkstyle("9.0")
 
         javaVersions {
-            target(17)
-            testWith(17)
+            target(21)
+            testWith(21)
         }
 
         github("broccolai", "corn") {

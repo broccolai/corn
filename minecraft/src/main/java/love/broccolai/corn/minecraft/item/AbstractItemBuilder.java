@@ -36,7 +36,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
 
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
-    protected final ItemStack itemStack;
+    protected ItemStack itemStack;
     protected final M itemMeta;
 
     /**
@@ -107,7 +107,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
         if (fakeEnch) {
             this.fakeEnchant(false);
         }
-        this.itemStack.setType(material);
+        this.itemStack = this.itemStack.withType(material);
         if (fakeEnch) {
             this.fakeEnchant(true);
         }
