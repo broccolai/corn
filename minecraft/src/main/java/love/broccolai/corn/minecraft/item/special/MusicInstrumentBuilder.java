@@ -6,6 +6,7 @@ import org.bukkit.MusicInstrument;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.MusicInstrumentMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link MusicInstrumentMeta}.
@@ -45,7 +46,7 @@ public final class MusicInstrumentBuilder extends AbstractItemBuilder<MusicInstr
      *
      * @return the goat horn's instrument
      */
-    public MusicInstrument instrument() {
+    public @Nullable MusicInstrument instrument() {
         return this.itemMeta.getInstrument();
     }
 

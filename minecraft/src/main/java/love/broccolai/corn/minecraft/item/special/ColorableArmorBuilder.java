@@ -49,7 +49,7 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
      *
      * @return the trim
      */
-    public ArmorTrim trim() {
+    public @Nullable ArmorTrim trim() {
         return this.itemMeta.getTrim();
     }
 

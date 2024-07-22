@@ -46,7 +46,7 @@ public final class ArmorBuilder extends AbstractItemBuilder<ArmorBuilder, ArmorM
      *
      * @return the trim
      */
-    public ArmorTrim trim() {
+    public @Nullable ArmorTrim trim() {
         return this.itemMeta.getTrim();
     }
 

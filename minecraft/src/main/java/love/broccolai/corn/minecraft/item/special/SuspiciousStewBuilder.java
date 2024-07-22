@@ -1,5 +1,6 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import io.papermc.paper.potion.SuspiciousEffectEntry;
 import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
@@ -69,10 +70,10 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @param customEffects custom effects
      * @return the builder
      */
-    public SuspiciousStewBuilder customEffects(final @Nullable List<PotionEffect> customEffects) {
+    public SuspiciousStewBuilder customEffects(final @Nullable List<SuspiciousEffectEntry> customEffects) {
         this.itemMeta.clearCustomEffects();
         if (customEffects != null) {
-            for (final PotionEffect item : customEffects) {
+            for (final SuspiciousEffectEntry item : customEffects) {
                 this.itemMeta.addCustomEffect(item, true);
             }
         }
@@ -86,7 +87,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
      * @return the builder
      */
-    public SuspiciousStewBuilder addCustomEffect(final PotionEffect customEffect, final boolean overwrite) {
+    public SuspiciousStewBuilder addCustomEffect(final SuspiciousEffectEntry customEffect, final boolean overwrite) {
         this.itemMeta.addCustomEffect(customEffect, overwrite);
         return this;
     }

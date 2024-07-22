@@ -6,6 +6,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link SpawnEggMeta}.
@@ -45,7 +46,7 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
      *
      * @return the custom spawned {@code EntityType}
      */
-    public EntityType customSpawnedType() {
+    public @Nullable EntityType customSpawnedType() {
         return this.itemMeta.getCustomSpawnedType();
     }
 
