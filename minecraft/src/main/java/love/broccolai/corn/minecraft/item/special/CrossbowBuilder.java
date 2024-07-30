@@ -75,7 +75,7 @@ public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, 
 
     /**
      * Adds a charged projectile.
-     * Must be either of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
+     * The item must be either of type {@link Material#ARROW} or {@link Material#FIREWORK_ROCKET}.
      *
      * @param chargedProjectile the charged projectile to add
      * @return the builder
