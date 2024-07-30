@@ -50,7 +50,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     protected final M itemMeta;
 
     /**
-     * Construct AbstractItemBuilder with an ItemStack and it's meta type.
+     * Constructs AbstractItemBuilder with an {@code ItemStack} and its {@code ItemMeta}.
      *
      * @param itemStack the {@code ItemStack}
      * @param itemMeta  the {@code ItemMeta}
