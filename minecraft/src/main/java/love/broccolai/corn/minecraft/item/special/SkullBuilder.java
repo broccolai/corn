@@ -9,6 +9,7 @@ import java.util.UUID;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -134,6 +135,26 @@ public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullM
      */
     public SkullBuilder owningPlayer(final @Nullable OfflinePlayer owningPlayer) {
         this.itemMeta.setOwningPlayer(owningPlayer);
+        return this;
+    }
+
+    /**
+     * Gets the note block sound.
+     *
+     * @return the note block sound
+     */
+    public @Nullable NamespacedKey noteBlockSound() {
+        return this.itemMeta.getNoteBlockSound();
+    }
+
+    /**
+     * Sets the note block sound.
+     *
+     * @param noteBlockSound the note block sound
+     * @return the builder
+     */
+    public SkullBuilder noteBlockSound(final @Nullable NamespacedKey noteBlockSound) {
+        this.itemMeta.setNoteBlockSound(noteBlockSound);
         return this;
     }
 
