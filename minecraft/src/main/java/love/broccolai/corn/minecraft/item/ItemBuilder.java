@@ -18,9 +18,8 @@ public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta
     private ItemBuilder(final ItemStack itemStack, final @Nullable ItemMeta itemMeta) {
         super(itemStack, itemMeta != null
             ? itemMeta
-            : Objects.requireNonNull(
-            Bukkit.getItemFactory().getItemMeta(itemStack.getType())
-        ));
+            : Objects.requireNonNull(Bukkit.getItemFactory().getItemMeta(itemStack.getType()))
+        );
     }
 
     /**
