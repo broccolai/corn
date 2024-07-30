@@ -77,30 +77,30 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
      *
      * @return the {@code FireworkEffect}s
      */
-    public List<FireworkEffect> fireworkEffects() {
+    public List<FireworkEffect> effects() {
         return this.itemMeta.getEffects();
     }
 
     /**
      * Sets the {@code FireworkEffect}s.
      *
-     * @param fireworkEffects the {@code FireworkEffect}s
+     * @param effects the {@code FireworkEffect}s
      * @return the builder
      */
-    public FireworkBuilder fireworkEffects(final List<FireworkEffect> fireworkEffects) {
+    public FireworkBuilder effects(final List<FireworkEffect> effects) {
         this.itemMeta.clearEffects();
-        this.itemMeta.addEffects(fireworkEffects);
+        this.itemMeta.addEffects(effects);
         return this;
     }
 
     /**
      * Adds a {@code FireworkEffect}.
      *
-     * @param fireworkEffect the {@code FireworkEffect} to add
+     * @param effect the {@code FireworkEffect} to add
      * @return the builder
      */
-    public FireworkBuilder addFireworkEffect(final FireworkEffect... fireworkEffect) {
-        this.itemMeta.addEffects(fireworkEffect);
+    public FireworkBuilder addEffect(final FireworkEffect... effect) {
+        this.itemMeta.addEffects(effect);
         return this;
     }
 
