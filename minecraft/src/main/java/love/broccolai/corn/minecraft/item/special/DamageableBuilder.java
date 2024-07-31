@@ -18,7 +18,7 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
     }
 
     /**
-     * Creates an {@code DamageableBuilder}.
+     * Creates a {@code DamageableBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code DamageableBuilder}
@@ -29,7 +29,7 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
     }
 
     /**
-     * Creates an {@code DamageableBuilder}.
+     * Creates a {@code DamageableBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code DamageableBuilder}

@@ -19,7 +19,7 @@ public final class MusicInstrumentBuilder extends AbstractItemBuilder<MusicInstr
     }
 
     /**
-     * Creates an {@code MusicInstrumentBuilder}.
+     * Creates a {@code MusicInstrumentBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code MusicInstrumentBuilder}
@@ -30,7 +30,7 @@ public final class MusicInstrumentBuilder extends AbstractItemBuilder<MusicInstr
     }
 
     /**
-     * Creates an {@code MusicInstrumentBuilder}.
+     * Creates a {@code MusicInstrumentBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code MusicInstrumentBuilder}

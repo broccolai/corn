@@ -22,7 +22,7 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
     }
 
     /**
-     * Creates an {@code ColorableArmorBuilder}.
+     * Creates a {@code ColorableArmorBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code ColorableArmorBuilder}
@@ -33,7 +33,7 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
     }
 
     /**
-     * Creates an {@code ColorableArmorBuilder}.
+     * Creates a {@code ColorableArmorBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code ColorableArmorBuilder}

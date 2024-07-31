@@ -18,7 +18,7 @@ public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuild
     }
 
     /**
-     * Creates an {@code RepairableBuilder}.
+     * Creates a {@code RepairableBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code RepairableBuilder}
@@ -29,7 +29,7 @@ public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuild
     }
 
     /**
-     * Creates an {@code RepairableBuilder}.
+     * Creates a {@code RepairableBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code RepairableBuilder}

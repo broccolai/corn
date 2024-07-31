@@ -19,7 +19,7 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
     }
 
     /**
-     * Creates an {@code SpawnEggBuilder}.
+     * Creates a {@code SpawnEggBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code SpawnEggBuilder}
@@ -30,7 +30,7 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
     }
 
     /**
-     * Creates an {@code SpawnEggBuilder}.
+     * Creates a {@code SpawnEggBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code SpawnEggBuilder}

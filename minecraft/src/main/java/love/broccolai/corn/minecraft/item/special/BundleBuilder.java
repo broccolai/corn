@@ -22,7 +22,7 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
     }
 
     /**
-     * Creates an {@code BundleBuilder}.
+     * Creates a {@code BundleBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code BundleBuilder}
@@ -33,7 +33,7 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
     }
 
     /**
-     * Creates an {@code BundleBuilder}.
+     * Creates a {@code BundleBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code BundleBuilder}
