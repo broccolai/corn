@@ -5,6 +5,7 @@ import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BundleMeta;
+import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -12,6 +13,8 @@ import org.jspecify.annotations.Nullable;
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BundleMeta}.
  */
 @NullMarked
+@ApiStatus.Experimental
+@SuppressWarnings({"UnstableApiUsage"})
 public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, BundleMeta> {
 
     private BundleBuilder(final ItemStack itemStack, final BundleMeta itemMeta) {
