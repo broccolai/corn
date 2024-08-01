@@ -1,5 +1,6 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.Collections;
 import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Color;
@@ -51,6 +52,11 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @return the custom effects
      */
     public List<PotionEffect> customEffects() {
+        if (!this.itemMeta.hasCustomEffects()) {
+            // we could return null, but the API generally returns empty lists
+            // instead, so we'll do this for consistency.
+            return Collections.emptyList();
+        }
         return this.itemMeta.getCustomEffects();
     }
 
