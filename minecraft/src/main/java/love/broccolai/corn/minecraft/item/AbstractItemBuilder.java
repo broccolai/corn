@@ -446,6 +446,17 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
             && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
+    /**
+     * Checks whether the given enchantment conflicts with any enchantments
+     * in this item.
+     *
+     * @param enchant the enchantment to test
+     * @return whether the enchantment conflicts
+     */
+    public boolean hasConflictingEnchant(final Enchantment enchant) {
+        return this.itemMeta.hasConflictingEnchant(enchant);
+    }
+
     private Enchantment incompatibleEnchantment() {
         if (!Enchantment.LURE.canEnchantItem(this.itemStack)) {
             return Enchantment.RIPTIDE; // exclusive to tridents.
