@@ -530,7 +530,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the {@code Enchantment}s
      */
     public Map<Enchantment, Integer> enchants() {
-        return new HashMap<>(this.itemStack.getEnchantments());
+        return this.itemStack.getEnchantments();
     }
 
     /**
