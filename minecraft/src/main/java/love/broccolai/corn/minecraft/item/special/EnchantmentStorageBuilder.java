@@ -91,4 +91,15 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
         return this;
     }
 
+    /**
+     * Gets whether the given enchantment conflicts with any stored enchantments
+     * in this item.
+     *
+     * @param enchantment the enchantment to test
+     * @return whether the enchantment conflicts
+     */
+    public boolean hasConflictingStoredEnchant(final Enchantment enchantment) {
+        return this.itemMeta.hasConflictingStoredEnchant(enchantment);
+    }
+
 }
