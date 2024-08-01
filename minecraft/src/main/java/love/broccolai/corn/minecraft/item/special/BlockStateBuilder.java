@@ -6,6 +6,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BlockStateMeta}.
@@ -50,12 +51,16 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
     }
 
     /**
-     * Sets the {@code BlockState}.
+     * Sets the {@code BlockState}. Pass {@code null} to reset.
      *
      * @param blockState the {@code BlockState}
      * @return the builder
      */
-    public BlockStateBuilder blockState(final BlockState blockState) {
+    public BlockStateBuilder blockState(final @Nullable BlockState blockState) {
+        if (blockState == null) {
+            this.itemMeta.clearBlockState();
+            return this;
+        }
         this.itemMeta.setBlockState(blockState);
         return this;
     }
