@@ -16,6 +16,7 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -230,6 +231,29 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public B fireResistant(final boolean fireResistant) {
         this.itemMeta.setFireResistant(fireResistant);
+        return (B) this;
+    }
+
+    /**
+     * Gets the rarity.
+     *
+     * @return the rarity
+     */
+    public @Nullable ItemRarity rarity() {
+        if (!this.itemMeta.hasRarity()) {
+            return null;
+        }
+        return this.itemMeta.getRarity();
+    }
+
+    /**
+     * Sets the rarity. Pass {@code null} to reset.
+     *
+     * @param rarity the rarity
+     * @return the builder
+     */
+    public B rarity(final @Nullable ItemRarity rarity) {
+        this.itemMeta.setRarity(rarity);
         return (B) this;
     }
 
