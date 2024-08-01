@@ -32,8 +32,6 @@ import org.jspecify.annotations.Nullable;
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
-    private static final int FAKE_ENCHANT_LEVEL = 102; // f in ASCII.
-
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
 
     /**
@@ -113,14 +111,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B material(final Material material) {
-        final boolean fakeEnch = this.fakeEnchant();
-        if (fakeEnch) {
-            this.fakeEnchant(false);
-        }
         this.itemStack = this.itemStack.withType(material);
-        if (fakeEnch) {
-            this.fakeEnchant(true);
-        }
         return (B) this;
     }
 
@@ -193,6 +184,32 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public B hideTooltip(final boolean hideTooltip) {
         this.itemMeta.setHideTooltip(hideTooltip);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether enchantment_glint_override is set. If true, the item will glint regardless
+     * of enchantments. If false, the item will <b>not</b> glint regardless of enchantments.
+     *
+     * @return whether enchantment_glint_override is set
+     */
+    public @Nullable Boolean enchantmentGlintOverride() {
+        if (!this.itemMeta.hasEnchantmentGlintOverride()) {
+            return null;
+        }
+        return this.itemMeta.getEnchantmentGlintOverride();
+    }
+
+    /**
+     * Sets whether enchantment_glint_override is set. If true, the item will glint regardless
+     * of enchantments. If false, the item will <b>not</b> glint regardless of enchantments.
+     * Pass {@code null} to clear the override.
+     *
+     * @param enchantmentGlintOverride whether enchantment_glint_override is set
+     * @return the builder
+     */
+    public B enchantmentGlintOverride(final @Nullable Boolean enchantmentGlintOverride) {
+        this.itemMeta.setEnchantmentGlintOverride(enchantmentGlintOverride);
         return (B) this;
     }
 
@@ -413,37 +430,6 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
             this.itemMeta.removeEnchant(item);
         }
         return (B) this;
-    }
-
-    /**
-     * Sets whether the {@code ItemStack} has a fake enchantment glint.
-     *
-     * <p>This works by enchanting the {@code ItemStack} with an incompatible
-     * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.</p>
-     *
-     * @param fakeEnchant whether the {@code ItemStack} has a fake enchant glint
-     * @return the builder
-     */
-    public B fakeEnchant(final boolean fakeEnchant) {
-        if (fakeEnchant && !this.fakeEnchant()) {
-            this.addEnchant(this.incompatibleEnchantment(), FAKE_ENCHANT_LEVEL);
-            this.addFlag(ItemFlag.HIDE_ENCHANTS);
-        } else if (!fakeEnchant && this.fakeEnchant()) {
-            this.removeEnchant(this.incompatibleEnchantment());
-            this.removeFlag(ItemFlag.HIDE_ENCHANTS);
-        }
-        return (B) this;
-    }
-
-    /**
-     * Gets whether the {@code ItemStack} has a fake enchantment glint.
-     *
-     * @return whether the {@code ItemStack} has a fake enchantment glint
-     */
-    public boolean fakeEnchant() {
-        return this.enchants().containsKey(this.incompatibleEnchantment())
-            && this.enchants().get(this.incompatibleEnchantment()) == FAKE_ENCHANT_LEVEL
-            && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
     }
 
     /**
