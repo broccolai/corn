@@ -14,12 +14,14 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -633,6 +635,28 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     public ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack.clone();
+    }
+
+    /**
+     * Get this item's meta as an NBT string. If the meta does not have any NBT,
+     * then {@code "{}"} will be returned.
+     *
+     * @return the NBT string
+     * @see ItemMeta#getAsString()
+     */
+    public String asString() {
+        return this.itemMeta.getAsString();
+    }
+
+    /**
+     * Get this ItemMeta as a component-compliant string. If the meta does not
+     * contain any components, then {@code "[]"} will be returned.
+     *
+     * @return the component-compliant string
+     * @see ItemMeta#getAsComponentString()
+     */
+    public String asComponentString() {
+        return this.itemMeta.getAsComponentString();
     }
 
 }
