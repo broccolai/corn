@@ -107,4 +107,15 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
         return this;
     }
 
+    /**
+     * Removes a {@code FireworkEffect}.
+     *
+     * @param index the index of the {@code FireworkEffect} to remove
+     * @return the builder
+     */
+    public FireworkBuilder remove(final int index) {
+        this.itemMeta.removeEffect(index);
+        return this;
+    }
+
 }
