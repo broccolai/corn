@@ -472,12 +472,26 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Get the max stack size.
+     * Gets the max stack size.
      *
      * @return the max stack size
      */
-    public int maxStackSize() {
-        return this.itemStack.getMaxStackSize();
+    public @Nullable Integer maxStackSize() {
+        if (!this.itemMeta.hasMaxStackSize()) {
+            return null;
+        }
+        return this.itemMeta.getMaxStackSize();
+    }
+
+    /**
+     * Sets the max stack size. Pass {@code null} to reset.
+     *
+     * @param maxStackSize the max stack size
+     * @return the builder
+     */
+    public B maxStackSize(final @Nullable Integer maxStackSize) {
+        this.itemMeta.setMaxStackSize(maxStackSize);
+        return (B) this;
     }
 
     /**
