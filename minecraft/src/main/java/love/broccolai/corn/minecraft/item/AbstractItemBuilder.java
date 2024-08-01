@@ -168,7 +168,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets whether hide_tooltip is set. An item with this set will not show any tooltip whatsoever.
+     * Gets whether hide_tooltip is set. If true, the item will not show any tooltip whatsoever.
      *
      * @return whether hide_tooltip is set
      */
@@ -177,7 +177,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets whether hide_tooltip is set. An item with this set will not show any tooltip whatsoever.
+     * Gets whether hide_tooltip is set. If true, the item will not show any tooltip whatsoever.
      *
      * @param hideTooltip whether hide_tooltip is set
      * @return the builder
@@ -210,6 +210,26 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public B enchantmentGlintOverride(final @Nullable Boolean enchantmentGlintOverride) {
         this.itemMeta.setEnchantmentGlintOverride(enchantmentGlintOverride);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether fire_resistant is set. If true, the item will not burn in lava.
+     *
+     * @return whether fire_resistant is set
+     */
+    public boolean fireResistant() {
+        return this.itemMeta.isFireResistant();
+    }
+
+    /**
+     * Sets whether fire_resistant is set. If true, the item will not burn in lava.
+     *
+     * @param fireResistant whether fire_resistant is set
+     * @return the builder
+     */
+    public B fireResistant(final boolean fireResistant) {
+        this.itemMeta.setFireResistant(fireResistant);
         return (B) this;
     }
 
