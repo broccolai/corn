@@ -46,7 +46,7 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
      * @return the damage
      */
     public @Nullable Integer damage() {
-        if (!this.itemMeta.hasDamage()) {
+        if (!this.itemMeta.hasDamageValue()) {
             return null;
         }
         return this.itemMeta.getDamage();
