@@ -42,18 +42,18 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     }
 
     /**
-     * Gets the stored enchants.
+     * Gets the stored enchantments.
      *
-     * @return the stored enchants
+     * @return the stored enchantments
      */
     public Map<Enchantment, Integer> storedEnchants() {
         return this.itemMeta.getStoredEnchants();
     }
 
     /**
-     * Sets the stored enchants.
+     * Sets the stored enchantments.
      *
-     * @param storedEnchants the stored enchants
+     * @param storedEnchants the stored enchantments
      * @return the builder
      */
     public EnchantmentStorageBuilder storedEnchants(final Map<Enchantment, Integer> storedEnchants) {
@@ -67,7 +67,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     }
 
     /**
-     * Adds a stored enchant.
+     * Adds a stored enchantment.
      *
      * @param enchant the enchantment to add
      * @param level   the level of the enchantment
@@ -79,7 +79,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     }
 
     /**
-     * Removes a stored enchant.
+     * Removes a stored enchantment.
      *
      * @param enchant the enchantment to remove
      * @return the builder
