@@ -182,6 +182,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the lore
      */
     public @Nullable List<Component> lore() {
+        if (!this.itemMeta.hasLore()) {
+            return null;
+        }
         return this.itemMeta.lore();
     }
 
