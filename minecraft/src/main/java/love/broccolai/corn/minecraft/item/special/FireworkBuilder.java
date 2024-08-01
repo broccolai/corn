@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link FireworkMeta}.
@@ -82,14 +83,16 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
     }
 
     /**
-     * Sets the {@code FireworkEffect}s.
+     * Sets the {@code FireworkEffect}s. Pass {@code null} to reset.
      *
      * @param effects the {@code FireworkEffect}s
      * @return the builder
      */
-    public FireworkBuilder effects(final List<FireworkEffect> effects) {
+    public FireworkBuilder effects(final @Nullable List<FireworkEffect> effects) {
         this.itemMeta.clearEffects();
-        this.itemMeta.addEffects(effects);
+        if (effects != null) {
+            this.itemMeta.addEffects(effects);
+        }
         return this;
     }
 
