@@ -53,12 +53,16 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
     }
 
     /**
-     * Sets the damage.
+     * Sets the damage. Pass {@code null} to reset.
      *
      * @param damage the damage
      * @return the builder
      */
-    public DamageableBuilder damage(final Integer damage) {
+    public DamageableBuilder damage(final @Nullable Integer damage) {
+        if (damage == null) {
+            this.itemMeta.resetDamage();
+            return this;
+        }
         this.itemMeta.setDamage(damage);
         return this;
     }
