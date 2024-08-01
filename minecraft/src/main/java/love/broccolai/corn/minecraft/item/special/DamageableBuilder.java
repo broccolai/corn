@@ -67,4 +67,27 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
         return this;
     }
 
+    /**
+     * Gets the maximum amount of damage.
+     *
+     * @return the maximum amount of damage
+     */
+    public @Nullable Integer maxDamage() {
+        if (!this.itemMeta.hasMaxDamage()) {
+            return null;
+        }
+        return this.itemMeta.getMaxDamage();
+    }
+
+    /**
+     * Sets the maximum amount of damage.
+     *
+     * @param maxDamage the maximum amount of damage
+     * @return the builder
+     */
+    public DamageableBuilder maxDamage(final @Nullable Integer maxDamage) {
+        this.itemMeta.setMaxDamage(maxDamage);
+        return this;
+    }
+
 }
