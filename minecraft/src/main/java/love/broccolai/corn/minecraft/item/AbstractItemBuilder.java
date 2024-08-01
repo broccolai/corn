@@ -177,6 +177,26 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets whether hide_tooltip is set. An item with this set will not show any tooltip whatsoever.
+     *
+     * @return whether hide_tooltip is set
+     */
+    public boolean hideTooltip() {
+        return this.itemMeta.isHideTooltip();
+    }
+
+    /**
+     * Gets whether hide_tooltip is set. An item with this set will not show any tooltip whatsoever.
+     *
+     * @param hideTooltip whether hide_tooltip is set
+     * @return the builder
+     */
+    public B hideTooltip(final boolean hideTooltip) {
+        this.itemMeta.setHideTooltip(hideTooltip);
+        return (B) this;
+    }
+
+    /**
      * Gets the lore.
      *
      * @return the lore
