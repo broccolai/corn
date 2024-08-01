@@ -428,7 +428,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Gets data from the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key  the {@code NamespacedKey} to use
      * @param type the {@code PersistentDataType to use}
@@ -444,7 +444,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds data to the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Adds data to the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key    the {@code NamespacedKey} to use
      * @param type   the {@code PersistentDataType} to use
@@ -463,7 +463,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Removes data from the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key the {@code NamespacedKey} to use
      * @return the builder
@@ -525,18 +525,18 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@code Enchantment}s.
+     * Gets the enchantments.
      *
-     * @return the {@code Enchantment}s
+     * @return the enchantments
      */
     public Map<Enchantment, Integer> enchants() {
         return this.itemStack.getEnchantments();
     }
 
     /**
-     * Sets the {@code Enchantment}s. Pass {@code null} to reset.
+     * Sets the enchantments. Pass {@code null} to reset.
      *
-     * @param enchants the {@code Enchantment}s
+     * @param enchants the enchantments
      * @return the builder
      */
     public B enchants(final @Nullable Map<Enchantment, Integer> enchants) {
@@ -554,10 +554,10 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds an {@code Enchantment}.
+     * Adds an enchantment.
      *
-     * @param enchantment the {@code Enchantment} to add
-     * @param level       the level of the {@code Enchantment}
+     * @param enchantment the enchantment to add
+     * @param level       the level of the enchantment
      * @return the builder
      */
     public B addEnchant(final Enchantment enchantment, final int level) {
@@ -566,9 +566,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes an {@code Enchantment}.
+     * Removes an enchantment.
      *
-     * @param enchantment the {@code Enchantment} to remove
+     * @param enchantment the enchantment to remove
      * @return the builder
      */
     public B removeEnchant(final Enchantment... enchantment) {
@@ -598,18 +598,18 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets whether the {@code ItemStack} is unbreakable.
+     * Gets whether the item is unbreakable.
      *
-     * @return whether the {@code ItemStack} is unbreakable
+     * @return whether the item is unbreakable
      */
     public boolean unbreakable() {
         return this.itemMeta.isUnbreakable();
     }
 
     /**
-     * Sets whether the {@code ItemStack} is unbreakable.
+     * Sets whether the item is unbreakable.
      *
-     * @param unbreakable whether the {@code ItemStack} is unbreakable
+     * @param unbreakable whether the item is unbreakable
      * @return the builder
      */
     public B unbreakable(final boolean unbreakable) {

@@ -53,7 +53,7 @@ public final class TropicalFishBucketBuilder extends AbstractItemBuilder<Tropica
     }
 
     /**
-     * Gets the {@code Pattern}.
+     * Gets the pattern.
      *
      * @return the pattern
      */
@@ -62,7 +62,7 @@ public final class TropicalFishBucketBuilder extends AbstractItemBuilder<Tropica
     }
 
     /**
-     * Sets the {@code Pattern}.
+     * Sets the pattern.
      *
      * @param pattern the pattern
      * @return the builder

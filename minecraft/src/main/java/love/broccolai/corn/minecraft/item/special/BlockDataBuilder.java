@@ -41,19 +41,19 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
     }
 
     /**
-     * Gets a copy of the {@code BlockData}. Creates a new one if it doesn't currently exist.
+     * Gets a copy of the block data. Creates a new one if it doesn't currently exist.
      *
      * @param material the material the data should be retrieved in the context of
-     * @return the {@code BlockData}
+     * @return the block data
      */
     public BlockData blockData(final Material material) {
         return this.itemMeta.getBlockData(material);
     }
 
     /**
-     * Sets the {@code BlockData}.
+     * Sets the block data.
      *
-     * @param blockData the {@code BlockData}
+     * @param blockData the block data
      * @return the builder
      */
     public BlockDataBuilder blockData(final BlockData blockData) {
@@ -62,9 +62,9 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
     }
 
     /**
-     * Gets whether a {@code BlockData} is currently attached.
+     * Gets whether a block data is currently attached.
      *
-     * @return whether a {@code BlockData} is currently attached
+     * @return whether a block data is currently attached
      */
     public boolean hasBlockData() {
         return this.itemMeta.hasBlockData();

@@ -90,7 +90,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * Adds a custom effect.
      *
      * @param customEffect the custom effect to add
-     * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
+     * @param overwrite    whether to overwrite potion effects of the same type
      * @return the builder
      */
     public SuspiciousStewBuilder addCustomEffect(final SuspiciousEffectEntry customEffect, final boolean overwrite) {

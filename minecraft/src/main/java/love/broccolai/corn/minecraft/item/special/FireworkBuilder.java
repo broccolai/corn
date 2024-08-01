@@ -74,18 +74,18 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
     }
 
     /**
-     * Gets the {@code FireworkEffect}s.
+     * Gets the firework effects.
      *
-     * @return the {@code FireworkEffect}s
+     * @return the firework effects
      */
     public List<FireworkEffect> effects() {
         return this.itemMeta.getEffects();
     }
 
     /**
-     * Sets the {@code FireworkEffect}s. Pass {@code null} to reset.
+     * Sets the firework effects. Pass {@code null} to reset.
      *
-     * @param effects the {@code FireworkEffect}s
+     * @param effects the firework effects
      * @return the builder
      */
     public FireworkBuilder effects(final @Nullable List<FireworkEffect> effects) {
@@ -97,9 +97,9 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
     }
 
     /**
-     * Adds a {@code FireworkEffect}.
+     * Adds a firework effect.
      *
-     * @param effect the {@code FireworkEffect} to add
+     * @param effect the firework effect to add
      * @return the builder
      */
     public FireworkBuilder addEffect(final FireworkEffect... effect) {
@@ -108,9 +108,9 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
     }
 
     /**
-     * Removes a {@code FireworkEffect}.
+     * Removes a firework effect.
      *
-     * @param index the index of the {@code FireworkEffect} to remove
+     * @param index the index of the firework effect to remove
      * @return the builder
      */
     public FireworkBuilder remove(final int index) {

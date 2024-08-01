@@ -42,18 +42,18 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
     }
 
     /**
-     * Gets the {@code FireworkEffect}.
+     * Gets the firework effect.
      *
-     * @return the {@code FireworkEffect}
+     * @return the firework effect
      */
     public @Nullable FireworkEffect effect() {
         return this.itemMeta.getEffect();
     }
 
     /**
-     * Sets the {@code FireworkEffect}. Pass {@code null} to reset.
+     * Sets the firework effect. Pass {@code null} to reset.
      *
-     * @param effect the {@code FireworkEffect}
+     * @param effect the firework effect
      * @return the builder
      */
     public FireworkEffectBuilder effect(final @Nullable FireworkEffect effect) {

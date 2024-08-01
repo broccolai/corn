@@ -43,18 +43,18 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
     }
 
     /**
-     * Gets the {@code Color}.
+     * Gets the color.
      *
-     * @return the {@code Color}
+     * @return the color
      */
     public @Nullable Color color() {
         return this.itemMeta.getColor();
     }
 
     /**
-     * Sets the {@code Color}. Pass {@code null} to reset.
+     * Sets the color. Pass {@code null} to reset.
      *
-     * @param color the {@code Color}
+     * @param color the color
      * @return the builder
      */
     public MapBuilder color(final @Nullable Color color) {
@@ -63,18 +63,18 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
     }
 
     /**
-     * Gets the {@code MapView}.
+     * Gets the map view.
      *
-     * @return the {@code MapView}
+     * @return the map view
      */
     public @Nullable MapView mapView() {
         return this.itemMeta.getMapView();
     }
 
     /**
-     * Sets the {@code MapView}. Pass {@code null} to reset.
+     * Sets the map view. Pass {@code null} to reset.
      *
-     * @param mapView the {@code MapView}
+     * @param mapView the map view
      * @return the builder
      */
     public MapBuilder mapView(final @Nullable MapView mapView) {

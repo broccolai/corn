@@ -63,18 +63,18 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
     }
 
     /**
-     * Gets the custom spawned {@code EntityType}.
+     * Gets the custom spawned entity type.
      *
-     * @return the custom spawned {@code EntityType}
+     * @return the custom spawned entity type
      */
     public @Nullable EntityType customSpawnedType() {
         return this.itemMeta.getCustomSpawnedType();
     }
 
     /**
-     * Sets the custom spawned {@code EntityType}.
+     * Sets the custom spawned entity type.
      *
-     * @param customSpawnedType the custom spawned {@code EntityType}
+     * @param customSpawnedType the custom spawned entity type
      * @return the builder
      */
     public SpawnEggBuilder customSpawnedType(final EntityType customSpawnedType) {

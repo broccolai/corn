@@ -42,18 +42,18 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
     }
 
     /**
-     * Gets a copy of {@code BlockState}. Creates a new one if it doesn't currently exist.
+     * Gets a copy of the block state. Creates a new one if it doesn't currently exist.
      *
-     * @return the {@code BlockState}
+     * @return the block state
      */
     public BlockState blockState() {
         return this.itemMeta.getBlockState();
     }
 
     /**
-     * Sets the {@code BlockState}. Pass {@code null} to reset.
+     * Sets the block state. Pass {@code null} to reset.
      *
-     * @param blockState the {@code BlockState}
+     * @param blockState the block state
      * @return the builder
      */
     public BlockStateBuilder blockState(final @Nullable BlockState blockState) {
@@ -66,9 +66,9 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
     }
 
     /**
-     * Gets whether a {@code BlockState} is currently attached.
+     * Gets whether a block state is currently attached.
      *
-     * @return whether a {@code BlockState} is currently attached
+     * @return whether a block state is currently attached
      */
     public boolean hasBlockState() {
         return this.itemMeta.hasBlockState();

@@ -87,7 +87,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
     }
 
     /**
-     * Gets the {@code Generation}.
+     * Gets the generation.
      *
      * @return the generation
      */
@@ -96,7 +96,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
     }
 
     /**
-     * Sets the {@code Generation}. Pass {@code null} to reset.
+     * Sets the generation. Pass {@code null} to reset.
      *
      * @param generation the generation
      * @return the builder

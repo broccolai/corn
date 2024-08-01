@@ -69,8 +69,8 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     /**
      * Adds a stored enchant.
      *
-     * @param enchant the {@code Enchantment} to add
-     * @param level   the level of the {@code Enchantment}
+     * @param enchant the enchantment to add
+     * @param level   the level of the enchantment
      * @return the builder
      */
     public EnchantmentStorageBuilder addStoredEnchant(final Enchantment enchant, final int level) {
@@ -81,7 +81,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     /**
      * Removes a stored enchant.
      *
-     * @param enchant the {@code Enchantment} to remove
+     * @param enchant the enchantment to remove
      * @return the builder
      */
     public EnchantmentStorageBuilder removeStoredEnchant(final Enchantment... enchant) {
