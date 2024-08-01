@@ -69,7 +69,10 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
      *
      * @return the color
      */
-    public Color color() {
+    public @Nullable Color color() {
+        if (!this.itemMeta.isDyed()) {
+            return null;
+        }
         return this.itemMeta.getColor();
     }
 

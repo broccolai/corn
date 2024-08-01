@@ -46,7 +46,10 @@ public final class LeatherArmorBuilder extends AbstractItemBuilder<LeatherArmorB
      *
      * @return the color
      */
-    public Color color() {
+    public @Nullable Color color() {
+        if (!this.itemMeta.isDyed()) {
+            return null;
+        }
         return this.itemMeta.getColor();
     }
 
