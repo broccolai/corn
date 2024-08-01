@@ -20,7 +20,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.FoodComponent;
+import org.bukkit.inventory.meta.components.JukeboxPlayableComponent;
+import org.bukkit.inventory.meta.components.ToolComponent;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -256,6 +260,102 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      */
     public B rarity(final @Nullable ItemRarity rarity) {
         this.itemMeta.setRarity(rarity);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a food component.
+     *
+     * @return whether the item has a food component
+     */
+    @ApiStatus.Experimental
+    public boolean hasFood() {
+        return this.itemMeta.hasFood();
+    }
+
+    /**
+     * Gets the food component, or creates an empty instance.
+     *
+     * @return the food component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public FoodComponent food() {
+        return this.itemMeta.getFood();
+    }
+
+    /**
+     * Sets the food component, or creates an empty instance.
+     *
+     * @param food the food component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B food(final @Nullable FoodComponent food) {
+        this.itemMeta.setFood(food);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a tool component.
+     *
+     * @return whether the item has a tool component
+     */
+    @ApiStatus.Experimental
+    public boolean hasTool() {
+        return this.itemMeta.hasTool();
+    }
+
+    /**
+     * Gets the tool component, or creates an empty instance.
+     *
+     * @return the tool component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public ToolComponent tool() {
+        return this.itemMeta.getTool();
+    }
+
+    /**
+     * Sets the tool component, or creates an empty instance.
+     *
+     * @param tool the tool component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B tool(final @Nullable ToolComponent tool) {
+        this.itemMeta.setTool(tool);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a jukebox playable component.
+     *
+     * @return whether the item has a jukebox playable component
+     */
+    @ApiStatus.Experimental
+    public boolean hasJukeboxPlayable() {
+        return this.itemMeta.hasJukeboxPlayable();
+    }
+
+    /**
+     * Gets the jukebox playable component, or creates an empty instance.
+     *
+     * @return the jukebox playable component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public JukeboxPlayableComponent jukeboxPlayable() {
+        return this.itemMeta.getJukeboxPlayable();
+    }
+
+    /**
+     * Sets the jukebox playable component, or creates an empty instance.
+     *
+     * @param jukeboxPlayable the jukebox playable component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B jukeboxPlayable(final @Nullable JukeboxPlayableComponent jukeboxPlayable) {
+        this.itemMeta.setJukeboxPlayable(jukeboxPlayable);
         return (B) this;
     }
 
