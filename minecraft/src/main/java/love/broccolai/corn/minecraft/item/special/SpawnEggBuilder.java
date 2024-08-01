@@ -2,6 +2,7 @@ package love.broccolai.corn.minecraft.item.special;
 
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
+import org.bukkit.entity.EntitySnapshot;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SpawnEggMeta;
@@ -39,6 +40,26 @@ public final class SpawnEggBuilder extends AbstractItemBuilder<SpawnEggBuilder, 
      */
     public static SpawnEggBuilder ofType(final Material material) throws IllegalArgumentException {
         return SpawnEggBuilder.of(itemOfMaterial(material));
+    }
+
+    /**
+     * Gets the entity that will be spawned.
+     *
+     * @return the spawned entity
+     */
+    public @Nullable EntitySnapshot spawnedEntity() {
+        return this.itemMeta.getSpawnedEntity();
+    }
+
+    /**
+     * Sets the entity that will be spawned.
+     *
+     * @param spawnedEntity the spawned entity
+     * @return the builder
+     */
+    public SpawnEggBuilder spawnedEntity(final EntitySnapshot spawnedEntity) {
+        this.itemMeta.setSpawnedEntity(spawnedEntity);
+        return this;
     }
 
     /**
