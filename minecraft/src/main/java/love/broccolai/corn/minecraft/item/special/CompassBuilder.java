@@ -25,7 +25,7 @@ public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, Co
      * @return instance of {@code CompassBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static CompassBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static CompassBuilder compassBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new CompassBuilder(itemStack, castMeta(itemStack.getItemMeta(), CompassMeta.class));
     }
 
@@ -37,19 +37,17 @@ public final class CompassBuilder extends AbstractItemBuilder<CompassBuilder, Co
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static CompassBuilder ofType(final Material material) throws IllegalArgumentException {
-        return CompassBuilder.of(itemOfMaterial(material));
+    public static CompassBuilder compassBuilder(final Material material) throws IllegalArgumentException {
+        return compassBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code CompassBuilder} of type {@link Material#COMPASS}. A convenience method.
      *
      * @return instance of {@code CompassBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static CompassBuilder ofCompass() throws IllegalArgumentException {
-        return ofType(Material.COMPASS);
+    public static CompassBuilder compassBuilder() {
+        return compassBuilder(Material.COMPASS);
     }
 
     /**

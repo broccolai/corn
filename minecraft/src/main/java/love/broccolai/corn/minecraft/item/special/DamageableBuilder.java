@@ -24,7 +24,7 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
      * @return instance of {@code DamageableBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static DamageableBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static DamageableBuilder damageableBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new DamageableBuilder(itemStack, castMeta(itemStack.getItemMeta(), Damageable.class));
     }
 
@@ -36,8 +36,8 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static DamageableBuilder ofType(final Material material) throws IllegalArgumentException {
-        return DamageableBuilder.of(itemOfMaterial(material));
+    public static DamageableBuilder damageableBuilder(final Material material) throws IllegalArgumentException {
+        return damageableBuilder(itemOfMaterial(material));
     }
 
     /**

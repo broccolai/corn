@@ -25,7 +25,7 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      * @return instance of {@code FireworkEffectBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkEffectBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static FireworkEffectBuilder fireworkEffectBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new FireworkEffectBuilder(itemStack, castMeta(itemStack.getItemMeta(), FireworkEffectMeta.class));
     }
 
@@ -37,8 +37,17 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkEffectBuilder ofType(final Material material) throws IllegalArgumentException {
-        return FireworkEffectBuilder.of(itemOfMaterial(material));
+    public static FireworkEffectBuilder fireworkEffectBuilder(final Material material) throws IllegalArgumentException {
+        return fireworkEffectBuilder(itemOfMaterial(material));
+    }
+
+    /**
+     * Creates a {@code FireworkEffectBuilder} of type {@link Material#FIREWORK_STAR}. A convenience method.
+     *
+     * @return instance of {@code FireworkEffectBuilder}
+     */
+    public static FireworkEffectBuilder fireworkEffectBuilder() {
+        return fireworkEffectBuilder(Material.FIREWORK_STAR);
     }
 
     /**

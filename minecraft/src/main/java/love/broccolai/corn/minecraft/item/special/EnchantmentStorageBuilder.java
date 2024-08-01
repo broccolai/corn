@@ -25,7 +25,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
      * @return instance of {@code EnchantmentStorageBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static EnchantmentStorageBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new EnchantmentStorageBuilder(itemStack, castMeta(itemStack.getItemMeta(), EnchantmentStorageMeta.class));
     }
 
@@ -37,8 +37,17 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static EnchantmentStorageBuilder ofType(final Material material) throws IllegalArgumentException {
-        return EnchantmentStorageBuilder.of(itemOfMaterial(material));
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder(final Material material) throws IllegalArgumentException {
+        return enchantmentStorageBuilder(itemOfMaterial(material));
+    }
+
+    /**
+     * Creates an {@code EnchantmentStorageBuilder} of type {@link Material#ENCHANTED_BOOK}. A convenience method.
+     *
+     * @return instance of {@code EnchantmentStorageBuilder}
+     */
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder() {
+        return enchantmentStorageBuilder(Material.ENCHANTED_BOOK);
     }
 
     /**

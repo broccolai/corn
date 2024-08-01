@@ -25,7 +25,7 @@ public final class TropicalFishBucketBuilder extends AbstractItemBuilder<Tropica
      * @return instance of {@code TropicalFishBucketBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static TropicalFishBucketBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static TropicalFishBucketBuilder tropicalFishBucketBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new TropicalFishBucketBuilder(itemStack, castMeta(itemStack.getItemMeta(), TropicalFishBucketMeta.class));
     }
 
@@ -37,19 +37,17 @@ public final class TropicalFishBucketBuilder extends AbstractItemBuilder<Tropica
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static TropicalFishBucketBuilder ofType(final Material material) throws IllegalArgumentException {
-        return TropicalFishBucketBuilder.of(itemOfMaterial(material));
+    public static TropicalFishBucketBuilder tropicalFishBucketBuilder(final Material material) throws IllegalArgumentException {
+        return tropicalFishBucketBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code TropicalFishBucketBuilder} of type {@link Material#TROPICAL_FISH_BUCKET}. A convenience method.
      *
      * @return instance of {@code TropicalFishBucketBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static TropicalFishBucketBuilder ofTropicalFishBucket() throws IllegalArgumentException {
-        return ofType(Material.TROPICAL_FISH_BUCKET);
+    public static TropicalFishBucketBuilder tropicalFishBucketBuilder() {
+        return tropicalFishBucketBuilder(Material.TROPICAL_FISH_BUCKET);
     }
 
     /**

@@ -25,7 +25,7 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
      * @return instance of {@code BlockStateBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockStateBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BlockStateBuilder blockStateBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BlockStateBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockStateMeta.class));
     }
 
@@ -37,8 +37,8 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockStateBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BlockStateBuilder.of(itemOfMaterial(material));
+    public static BlockStateBuilder blockStateBuilder(final Material material) throws IllegalArgumentException {
+        return blockStateBuilder(itemOfMaterial(material));
     }
 
     /**

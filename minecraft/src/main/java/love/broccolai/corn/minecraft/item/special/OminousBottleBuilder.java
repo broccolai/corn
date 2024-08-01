@@ -26,7 +26,7 @@ public final class OminousBottleBuilder extends AbstractItemBuilder<OminousBottl
      * @return instance of {@code OminousBottleBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static OminousBottleBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static OminousBottleBuilder ominousBottleBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new OminousBottleBuilder(itemStack, castMeta(itemStack.getItemMeta(), OminousBottleMeta.class));
     }
 
@@ -38,19 +38,17 @@ public final class OminousBottleBuilder extends AbstractItemBuilder<OminousBottl
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static OminousBottleBuilder ofType(final Material material) throws IllegalArgumentException {
-        return OminousBottleBuilder.of(itemOfMaterial(material));
+    public static OminousBottleBuilder ominousBottleBuilder(final Material material) throws IllegalArgumentException {
+        return ominousBottleBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Creates a {@code OminousBottleBuilder} of type {@link Material#OMINOUS_BOTTLE}. A convenience method.
+     * Creates an {@code OminousBottleBuilder} of type {@link Material#OMINOUS_BOTTLE}. A convenience method.
      *
      * @return instance of {@code OminousBottleBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static OminousBottleBuilder ofOminousBottle() throws IllegalArgumentException {
-        return ofType(Material.OMINOUS_BOTTLE);
+    public static OminousBottleBuilder ominousBottleBuilder() {
+        return ominousBottleBuilder(Material.OMINOUS_BOTTLE);
     }
 
     /**

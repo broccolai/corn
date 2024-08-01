@@ -29,7 +29,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @return instance of {@code SuspiciousStewBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static SuspiciousStewBuilder suspiciousStewBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new SuspiciousStewBuilder(itemStack, castMeta(itemStack.getItemMeta(), SuspiciousStewMeta.class));
     }
 
@@ -41,19 +41,17 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SuspiciousStewBuilder.of(itemOfMaterial(material));
+    public static SuspiciousStewBuilder suspiciousStewBuilder(final Material material) throws IllegalArgumentException {
+        return suspiciousStewBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code SuspiciousStewBuilder} of type {@link Material#SUSPICIOUS_STEW}. A convenience method.
      *
      * @return instance of {@code SuspiciousStewBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder ofSuspiciousStew() throws IllegalArgumentException {
-        return ofType(Material.SUSPICIOUS_STEW);
+    public static SuspiciousStewBuilder suspiciousStewBuilder() {
+        return suspiciousStewBuilder(Material.SUSPICIOUS_STEW);
     }
 
     /**

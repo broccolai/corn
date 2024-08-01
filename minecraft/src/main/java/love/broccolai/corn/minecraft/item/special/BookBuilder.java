@@ -27,7 +27,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @return instance of {@code BookBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BookBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BookBuilder bookBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BookBuilder(itemStack, castMeta(itemStack.getItemMeta(), BookMeta.class));
     }
 
@@ -39,8 +39,8 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BookBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BookBuilder.of(itemOfMaterial(material));
+    public static BookBuilder bookBuilder(final Material material) throws IllegalArgumentException {
+        return bookBuilder(itemOfMaterial(material));
     }
 
     /**

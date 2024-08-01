@@ -14,7 +14,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
@@ -25,7 +24,6 @@ import org.bukkit.inventory.meta.components.JukeboxPlayableComponent;
 import org.bukkit.inventory.meta.components.ToolComponent;
 import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.ApiStatus;
-import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -40,19 +38,18 @@ import org.jspecify.annotations.Nullable;
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
-
-    /**
-     * The {@code ItemStack} to modify during building.
-     *
-     * <p>This will be cloned and returned upon {@link #build()}.</p>
-     */
-    protected ItemStack itemStack;
     /**
      * The {@code ItemMeta} to modify during building.
      *
      * <p>This will be applied to the {@link #itemStack} upon {@link #build()}.</p>
      */
     protected final M itemMeta;
+    /**
+     * The {@code ItemStack} to modify during building.
+     *
+     * <p>This will be cloned and returned upon {@link #build()}.</p>
+     */
+    protected ItemStack itemStack;
 
     /**
      * Constructs AbstractItemBuilder with an {@code ItemStack} and its {@code ItemMeta}.

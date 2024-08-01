@@ -28,7 +28,7 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
      * @return instance of {@code BundleBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BundleBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BundleBuilder bundleBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BundleBuilder(itemStack, castMeta(itemStack.getItemMeta(), BundleMeta.class));
     }
 
@@ -40,19 +40,17 @@ public final class BundleBuilder extends AbstractItemBuilder<BundleBuilder, Bund
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BundleBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BundleBuilder.of(itemOfMaterial(material));
+    public static BundleBuilder bundleBuilder(final Material material) throws IllegalArgumentException {
+        return bundleBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code BundleBuilder} of type {@link Material#BUNDLE}. A convenience method.
      *
      * @return instance of {@code BundleBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BundleBuilder ofBundle() throws IllegalArgumentException {
-        return ofType(Material.BUNDLE);
+    public static BundleBuilder bundleBuilder() {
+        return bundleBuilder(Material.BUNDLE);
     }
 
     /**

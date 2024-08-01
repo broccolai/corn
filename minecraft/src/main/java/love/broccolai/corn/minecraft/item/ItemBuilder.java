@@ -23,24 +23,24 @@ public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta
     }
 
     /**
-     * Creates a {@code ItemBuilder}.
+     * Creates an {@code ItemBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code ItemBuilder}
      */
-    public static ItemBuilder of(final ItemStack itemStack) {
-        return new ItemBuilder(itemStack, itemStack.getItemMeta());
+    public static ItemBuilder itemBuilder(final ItemStack itemStack) {
+        return new ItemBuilder(itemStack, castMeta(itemStack.getItemMeta(), ItemMeta.class));
     }
 
     /**
-     * Creates a {@code ItemBuilder}.
+     * Creates an {@code ItemBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code ItemBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item
      */
-    public static ItemBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ItemBuilder.of(itemOfMaterial(material));
+    public static ItemBuilder itemBuilder(final Material material) throws IllegalArgumentException {
+        return itemBuilder(itemOfMaterial(material));
     }
 
 }

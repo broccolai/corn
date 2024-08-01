@@ -25,7 +25,7 @@ public final class KnowledgeBookBuilder extends AbstractItemBuilder<KnowledgeBoo
      * @return instance of {@code KnowledgeBookBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static KnowledgeBookBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static KnowledgeBookBuilder knowledgeBookBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new KnowledgeBookBuilder(itemStack, castMeta(itemStack.getItemMeta(), KnowledgeBookMeta.class));
     }
 
@@ -37,19 +37,17 @@ public final class KnowledgeBookBuilder extends AbstractItemBuilder<KnowledgeBoo
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static KnowledgeBookBuilder ofType(final Material material) throws IllegalArgumentException {
-        return KnowledgeBookBuilder.of(itemOfMaterial(material));
+    public static KnowledgeBookBuilder knowledgeBookBuilder(final Material material) throws IllegalArgumentException {
+        return knowledgeBookBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code KnowledgeBookBuilder} of type {@link Material#KNOWLEDGE_BOOK}. A convenience method.
      *
      * @return instance of {@code KnowledgeBookBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static KnowledgeBookBuilder ofKnowledgeBook() throws IllegalArgumentException {
-        return ofType(Material.KNOWLEDGE_BOOK);
+    public static KnowledgeBookBuilder knowledgeBookBuilder() {
+        return knowledgeBookBuilder(Material.KNOWLEDGE_BOOK);
     }
 
     /**

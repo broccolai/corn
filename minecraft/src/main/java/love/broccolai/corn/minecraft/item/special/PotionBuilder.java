@@ -30,7 +30,7 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @return instance of {@code PotionBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static PotionBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static PotionBuilder potionBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new PotionBuilder(itemStack, castMeta(itemStack.getItemMeta(), PotionMeta.class));
     }
 
@@ -42,8 +42,8 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static PotionBuilder ofType(final Material material) throws IllegalArgumentException {
-        return PotionBuilder.of(itemOfMaterial(material));
+    public static PotionBuilder potionBuilder(final Material material) throws IllegalArgumentException {
+        return potionBuilder(itemOfMaterial(material));
     }
 
     /**

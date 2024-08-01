@@ -26,7 +26,7 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
      * @return instance of {@code MapBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static MapBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static MapBuilder mapBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new MapBuilder(itemStack, castMeta(itemStack.getItemMeta(), MapMeta.class));
     }
 
@@ -38,8 +38,8 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static MapBuilder ofType(final Material material) throws IllegalArgumentException {
-        return MapBuilder.of(itemOfMaterial(material));
+    public static MapBuilder mapBuilder(final Material material) throws IllegalArgumentException {
+        return mapBuilder(itemOfMaterial(material));
     }
 
     /**
