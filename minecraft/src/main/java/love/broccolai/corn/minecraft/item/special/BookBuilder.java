@@ -53,9 +53,9 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
     }
 
     /**
-     * Sets the title. Pass {@code null} to reset.
+     * Sets the title. The component must be less than 32 characters. Pass {@code null} to reset.
      *
-     * @param title the title
+     * @param title the title, no longer than 32 characters
      * @return the builder
      */
     public BookBuilder title(final @Nullable Component title) {
