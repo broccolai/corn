@@ -49,6 +49,9 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @return the title
      */
     public @Nullable Component title() {
+        if (!this.itemMeta.hasTitle()) {
+            return null;
+        }
         return this.itemMeta.title();
     }
 
