@@ -598,6 +598,15 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets whether the {@code ItemStack} is unbreakable.
+     *
+     * @return whether the {@code ItemStack} is unbreakable
+     */
+    public boolean unbreakable() {
+        return this.itemMeta.isUnbreakable();
+    }
+
+    /**
      * Sets whether the {@code ItemStack} is unbreakable.
      *
      * @param unbreakable whether the {@code ItemStack} is unbreakable
@@ -606,15 +615,6 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     public B unbreakable(final boolean unbreakable) {
         this.itemMeta.setUnbreakable(unbreakable);
         return (B) this;
-    }
-
-    /**
-     * Gets whether the {@code ItemStack} is unbreakable.
-     *
-     * @return whether the {@code ItemStack} is unbreakable
-     */
-    public boolean unbreakable() {
-        return this.itemMeta.isUnbreakable();
     }
 
     /**
