@@ -25,7 +25,7 @@ public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, 
      * @return instance of {@code CrossbowBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static CrossbowBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static CrossbowBuilder crossbowBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new CrossbowBuilder(itemStack, castMeta(itemStack.getItemMeta(), CrossbowMeta.class));
     }
 
@@ -37,19 +37,17 @@ public final class CrossbowBuilder extends AbstractItemBuilder<CrossbowBuilder, 
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static CrossbowBuilder ofType(final Material material) throws IllegalArgumentException {
-        return CrossbowBuilder.of(itemOfMaterial(material));
+    public static CrossbowBuilder crossbowBuilder(final Material material) throws IllegalArgumentException {
+        return crossbowBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code CrossbowBuilder} of type {@link Material#CROSSBOW}. A convenience method.
      *
      * @return instance of {@code CrossbowBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static CrossbowBuilder ofCrossbow() throws IllegalArgumentException {
-        return ofType(Material.CROSSBOW);
+    public static CrossbowBuilder crossbowBuilder() {
+        return crossbowBuilder(Material.CROSSBOW);
     }
 
     /**

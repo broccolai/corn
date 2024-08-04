@@ -1,5 +1,6 @@
 package love.broccolai.corn.minecraft.item.special;
 
+import java.util.Collections;
 import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Color;
@@ -29,7 +30,7 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @return instance of {@code PotionBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static PotionBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static PotionBuilder potionBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new PotionBuilder(itemStack, castMeta(itemStack.getItemMeta(), PotionMeta.class));
     }
 
@@ -41,8 +42,8 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static PotionBuilder ofType(final Material material) throws IllegalArgumentException {
-        return PotionBuilder.of(itemOfMaterial(material));
+    public static PotionBuilder potionBuilder(final Material material) throws IllegalArgumentException {
+        return potionBuilder(itemOfMaterial(material));
     }
 
     /**
@@ -51,6 +52,11 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * @return the custom effects
      */
     public List<PotionEffect> customEffects() {
+        if (!this.itemMeta.hasCustomEffects()) {
+            // we could return null, but the API generally returns empty lists
+            // instead, so we'll do this for consistency.
+            return Collections.emptyList();
+        }
         return this.itemMeta.getCustomEffects();
     }
 
@@ -74,7 +80,7 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
      * Adds a custom effect.
      *
      * @param customEffect the custom effect to add
-     * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
+     * @param overwrite    whether to overwrite potion effects of the same type
      * @return the builder
      */
     public PotionBuilder addCustomEffect(final PotionEffect customEffect, final boolean overwrite) {
@@ -106,18 +112,18 @@ public final class PotionBuilder extends AbstractItemBuilder<PotionBuilder, Poti
     }
 
     /**
-     * Gets the {@code Color}.
+     * Gets the color.
      *
-     * @return the {@code Color}
+     * @return the color
      */
     public @Nullable Color color() {
         return this.itemMeta.getColor();
     }
 
     /**
-     * Sets the {@code Color}. Pass {@code null} to reset.
+     * Sets the color. Pass {@code null} to reset.
      *
-     * @param color the {@code Color}
+     * @param color the color
      * @return the builder
      */
     public PotionBuilder color(final @Nullable Color color) {

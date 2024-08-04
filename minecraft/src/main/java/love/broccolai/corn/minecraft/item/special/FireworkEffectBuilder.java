@@ -25,7 +25,7 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      * @return instance of {@code FireworkEffectBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkEffectBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static FireworkEffectBuilder fireworkEffectBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new FireworkEffectBuilder(itemStack, castMeta(itemStack.getItemMeta(), FireworkEffectMeta.class));
     }
 
@@ -37,23 +37,32 @@ public final class FireworkEffectBuilder extends AbstractItemBuilder<FireworkEff
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkEffectBuilder ofType(final Material material) throws IllegalArgumentException {
-        return FireworkEffectBuilder.of(itemOfMaterial(material));
+    public static FireworkEffectBuilder fireworkEffectBuilder(final Material material) throws IllegalArgumentException {
+        return fireworkEffectBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Gets the {@code FireworkEffect}.
+     * Creates a {@code FireworkEffectBuilder} of type {@link Material#FIREWORK_STAR}. A convenience method.
      *
-     * @return the {@code FireworkEffect}
+     * @return instance of {@code FireworkEffectBuilder}
+     */
+    public static FireworkEffectBuilder fireworkEffectBuilder() {
+        return fireworkEffectBuilder(Material.FIREWORK_STAR);
+    }
+
+    /**
+     * Gets the firework effect.
+     *
+     * @return the firework effect
      */
     public @Nullable FireworkEffect effect() {
         return this.itemMeta.getEffect();
     }
 
     /**
-     * Sets the {@code FireworkEffect}. Pass {@code null} to reset.
+     * Sets the firework effect. Pass {@code null} to reset.
      *
-     * @param effect the {@code FireworkEffect}
+     * @param effect the firework effect
      * @return the builder
      */
     public FireworkEffectBuilder effect(final @Nullable FireworkEffect effect) {

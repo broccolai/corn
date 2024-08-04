@@ -18,26 +18,26 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
     }
 
     /**
-     * Creates an {@code DamageableBuilder}.
+     * Creates a {@code DamageableBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code DamageableBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static DamageableBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static DamageableBuilder damageableBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new DamageableBuilder(itemStack, castMeta(itemStack.getItemMeta(), Damageable.class));
     }
 
     /**
-     * Creates an {@code DamageableBuilder}.
+     * Creates a {@code DamageableBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code DamageableBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static DamageableBuilder ofType(final Material material) throws IllegalArgumentException {
-        return DamageableBuilder.of(itemOfMaterial(material));
+    public static DamageableBuilder damageableBuilder(final Material material) throws IllegalArgumentException {
+        return damageableBuilder(itemOfMaterial(material));
     }
 
     /**
@@ -46,20 +46,47 @@ public final class DamageableBuilder extends AbstractItemBuilder<DamageableBuild
      * @return the damage
      */
     public @Nullable Integer damage() {
-        if (!this.itemMeta.hasDamage()) {
+        if (!this.itemMeta.hasDamageValue()) {
             return null;
         }
         return this.itemMeta.getDamage();
     }
 
     /**
-     * Sets the damage.
+     * Sets the damage. Pass {@code null} to reset.
      *
      * @param damage the damage
      * @return the builder
      */
-    public DamageableBuilder damage(final Integer damage) {
+    public DamageableBuilder damage(final @Nullable Integer damage) {
+        if (damage == null) {
+            this.itemMeta.resetDamage();
+            return this;
+        }
         this.itemMeta.setDamage(damage);
+        return this;
+    }
+
+    /**
+     * Gets the maximum amount of damage.
+     *
+     * @return the maximum amount of damage
+     */
+    public @Nullable Integer maxDamage() {
+        if (!this.itemMeta.hasMaxDamage()) {
+            return null;
+        }
+        return this.itemMeta.getMaxDamage();
+    }
+
+    /**
+     * Sets the maximum amount of damage.
+     *
+     * @param maxDamage the maximum amount of damage
+     * @return the builder
+     */
+    public DamageableBuilder maxDamage(final @Nullable Integer maxDamage) {
+        this.itemMeta.setMaxDamage(maxDamage);
         return this;
     }
 

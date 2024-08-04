@@ -1,6 +1,7 @@
 package love.broccolai.corn.minecraft.item.special;
 
 import io.papermc.paper.potion.SuspiciousEffectEntry;
+import java.util.Collections;
 import java.util.List;
 import love.broccolai.corn.minecraft.item.AbstractItemBuilder;
 import org.bukkit.Material;
@@ -28,7 +29,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @return instance of {@code SuspiciousStewBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static SuspiciousStewBuilder suspiciousStewBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new SuspiciousStewBuilder(itemStack, castMeta(itemStack.getItemMeta(), SuspiciousStewMeta.class));
     }
 
@@ -40,19 +41,17 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SuspiciousStewBuilder.of(itemOfMaterial(material));
+    public static SuspiciousStewBuilder suspiciousStewBuilder(final Material material) throws IllegalArgumentException {
+        return suspiciousStewBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code SuspiciousStewBuilder} of type {@link Material#SUSPICIOUS_STEW}. A convenience method.
      *
      * @return instance of {@code SuspiciousStewBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SuspiciousStewBuilder ofSuspiciousStew() throws IllegalArgumentException {
-        return ofType(Material.SUSPICIOUS_STEW);
+    public static SuspiciousStewBuilder suspiciousStewBuilder() {
+        return suspiciousStewBuilder(Material.SUSPICIOUS_STEW);
     }
 
     /**
@@ -61,6 +60,11 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * @return the custom effects
      */
     public List<PotionEffect> customEffects() {
+        if (!this.itemMeta.hasCustomEffects()) {
+            // we could return null, but the API generally returns empty lists
+            // instead, so we'll do this for consistency.
+            return Collections.emptyList();
+        }
         return this.itemMeta.getCustomEffects();
     }
 
@@ -84,7 +88,7 @@ public final class SuspiciousStewBuilder extends AbstractItemBuilder<SuspiciousS
      * Adds a custom effect.
      *
      * @param customEffect the custom effect to add
-     * @param overwrite    whether to overwrite {@code PotionEffect}s of the same type
+     * @param overwrite    whether to overwrite potion effects of the same type
      * @return the builder
      */
     public SuspiciousStewBuilder addCustomEffect(final SuspiciousEffectEntry customEffect, final boolean overwrite) {

@@ -26,7 +26,7 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
      * @return instance of {@code MapBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static MapBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static MapBuilder mapBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new MapBuilder(itemStack, castMeta(itemStack.getItemMeta(), MapMeta.class));
     }
 
@@ -38,23 +38,23 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static MapBuilder ofType(final Material material) throws IllegalArgumentException {
-        return MapBuilder.of(itemOfMaterial(material));
+    public static MapBuilder mapBuilder(final Material material) throws IllegalArgumentException {
+        return mapBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Gets the {@code Color}.
+     * Gets the color.
      *
-     * @return the {@code Color}
+     * @return the color
      */
     public @Nullable Color color() {
         return this.itemMeta.getColor();
     }
 
     /**
-     * Sets the {@code Color}. Pass {@code null} to reset.
+     * Sets the color. Pass {@code null} to reset.
      *
-     * @param color the {@code Color}
+     * @param color the color
      * @return the builder
      */
     public MapBuilder color(final @Nullable Color color) {
@@ -63,18 +63,18 @@ public final class MapBuilder extends AbstractItemBuilder<MapBuilder, MapMeta> {
     }
 
     /**
-     * Gets the {@code MapView}.
+     * Gets the map view.
      *
-     * @return the {@code MapView}
+     * @return the map view
      */
     public @Nullable MapView mapView() {
         return this.itemMeta.getMapView();
     }
 
     /**
-     * Sets the {@code MapView}. Pass {@code null} to reset.
+     * Sets the map view. Pass {@code null} to reset.
      *
-     * @param mapView the {@code MapView}
+     * @param mapView the map view
      * @return the builder
      */
     public MapBuilder mapView(final @Nullable MapView mapView) {

@@ -18,26 +18,26 @@ public final class RepairableBuilder extends AbstractItemBuilder<RepairableBuild
     }
 
     /**
-     * Creates an {@code RepairableBuilder}.
+     * Creates a {@code RepairableBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code RepairableBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static RepairableBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static RepairableBuilder repairableBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new RepairableBuilder(itemStack, castMeta(itemStack.getItemMeta(), Repairable.class));
     }
 
     /**
-     * Creates an {@code RepairableBuilder}.
+     * Creates a {@code RepairableBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code RepairableBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static RepairableBuilder ofType(final Material material) throws IllegalArgumentException {
-        return RepairableBuilder.of(itemOfMaterial(material));
+    public static RepairableBuilder repairableBuilder(final Material material) throws IllegalArgumentException {
+        return repairableBuilder(itemOfMaterial(material));
     }
 
     /**

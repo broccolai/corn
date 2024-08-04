@@ -25,7 +25,7 @@ public final class LeatherArmorBuilder extends AbstractItemBuilder<LeatherArmorB
      * @return instance of {@code LeatherArmorBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static LeatherArmorBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static LeatherArmorBuilder leatherArmorBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new LeatherArmorBuilder(itemStack, castMeta(itemStack.getItemMeta(), LeatherArmorMeta.class));
     }
 
@@ -37,8 +37,8 @@ public final class LeatherArmorBuilder extends AbstractItemBuilder<LeatherArmorB
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static LeatherArmorBuilder ofType(final Material material) throws IllegalArgumentException {
-        return LeatherArmorBuilder.of(itemOfMaterial(material));
+    public static LeatherArmorBuilder leatherArmorBuilder(final Material material) throws IllegalArgumentException {
+        return leatherArmorBuilder(itemOfMaterial(material));
     }
 
     /**
@@ -46,7 +46,10 @@ public final class LeatherArmorBuilder extends AbstractItemBuilder<LeatherArmorB
      *
      * @return the color
      */
-    public Color color() {
+    public @Nullable Color color() {
+        if (!this.itemMeta.isDyed()) {
+            return null;
+        }
         return this.itemMeta.getColor();
     }
 

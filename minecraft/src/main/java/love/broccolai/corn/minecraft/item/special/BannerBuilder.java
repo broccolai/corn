@@ -25,20 +25,20 @@ public final class BannerBuilder extends AbstractItemBuilder<BannerBuilder, Bann
      * @return instance of {@code BannerBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BannerBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BannerBuilder bannerBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BannerBuilder(itemStack, castMeta(itemStack.getItemMeta(), BannerMeta.class));
     }
 
     /**
-     * Creates a {@code SkullBuilder}.
+     * Creates a {@code BannerBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
-     * @return instance of {@code SkullBuilder}
+     * @return instance of {@code BannerBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BannerBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BannerBuilder.of(itemOfMaterial(material));
+    public static BannerBuilder bannerBuilder(final Material material) throws IllegalArgumentException {
+        return bannerBuilder(itemOfMaterial(material));
     }
 
     /**

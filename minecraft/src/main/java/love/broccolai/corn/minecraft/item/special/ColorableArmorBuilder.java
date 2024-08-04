@@ -22,26 +22,26 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
     }
 
     /**
-     * Creates an {@code ColorableArmorBuilder}.
+     * Creates a {@code ColorableArmorBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code ColorableArmorBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static ColorableArmorBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static ColorableArmorBuilder colorableArmorBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new ColorableArmorBuilder(itemStack, castMeta(itemStack.getItemMeta(), ColorableArmorMeta.class));
     }
 
     /**
-     * Creates an {@code ColorableArmorBuilder}.
+     * Creates a {@code ColorableArmorBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code ColorableArmorBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static ColorableArmorBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ColorableArmorBuilder.of(itemOfMaterial(material));
+    public static ColorableArmorBuilder colorableArmorBuilder(final Material material) throws IllegalArgumentException {
+        return colorableArmorBuilder(itemOfMaterial(material));
     }
 
     /**
@@ -69,7 +69,10 @@ public final class ColorableArmorBuilder extends AbstractItemBuilder<ColorableAr
      *
      * @return the color
      */
-    public Color color() {
+    public @Nullable Color color() {
+        if (!this.itemMeta.isDyed()) {
+            return null;
+        }
         return this.itemMeta.getColor();
     }
 

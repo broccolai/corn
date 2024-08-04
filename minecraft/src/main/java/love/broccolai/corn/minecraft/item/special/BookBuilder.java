@@ -27,7 +27,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @return instance of {@code BookBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BookBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BookBuilder bookBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BookBuilder(itemStack, castMeta(itemStack.getItemMeta(), BookMeta.class));
     }
 
@@ -39,8 +39,8 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BookBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BookBuilder.of(itemOfMaterial(material));
+    public static BookBuilder bookBuilder(final Material material) throws IllegalArgumentException {
+        return bookBuilder(itemOfMaterial(material));
     }
 
     /**
@@ -49,13 +49,16 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
      * @return the title
      */
     public @Nullable Component title() {
+        if (!this.itemMeta.hasTitle()) {
+            return null;
+        }
         return this.itemMeta.title();
     }
 
     /**
-     * Sets the title. Pass {@code null} to reset.
+     * Sets the title. The component must be less than 32 characters. Pass {@code null} to reset.
      *
-     * @param title the title
+     * @param title the title, no longer than 32 characters
      * @return the builder
      */
     public BookBuilder title(final @Nullable Component title) {
@@ -84,7 +87,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
     }
 
     /**
-     * Gets the {@code Generation}.
+     * Gets the generation.
      *
      * @return the generation
      */
@@ -93,7 +96,7 @@ public final class BookBuilder extends AbstractItemBuilder<BookBuilder, BookMeta
     }
 
     /**
-     * Sets the {@code Generation}. Pass {@code null} to reset.
+     * Sets the generation. Pass {@code null} to reset.
      *
      * @param generation the generation
      * @return the builder

@@ -24,7 +24,7 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
      * @return instance of {@code BlockDataBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockDataBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BlockDataBuilder blockDataBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BlockDataBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockDataMeta.class));
     }
 
@@ -36,24 +36,24 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockDataBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BlockDataBuilder.of(itemOfMaterial(material));
+    public static BlockDataBuilder blockDataBuilder(final Material material) throws IllegalArgumentException {
+        return blockDataBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Gets a copy of the {@code BlockData}. Creates a new one if it doesn't currently exist.
+     * Gets a copy of the block data. Creates a new one if it doesn't currently exist.
      *
      * @param material the material the data should be retrieved in the context of
-     * @return the {@code BlockData}
+     * @return the block data
      */
     public BlockData blockData(final Material material) {
         return this.itemMeta.getBlockData(material);
     }
 
     /**
-     * Sets the {@code BlockData}.
+     * Sets the block data.
      *
-     * @param blockData the {@code BlockData}
+     * @param blockData the block data
      * @return the builder
      */
     public BlockDataBuilder blockData(final BlockData blockData) {
@@ -62,9 +62,9 @@ public final class BlockDataBuilder extends AbstractItemBuilder<BlockDataBuilder
     }
 
     /**
-     * Gets whether a {@code BlockData} is currently attached.
+     * Gets whether a block data is currently attached.
      *
-     * @return whether a {@code BlockData} is currently attached
+     * @return whether a block data is currently attached
      */
     public boolean hasBlockData() {
         return this.itemMeta.hasBlockData();

@@ -25,7 +25,7 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
      * @return instance of {@code EnchantmentStorageBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static EnchantmentStorageBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new EnchantmentStorageBuilder(itemStack, castMeta(itemStack.getItemMeta(), EnchantmentStorageMeta.class));
     }
 
@@ -37,23 +37,32 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static EnchantmentStorageBuilder ofType(final Material material) throws IllegalArgumentException {
-        return EnchantmentStorageBuilder.of(itemOfMaterial(material));
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder(final Material material) throws IllegalArgumentException {
+        return enchantmentStorageBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Gets the stored enchants.
+     * Creates an {@code EnchantmentStorageBuilder} of type {@link Material#ENCHANTED_BOOK}. A convenience method.
      *
-     * @return the stored enchants
+     * @return instance of {@code EnchantmentStorageBuilder}
+     */
+    public static EnchantmentStorageBuilder enchantmentStorageBuilder() {
+        return enchantmentStorageBuilder(Material.ENCHANTED_BOOK);
+    }
+
+    /**
+     * Gets the stored enchantments.
+     *
+     * @return the stored enchantments
      */
     public Map<Enchantment, Integer> storedEnchants() {
         return this.itemMeta.getStoredEnchants();
     }
 
     /**
-     * Sets the stored enchants.
+     * Sets the stored enchantments.
      *
-     * @param storedEnchants the stored enchants
+     * @param storedEnchants the stored enchantments
      * @return the builder
      */
     public EnchantmentStorageBuilder storedEnchants(final Map<Enchantment, Integer> storedEnchants) {
@@ -67,10 +76,10 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     }
 
     /**
-     * Adds a stored enchant.
+     * Adds a stored enchantment.
      *
-     * @param enchant the {@code Enchantment} to add
-     * @param level   the level of the {@code Enchantment}
+     * @param enchant the enchantment to add
+     * @param level   the level of the enchantment
      * @return the builder
      */
     public EnchantmentStorageBuilder addStoredEnchant(final Enchantment enchant, final int level) {
@@ -79,9 +88,9 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
     }
 
     /**
-     * Removes a stored enchant.
+     * Removes a stored enchantment.
      *
-     * @param enchant the {@code Enchantment} to remove
+     * @param enchant the enchantment to remove
      * @return the builder
      */
     public EnchantmentStorageBuilder removeStoredEnchant(final Enchantment... enchant) {
@@ -89,6 +98,17 @@ public final class EnchantmentStorageBuilder extends AbstractItemBuilder<Enchant
             this.itemMeta.removeStoredEnchant(item);
         }
         return this;
+    }
+
+    /**
+     * Gets whether the given enchantment conflicts with any stored enchantments
+     * in this item.
+     *
+     * @param enchantment the enchantment to test
+     * @return whether the enchantment conflicts
+     */
+    public boolean hasConflictingStoredEnchant(final Enchantment enchantment) {
+        return this.itemMeta.hasConflictingStoredEnchant(enchantment);
     }
 
 }

@@ -33,7 +33,7 @@ public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullM
      * @return instance of {@code SkullBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static SkullBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static SkullBuilder skullBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new SkullBuilder(itemStack, castMeta(itemStack.getItemMeta(), SkullMeta.class));
     }
 
@@ -45,19 +45,17 @@ public final class SkullBuilder extends AbstractItemBuilder<SkullBuilder, SkullM
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SkullBuilder ofType(final Material material) throws IllegalArgumentException {
-        return SkullBuilder.of(itemOfMaterial(material));
+    public static SkullBuilder skullBuilder(final Material material) throws IllegalArgumentException {
+        return skullBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code SkullBuilder} of type {@link Material#PLAYER_HEAD}. A convenience method.
      *
      * @return instance of {@code SkullBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static SkullBuilder ofPlayerHead() throws IllegalArgumentException {
-        return ofType(Material.PLAYER_HEAD);
+    public static SkullBuilder skullBuilder() {
+        return skullBuilder(Material.PLAYER_HEAD);
     }
 
     /**

@@ -23,7 +23,7 @@ public final class ArmorStandBuilder extends AbstractItemBuilder<ArmorStandBuild
      * @return instance of {@code ArmorStandBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static ArmorStandBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static ArmorStandBuilder armorStandBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new ArmorStandBuilder(itemStack, castMeta(itemStack.getItemMeta(), ArmorStandMeta.class));
     }
 
@@ -35,19 +35,17 @@ public final class ArmorStandBuilder extends AbstractItemBuilder<ArmorStandBuild
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static ArmorStandBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ArmorStandBuilder.of(itemOfMaterial(material));
+    public static ArmorStandBuilder armorStandBuilder(final Material material) throws IllegalArgumentException {
+        return armorStandBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Creates a {@code ArmorStandBuilder} of type {@link Material#ARMOR_STAND}. A convenience method.
+     * Creates an {@code ArmorStandBuilder} of type {@link Material#ARMOR_STAND}. A convenience method.
      *
      * @return instance of {@code ArmorStandBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static ArmorStandBuilder ofArmorStand() throws IllegalArgumentException {
-        return ofType(Material.ARMOR_STAND);
+    public static ArmorStandBuilder armorStandBuilder() {
+        return armorStandBuilder(Material.ARMOR_STAND);
     }
 
     /**

@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link FireworkMeta}.
@@ -25,7 +26,7 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
      * @return instance of {@code FireworkBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static FireworkBuilder fireworkBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new FireworkBuilder(itemStack, castMeta(itemStack.getItemMeta(), FireworkMeta.class));
     }
 
@@ -37,19 +38,17 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkBuilder ofType(final Material material) throws IllegalArgumentException {
-        return FireworkBuilder.of(itemOfMaterial(material));
+    public static FireworkBuilder fireworkBuilder(final Material material) throws IllegalArgumentException {
+        return fireworkBuilder(itemOfMaterial(material));
     }
 
     /**
      * Creates a {@code FireworkBuilder} of type {@link Material#FIREWORK_ROCKET}. A convenience method.
      *
      * @return instance of {@code FireworkBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static FireworkBuilder ofFireworkRocket() throws IllegalArgumentException {
-        return ofType(Material.FIREWORK_ROCKET);
+    public static FireworkBuilder fireworkBuilder() {
+        return fireworkBuilder(Material.FIREWORK_ROCKET);
     }
 
     /**
@@ -73,34 +72,47 @@ public final class FireworkBuilder extends AbstractItemBuilder<FireworkBuilder, 
     }
 
     /**
-     * Gets the {@code FireworkEffect}s.
+     * Gets the firework effects.
      *
-     * @return the {@code FireworkEffect}s
+     * @return the firework effects
      */
     public List<FireworkEffect> effects() {
         return this.itemMeta.getEffects();
     }
 
     /**
-     * Sets the {@code FireworkEffect}s.
+     * Sets the firework effects. Pass {@code null} to reset.
      *
-     * @param effects the {@code FireworkEffect}s
+     * @param effects the firework effects
      * @return the builder
      */
-    public FireworkBuilder effects(final List<FireworkEffect> effects) {
+    public FireworkBuilder effects(final @Nullable List<FireworkEffect> effects) {
         this.itemMeta.clearEffects();
-        this.itemMeta.addEffects(effects);
+        if (effects != null) {
+            this.itemMeta.addEffects(effects);
+        }
         return this;
     }
 
     /**
-     * Adds a {@code FireworkEffect}.
+     * Adds a firework effect.
      *
-     * @param effect the {@code FireworkEffect} to add
+     * @param effect the firework effect to add
      * @return the builder
      */
     public FireworkBuilder addEffect(final FireworkEffect... effect) {
         this.itemMeta.addEffects(effect);
+        return this;
+    }
+
+    /**
+     * Removes a firework effect.
+     *
+     * @param index the index of the firework effect to remove
+     * @return the builder
+     */
+    public FireworkBuilder remove(final int index) {
+        this.itemMeta.removeEffect(index);
         return this;
     }
 

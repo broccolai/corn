@@ -19,26 +19,26 @@ public final class MusicInstrumentBuilder extends AbstractItemBuilder<MusicInstr
     }
 
     /**
-     * Creates an {@code MusicInstrumentBuilder}.
+     * Creates a {@code MusicInstrumentBuilder}.
      *
      * @param itemStack the {@code ItemStack} to base the builder off of
      * @return instance of {@code MusicInstrumentBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static MusicInstrumentBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static MusicInstrumentBuilder musicInstrumentBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new MusicInstrumentBuilder(itemStack, castMeta(itemStack.getItemMeta(), MusicInstrumentMeta.class));
     }
 
     /**
-     * Creates an {@code MusicInstrumentBuilder}.
+     * Creates a {@code MusicInstrumentBuilder}.
      *
      * @param material the {@code Material} to base the builder off of
      * @return instance of {@code MusicInstrumentBuilder}
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static MusicInstrumentBuilder ofType(final Material material) throws IllegalArgumentException {
-        return MusicInstrumentBuilder.of(itemOfMaterial(material));
+    public static MusicInstrumentBuilder musicInstrumentBuilder(final Material material) throws IllegalArgumentException {
+        return musicInstrumentBuilder(itemOfMaterial(material));
     }
 
     /**

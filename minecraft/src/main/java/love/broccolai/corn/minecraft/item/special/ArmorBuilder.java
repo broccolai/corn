@@ -25,7 +25,7 @@ public final class ArmorBuilder extends AbstractItemBuilder<ArmorBuilder, ArmorM
      * @return instance of {@code ArmorBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static ArmorBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static ArmorBuilder armorBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new ArmorBuilder(itemStack, castMeta(itemStack.getItemMeta(), ArmorMeta.class));
     }
 
@@ -37,8 +37,8 @@ public final class ArmorBuilder extends AbstractItemBuilder<ArmorBuilder, ArmorM
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static ArmorBuilder ofType(final Material material) throws IllegalArgumentException {
-        return ArmorBuilder.of(itemOfMaterial(material));
+    public static ArmorBuilder armorBuilder(final Material material) throws IllegalArgumentException {
+        return armorBuilder(itemOfMaterial(material));
     }
 
     /**

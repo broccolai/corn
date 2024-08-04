@@ -25,7 +25,7 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
      * @return instance of {@code AxolotlBucketBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static AxolotlBucketBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static AxolotlBucketBuilder axolotlBucketBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new AxolotlBucketBuilder(itemStack, castMeta(itemStack.getItemMeta(), AxolotlBucketMeta.class));
     }
 
@@ -37,19 +37,17 @@ public final class AxolotlBucketBuilder extends AbstractItemBuilder<AxolotlBucke
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static AxolotlBucketBuilder ofType(final Material material) throws IllegalArgumentException {
-        return AxolotlBucketBuilder.of(itemOfMaterial(material));
+    public static AxolotlBucketBuilder axolotlBucketBuilder(final Material material) throws IllegalArgumentException {
+        return axolotlBucketBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Creates a {@code AxolotlBucketBuilder} of type {@link Material#AXOLOTL_BUCKET}. A convenience method.
+     * Creates an {@code AxolotlBucketBuilder} of type {@link Material#AXOLOTL_BUCKET}. A convenience method.
      *
      * @return instance of {@code AxolotlBucketBuilder}
-     * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
-     *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static AxolotlBucketBuilder ofAxolotlBucket() throws IllegalArgumentException {
-        return ofType(Material.AXOLOTL_BUCKET);
+    public static AxolotlBucketBuilder axolotlBucketBuilder() {
+        return axolotlBucketBuilder(Material.AXOLOTL_BUCKET);
     }
 
     /**

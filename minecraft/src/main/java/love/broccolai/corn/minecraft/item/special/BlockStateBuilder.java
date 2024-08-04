@@ -6,6 +6,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BlockStateMeta;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Modifies {@link ItemStack}s that have an {@code ItemMeta} of {@link BlockStateMeta}.
@@ -24,7 +25,7 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
      * @return instance of {@code BlockStateBuilder}
      * @throws IllegalArgumentException if the {@code itemStack}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockStateBuilder of(final ItemStack itemStack) throws IllegalArgumentException {
+    public static BlockStateBuilder blockStateBuilder(final ItemStack itemStack) throws IllegalArgumentException {
         return new BlockStateBuilder(itemStack, castMeta(itemStack.getItemMeta(), BlockStateMeta.class));
     }
 
@@ -36,34 +37,38 @@ public final class BlockStateBuilder extends AbstractItemBuilder<BlockStateBuild
      * @throws IllegalArgumentException if the {@code material} is not an obtainable item,
      *                                  or if the {@code material}'s {@code ItemMeta} is not the correct type
      */
-    public static BlockStateBuilder ofType(final Material material) throws IllegalArgumentException {
-        return BlockStateBuilder.of(itemOfMaterial(material));
+    public static BlockStateBuilder blockStateBuilder(final Material material) throws IllegalArgumentException {
+        return blockStateBuilder(itemOfMaterial(material));
     }
 
     /**
-     * Gets a copy of {@code BlockState}. Creates a new one if it doesn't currently exist.
+     * Gets a copy of the block state. Creates a new one if it doesn't currently exist.
      *
-     * @return the {@code BlockState}
+     * @return the block state
      */
     public BlockState blockState() {
         return this.itemMeta.getBlockState();
     }
 
     /**
-     * Sets the {@code BlockState}.
+     * Sets the block state. Pass {@code null} to reset.
      *
-     * @param blockState the {@code BlockState}
+     * @param blockState the block state
      * @return the builder
      */
-    public BlockStateBuilder blockState(final BlockState blockState) {
+    public BlockStateBuilder blockState(final @Nullable BlockState blockState) {
+        if (blockState == null) {
+            this.itemMeta.clearBlockState();
+            return this;
+        }
         this.itemMeta.setBlockState(blockState);
         return this;
     }
 
     /**
-     * Gets whether a {@code BlockState} is currently attached.
+     * Gets whether a block state is currently attached.
      *
-     * @return whether a {@code BlockState} is currently attached
+     * @return whether a block state is currently attached
      */
     public boolean hasBlockState() {
         return this.itemMeta.hasBlockState();

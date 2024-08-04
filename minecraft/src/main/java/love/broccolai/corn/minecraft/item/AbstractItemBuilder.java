@@ -2,7 +2,6 @@ package love.broccolai.corn.minecraft.item;
 
 import com.google.common.collect.Multimap;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -16,9 +15,14 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.FoodComponent;
+import org.bukkit.inventory.meta.components.JukeboxPlayableComponent;
+import org.bukkit.inventory.meta.components.ToolComponent;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.ApiStatus;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -32,22 +36,19 @@ import org.jspecify.annotations.Nullable;
 @SuppressWarnings({"unchecked", "unused"})
 public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M extends ItemMeta> {
 
-    private static final int FAKE_ENCHANT_LEVEL = 102; // f in ASCII.
-
     private static final Component DISABLE_ITALICS = Component.empty().decoration(TextDecoration.ITALIC, false);
-
-    /**
-     * The {@code ItemStack} to modify during building.
-     *
-     * <p>This will be cloned and returned upon {@link #build()}.</p>
-     */
-    protected ItemStack itemStack;
     /**
      * The {@code ItemMeta} to modify during building.
      *
      * <p>This will be applied to the {@link #itemStack} upon {@link #build()}.</p>
      */
     protected final M itemMeta;
+    /**
+     * The {@code ItemStack} to modify during building.
+     *
+     * <p>This will be cloned and returned upon {@link #build()}.</p>
+     */
+    protected ItemStack itemStack;
 
     /**
      * Constructs AbstractItemBuilder with an {@code ItemStack} and its {@code ItemMeta}.
@@ -113,14 +114,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     public B material(final Material material) {
-        final boolean fakeEnch = this.fakeEnchant();
-        if (fakeEnch) {
-            this.fakeEnchant(false);
-        }
         this.itemStack = this.itemStack.withType(material);
-        if (fakeEnch) {
-            this.fakeEnchant(true);
-        }
         return (B) this;
     }
 
@@ -177,11 +171,199 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets whether hide_tooltip is set. If true, the item will not show any tooltip whatsoever.
+     *
+     * @return whether hide_tooltip is set
+     */
+    public boolean hideTooltip() {
+        return this.itemMeta.isHideTooltip();
+    }
+
+    /**
+     * Gets whether hide_tooltip is set. If true, the item will not show any tooltip whatsoever.
+     *
+     * @param hideTooltip whether hide_tooltip is set
+     * @return the builder
+     */
+    public B hideTooltip(final boolean hideTooltip) {
+        this.itemMeta.setHideTooltip(hideTooltip);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether enchantment_glint_override is set. If true, the item will glint regardless
+     * of enchantments. If false, the item will <b>not</b> glint regardless of enchantments.
+     *
+     * @return whether enchantment_glint_override is set
+     */
+    public @Nullable Boolean enchantmentGlintOverride() {
+        if (!this.itemMeta.hasEnchantmentGlintOverride()) {
+            return null;
+        }
+        return this.itemMeta.getEnchantmentGlintOverride();
+    }
+
+    /**
+     * Sets whether enchantment_glint_override is set. If true, the item will glint regardless
+     * of enchantments. If false, the item will <b>not</b> glint regardless of enchantments.
+     * Pass {@code null} to clear the override.
+     *
+     * @param enchantmentGlintOverride whether enchantment_glint_override is set
+     * @return the builder
+     */
+    public B enchantmentGlintOverride(final @Nullable Boolean enchantmentGlintOverride) {
+        this.itemMeta.setEnchantmentGlintOverride(enchantmentGlintOverride);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether fire_resistant is set. If true, the item will not burn in lava.
+     *
+     * @return whether fire_resistant is set
+     */
+    public boolean fireResistant() {
+        return this.itemMeta.isFireResistant();
+    }
+
+    /**
+     * Sets whether fire_resistant is set. If true, the item will not burn in lava.
+     *
+     * @param fireResistant whether fire_resistant is set
+     * @return the builder
+     */
+    public B fireResistant(final boolean fireResistant) {
+        this.itemMeta.setFireResistant(fireResistant);
+        return (B) this;
+    }
+
+    /**
+     * Gets the rarity.
+     *
+     * @return the rarity
+     */
+    public @Nullable ItemRarity rarity() {
+        if (!this.itemMeta.hasRarity()) {
+            return null;
+        }
+        return this.itemMeta.getRarity();
+    }
+
+    /**
+     * Sets the rarity. Pass {@code null} to reset.
+     *
+     * @param rarity the rarity
+     * @return the builder
+     */
+    public B rarity(final @Nullable ItemRarity rarity) {
+        this.itemMeta.setRarity(rarity);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a food component.
+     *
+     * @return whether the item has a food component
+     */
+    @ApiStatus.Experimental
+    public boolean hasFood() {
+        return this.itemMeta.hasFood();
+    }
+
+    /**
+     * Gets the food component, or creates an empty instance.
+     *
+     * @return the food component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public FoodComponent food() {
+        return this.itemMeta.getFood();
+    }
+
+    /**
+     * Sets the food component, or creates an empty instance.
+     *
+     * @param food the food component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B food(final @Nullable FoodComponent food) {
+        this.itemMeta.setFood(food);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a tool component.
+     *
+     * @return whether the item has a tool component
+     */
+    @ApiStatus.Experimental
+    public boolean hasTool() {
+        return this.itemMeta.hasTool();
+    }
+
+    /**
+     * Gets the tool component, or creates an empty instance.
+     *
+     * @return the tool component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public ToolComponent tool() {
+        return this.itemMeta.getTool();
+    }
+
+    /**
+     * Sets the tool component, or creates an empty instance.
+     *
+     * @param tool the tool component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B tool(final @Nullable ToolComponent tool) {
+        this.itemMeta.setTool(tool);
+        return (B) this;
+    }
+
+    /**
+     * Gets whether the item has a jukebox playable component.
+     *
+     * @return whether the item has a jukebox playable component
+     */
+    @ApiStatus.Experimental
+    public boolean hasJukeboxPlayable() {
+        return this.itemMeta.hasJukeboxPlayable();
+    }
+
+    /**
+     * Gets the jukebox playable component, or creates an empty instance.
+     *
+     * @return the jukebox playable component, or an empty instance
+     */
+    @ApiStatus.Experimental
+    public JukeboxPlayableComponent jukeboxPlayable() {
+        return this.itemMeta.getJukeboxPlayable();
+    }
+
+    /**
+     * Sets the jukebox playable component, or creates an empty instance.
+     *
+     * @param jukeboxPlayable the jukebox playable component, or an empty instance
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B jukeboxPlayable(final @Nullable JukeboxPlayableComponent jukeboxPlayable) {
+        this.itemMeta.setJukeboxPlayable(jukeboxPlayable);
+        return (B) this;
+    }
+
+    /**
      * Gets the lore.
      *
      * @return the lore
      */
     public @Nullable List<Component> lore() {
+        if (!this.itemMeta.hasLore()) {
+            return null;
+        }
         return this.itemMeta.lore();
     }
 
@@ -242,7 +424,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Gets data from the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key  the {@code NamespacedKey} to use
      * @param type the {@code PersistentDataType to use}
@@ -258,7 +440,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds data to the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Adds data to the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key    the {@code NamespacedKey} to use
      * @param type   the {@code PersistentDataType} to use
@@ -277,7 +459,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes data from the {@code ItemStack}'s {@link org.bukkit.persistence.PersistentDataContainer}.
+     * Removes data from the item's {@link org.bukkit.persistence.PersistentDataContainer}.
      *
      * @param key the {@code NamespacedKey} to use
      * @return the builder
@@ -339,18 +521,18 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets the {@code Enchantment}s.
+     * Gets the enchantments.
      *
-     * @return the {@code Enchantment}s
+     * @return the enchantments
      */
     public Map<Enchantment, Integer> enchants() {
-        return new HashMap<>(this.itemStack.getEnchantments());
+        return this.itemStack.getEnchantments();
     }
 
     /**
-     * Sets the {@code Enchantment}s. Pass {@code null} to reset.
+     * Sets the enchantments. Pass {@code null} to reset.
      *
-     * @param enchants the {@code Enchantment}s
+     * @param enchants the enchantments
      * @return the builder
      */
     public B enchants(final @Nullable Map<Enchantment, Integer> enchants) {
@@ -368,10 +550,10 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Adds an {@code Enchantment}.
+     * Adds an enchantment.
      *
-     * @param enchantment the {@code Enchantment} to add
-     * @param level       the level of the {@code Enchantment}
+     * @param enchantment the enchantment to add
+     * @param level       the level of the enchantment
      * @return the builder
      */
     public B addEnchant(final Enchantment enchantment, final int level) {
@@ -380,9 +562,9 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Removes an {@code Enchantment}.
+     * Removes an enchantment.
      *
-     * @param enchantment the {@code Enchantment} to remove
+     * @param enchantment the enchantment to remove
      * @return the builder
      */
     public B removeEnchant(final Enchantment... enchantment) {
@@ -393,34 +575,14 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets whether the {@code ItemStack} has a fake enchantment glint.
+     * Checks whether the given enchantment conflicts with any enchantments
+     * in this item.
      *
-     * <p>This works by enchanting the {@code ItemStack} with an incompatible
-     * enchantment and adding the {@link ItemFlag#HIDE_ENCHANTS} flag.</p>
-     *
-     * @param fakeEnchant whether the {@code ItemStack} has a fake enchant glint
-     * @return the builder
+     * @param enchant the enchantment to test
+     * @return whether the enchantment conflicts
      */
-    public B fakeEnchant(final boolean fakeEnchant) {
-        if (fakeEnchant && !this.fakeEnchant()) {
-            this.addEnchant(this.incompatibleEnchantment(), FAKE_ENCHANT_LEVEL);
-            this.addFlag(ItemFlag.HIDE_ENCHANTS);
-        } else if (!fakeEnchant && this.fakeEnchant()) {
-            this.removeEnchant(this.incompatibleEnchantment());
-            this.removeFlag(ItemFlag.HIDE_ENCHANTS);
-        }
-        return (B) this;
-    }
-
-    /**
-     * Gets whether the {@code ItemStack} has a fake enchantment glint.
-     *
-     * @return whether the {@code ItemStack} has a fake enchantment glint
-     */
-    public boolean fakeEnchant() {
-        return this.enchants().containsKey(this.incompatibleEnchantment())
-            && this.enchants().get(this.incompatibleEnchantment()) == FAKE_ENCHANT_LEVEL
-            && this.flags().contains(ItemFlag.HIDE_ENCHANTS);
+    public boolean hasConflictingEnchant(final Enchantment enchant) {
+        return this.itemMeta.hasConflictingEnchant(enchant);
     }
 
     private Enchantment incompatibleEnchantment() {
@@ -432,9 +594,18 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Sets whether the {@code ItemStack} is unbreakable.
+     * Gets whether the item is unbreakable.
      *
-     * @param unbreakable whether the {@code ItemStack} is unbreakable
+     * @return whether the item is unbreakable
+     */
+    public boolean unbreakable() {
+        return this.itemMeta.isUnbreakable();
+    }
+
+    /**
+     * Sets whether the item is unbreakable.
+     *
+     * @param unbreakable whether the item is unbreakable
      * @return the builder
      */
     public B unbreakable(final boolean unbreakable) {
@@ -443,21 +614,26 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
-     * Gets whether the {@code ItemStack} is unbreakable.
-     *
-     * @return whether the {@code ItemStack} is unbreakable
-     */
-    public boolean unbreakable() {
-        return this.itemMeta.isUnbreakable();
-    }
-
-    /**
-     * Get the max stack size.
+     * Gets the max stack size.
      *
      * @return the max stack size
      */
-    public int maxStackSize() {
-        return this.itemStack.getMaxStackSize();
+    public @Nullable Integer maxStackSize() {
+        if (!this.itemMeta.hasMaxStackSize()) {
+            return null;
+        }
+        return this.itemMeta.getMaxStackSize();
+    }
+
+    /**
+     * Sets the max stack size. Pass {@code null} to reset.
+     *
+     * @param maxStackSize the max stack size
+     * @return the builder
+     */
+    public B maxStackSize(final @Nullable Integer maxStackSize) {
+        this.itemMeta.setMaxStackSize(maxStackSize);
+        return (B) this;
     }
 
     /**
@@ -555,6 +731,28 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     public ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack.clone();
+    }
+
+    /**
+     * Get this item's meta as an NBT string. If the meta does not have any NBT,
+     * then {@code "{}"} will be returned.
+     *
+     * @return the NBT string
+     * @see ItemMeta#getAsString()
+     */
+    public String asString() {
+        return this.itemMeta.getAsString();
+    }
+
+    /**
+     * Get this ItemMeta as a component-compliant string. If the meta does not
+     * contain any components, then {@code "[]"} will be returned.
+     *
+     * @return the component-compliant string
+     * @see ItemMeta#getAsComponentString()
+     */
+    public String asComponentString() {
+        return this.itemMeta.getAsComponentString();
     }
 
 }
