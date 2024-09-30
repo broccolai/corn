@@ -139,6 +139,37 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
     }
 
     /**
+     * Gets the item name
+     *
+     * @see ItemMeta#itemName()
+     * @return the item name
+     */
+    public @Nullable Component itemName() {
+        if (!this.itemMeta.hasItemName()) {
+            return null;
+        }
+        return this.itemMeta.itemName();
+    }
+
+    /**
+     * Sets the item name. Pass {@code null} to reset.
+     *
+     * @see ItemMeta#itemName(Component)
+     * @param itemName the item name
+     * @return the builder
+     */
+    public B itemName(final @Nullable Component itemName) {
+        if (itemName == null) {
+            this.itemMeta.itemName(null);
+            return (B) this;
+        }
+
+        this.itemMeta.itemName(itemName);
+
+        return (B) this;
+    }
+
+    /**
      * Gets the display name.
      *
      * @return the display name
