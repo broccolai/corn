@@ -1,6 +1,7 @@
 package love.broccolai.corn.minecraft.item;
 
 import com.google.common.collect.Multimap;
+import io.papermc.paper.datacomponent.DataComponentType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -751,6 +752,79 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
         for (final Attribute item : attribute) {
             this.itemMeta.removeAttributeModifier(item);
         }
+        return (B) this;
+    }
+
+    /**
+     * Checks if the item has a data component of the given type.
+     *
+     * @param type the {@code DataComponentType} to check
+     * @return whether the item has a data component of the given type
+     */
+    @ApiStatus.Experimental
+    public boolean hasDataComponent(final DataComponentType type) {
+        return this.itemStack.hasData(type);
+    }
+
+    /**
+     * Gets the data component of the given type.
+     *
+     * @param type the {@code DataComponentType.Valued} to get
+     * @param <T> the type of the data component
+     * @return the data component of the given type, or {@code null} if not present
+     */
+    @ApiStatus.Experimental
+    public @Nullable <T> T dataComponent(final DataComponentType.Valued type) {
+        return (T) this.itemStack.getData(type);
+    }
+
+    /**
+     * Sets the data component of the given type.
+     *
+     * @param type the {@code DataComponentType.Valued} to set
+     * @param value the value to set
+     * @param <T> the type of the data component
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public <T> B dataComponent(final DataComponentType.Valued<T> type, final T value) {
+        this.itemStack.setData(type, value);
+        return (B) this;
+    }
+
+    /**
+     * Sets the data component of the given type.
+     *
+     * @param type the {@code DataComponentType.NonValued} to set
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B dataComponent(final DataComponentType.NonValued type) {
+        this.itemStack.setData(type);
+        return (B) this;
+    }
+
+    /**
+     * Unsets the data component of the given type.
+     *
+     * @param type the {@code DataComponentType} to unset
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B unsetDataComponent(final DataComponentType type) {
+        this.itemStack.unsetData(type);
+        return (B) this;
+    }
+
+    /**
+     * Resets the data component of the given type.
+     *
+     * @param type the {@code DataComponentType} to reset
+     * @return the builder
+     */
+    @ApiStatus.Experimental
+    public B resetDataComponent(final DataComponentType type) {
+        this.itemStack.resetData(type);
         return (B) this;
     }
 
