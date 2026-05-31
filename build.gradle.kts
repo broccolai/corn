@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "love.broccolai.corn"
-version = "4.0.0-SNAPSHOT"
+version = "4.1.0-SNAPSHOT"
 description = "extremely opinionated mostly personal java utilities"
 
 subprojects {
