@@ -41,8 +41,8 @@ subprojects {
         checkstyle("9.0")
 
         javaVersions {
-            target(21)
-            testWith(21)
+            target(25)
+            testWith(25)
         }
 
         github("broccolai", "corn") {
