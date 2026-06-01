@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "love.broccolai.corn"
-version = "4.0.0-SNAPSHOT"
+version = "4.1.0-SNAPSHOT"
 description = "extremely opinionated mostly personal java utilities"
 
 subprojects {
@@ -41,8 +41,8 @@ subprojects {
         checkstyle("9.0")
 
         javaVersions {
-            target(21)
-            testWith(21)
+            target(25)
+            testWith(25)
         }
 
         github("broccolai", "corn") {

@@ -762,7 +762,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return whether the item has a data component of the given type
      */
     @ApiStatus.Experimental
-    public boolean hasDataComponent(final DataComponentType type) {
+    public boolean hasData(final DataComponentType type) {
         return this.itemStack.hasData(type);
     }
 
@@ -774,7 +774,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the data component of the given type, or {@code null} if not present
      */
     @ApiStatus.Experimental
-    public @Nullable <T> T dataComponent(final DataComponentType.Valued type) {
+    public @Nullable <T> T data(final DataComponentType.Valued type) {
         return (T) this.itemStack.getData(type);
     }
 
@@ -787,7 +787,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     @ApiStatus.Experimental
-    public <T> B dataComponent(final DataComponentType.Valued<T> type, final T value) {
+    public <T> B data(final DataComponentType.Valued<T> type, final T value) {
         this.itemStack.setData(type, value);
         return (B) this;
     }
@@ -799,7 +799,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     @ApiStatus.Experimental
-    public B dataComponent(final DataComponentType.NonValued type) {
+    public B data(final DataComponentType.NonValued type) {
         this.itemStack.setData(type);
         return (B) this;
     }
@@ -811,7 +811,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     @ApiStatus.Experimental
-    public B unsetDataComponent(final DataComponentType type) {
+    public B unsetData(final DataComponentType type) {
         this.itemStack.unsetData(type);
         return (B) this;
     }
@@ -823,7 +823,7 @@ public abstract class AbstractItemBuilder<B extends AbstractItemBuilder<B, M>, M
      * @return the builder
      */
     @ApiStatus.Experimental
-    public B resetDataComponent(final DataComponentType type) {
+    public B resetData(final DataComponentType type) {
         this.itemStack.resetData(type);
         return (B) this;
     }

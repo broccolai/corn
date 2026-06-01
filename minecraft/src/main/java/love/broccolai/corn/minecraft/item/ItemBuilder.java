@@ -42,5 +42,5 @@ public final class ItemBuilder extends AbstractItemBuilder<ItemBuilder, ItemMeta
     public static ItemBuilder itemBuilder(final Material material) throws IllegalArgumentException {
         return itemBuilder(itemOfMaterial(material));
     }
-
+    
 }
