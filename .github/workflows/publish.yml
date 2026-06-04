@@ -1,9 +1,8 @@
-name: Publish release build to repo.broccol.ai
+name: Publish build to repo.broccol.ai
 
 on:
-    release:
-        types: [ created ]
-    workflow_dispatch:
+    push:
+        branches: [ master ]
 
 permissions:
     contents: read
@@ -15,6 +14,8 @@ jobs:
         steps:
             -   name: Check out sources
                 uses: actions/checkout@v6
+                with:
+                    fetch-tags: true
 
             -   name: Set up Java
                 uses: actions/setup-java@v5
@@ -26,7 +27,9 @@ jobs:
                 uses: gradle/actions/setup-gradle@v6
 
             -   name: Publish package
-                run: ./gradlew build publish -x requireClean -x signMavenPublication
+                run: ./gradlew build publish
                 env:
                     ORG_GRADLE_PROJECT_broccolaiUsername: ${{ secrets.BROCCOLAI_USERNAME }}
                     ORG_GRADLE_PROJECT_broccolaiPassword: ${{ secrets.BROCCOLAI_PASSWORD }}
+                    ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+                    ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
